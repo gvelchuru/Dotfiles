@@ -105,7 +105,7 @@ font-0 = Sauce Code Pro Nerd Font:pixelsize=15;3
 
 ;modules-left = bspwm
 modules-left= weather
-modules-right = cpu memory
+modules-right = cpu memory filesystem
 
 ;[module/backlight]
 ;type = internal/xbacklight
@@ -126,6 +126,25 @@ modules-right = cpu memory
 ;bar-empty-font = 3
 ;bar-empty-foreground = #44
 
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+format-mounted = <label> <bar-used>
+label-mounted = %mountpoint%
+bar-used-width = 30
+bar-used-foreground-0 = ${colors.green} 
+bar-used-foreground-1 = ${colors.green} 
+bar-used-foreground-2 = ${colors.orange} 
+bar-used-foreground-3 = ${colors.red} 
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = ${colors.white} 
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = ${colors.foreground}
 [module/xbacklight]
 type = internal/xbacklight
 
@@ -474,7 +493,7 @@ label-disconnected-foreground = #66
 ;ramp-volume-3 = 
 
 [module/volume]
-type = internal/alsa
+type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%
