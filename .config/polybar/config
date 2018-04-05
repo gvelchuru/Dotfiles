@@ -443,7 +443,7 @@ bar-used-empty-foreground = ${colors.foreground}
 
 [module/wireless-network]
 type = internal/network
-interface = wlp1s0
+interface = wlp5s0
 interval = 6
 ping-interval = 6
 
