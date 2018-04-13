@@ -20,7 +20,7 @@ URxvt.shading: 25
 URxvt*font: xft:Sauce Code Pro Nerd Font Mono:size=11:antialias=true:hinting=true,xft:Inconsolata Nerd Font:size=11:antialias=true;hinting=true, xft:Ubuntu Mono Nerd Font Mono:size=11:antialias=true:hinting=true
 
 ! terminal padding
-URxvt.internalBorder: 25
+URxvt.internalBorder: 5
 
 URxvt.lineSpace: -1
 !URxvt.letterSpace: -1
