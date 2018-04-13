@@ -12,6 +12,10 @@ URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
+
+URxvt.transparent: true
+URxvt.shading: 25
+
 ! font
 URxvt*font: xft:Sauce Code Pro Nerd Font Mono:size=11:antialias=true:hinting=true,xft:Inconsolata Nerd Font:size=11:antialias=true;hinting=true, xft:Ubuntu Mono Nerd Font Mono:size=11:antialias=true:hinting=true
 
