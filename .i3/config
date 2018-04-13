@@ -209,5 +209,4 @@ exec --no-startup-id dunst
 exec --no-startup-id light-locker
 exec compton -b --config ~/.config/.compton.conf
 exec_always feh --bg-scale ~/Pictures/backgrounds/white_castle.jpg
-exec light-locker
 exec_always xautolock -detectsleep -time 5 -locker "light-locker-command -l" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
