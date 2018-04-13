@@ -47,7 +47,7 @@ font-2 = IPAGothic:pixelsize=15;3
 
 modules-left = i3 powermenu  
 modules-center = date 
-modules-right = volume xbacklight  wireless-network battery temperature
+modules-right = volume wireless-network temperature
 
 ;wm-restack = i3
 ;override-redirect = true
@@ -55,8 +55,12 @@ modules-right = volume xbacklight  wireless-network battery temperature
 [module/temperature]
 interval = 2
 type = internal/temperature
-thermal-zone = 3
-warn-temperature = 75
+;thermal-zone = 3
+
+
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
+
+warn-temperature = 70
 
 format = <ramp> <label>
 label = %temperature-c%
