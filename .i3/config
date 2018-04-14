@@ -189,6 +189,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/pulseaudio-ctl up
 bindsym XF86AudioLowerVolume exec --no-startup-id /usr/bin/pulseaudio-ctl down
 bindsym XF86AudioMute exec --no-startup-id /usr/bin/pulseaudio-ctl mute
 
+
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
@@ -197,8 +198,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
@@ -207,7 +207,6 @@ exec --no-startup-id redshift-gtk
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
-exec compton -b --config ~/.config/.compton.conf
-exec_always feh --bg-scale ~/Pictures/backgrounds/white_castle.jpg
-exec light-locker
+exec compton -b --config ~/.compton.conf
+exec_always feh --bg-scale ~/white_castle.jpg
 exec_always xautolock -detectsleep -time 5 -locker "light-locker-command -l" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
