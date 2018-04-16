@@ -36,7 +36,7 @@ configuration {
 /*	line-margin: 2;*/
 /*	line-padding: 1;*/
 /*	filter: ;*/
-	separator-style: "solid";
+    separator-style: "none";
 	hide-scrollbar: true;
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/
