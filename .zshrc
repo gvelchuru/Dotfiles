@@ -2,6 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/miniconda3/bin:$PATH
 export TERM="xterm-256color"
+export PATH=$HOME/.local/bin:$PATH
+
 setopt NO_BEEP
 
 # Path to your oh-my-zsh installation.
