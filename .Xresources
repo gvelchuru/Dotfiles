@@ -106,3 +106,6 @@ URxvt.matcher.rend.0: Bold fg6
 *.color246: #a89984
 *.color248: #bdae93
 *.color250: #d5c4a1
+
+
+xscreensaver.newLoginCommand: dm-tool switch-to-greeter
