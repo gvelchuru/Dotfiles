@@ -7,3 +7,6 @@
 [submodule "tmux-gruvbox"]
 	path = tmux-gruvbox
 	url = https://github.com/egel/tmux-gruvbox.git
+[submodule ".tmux/plugins/tpm/tpm"]
+	path = .tmux/plugins/tpm/tpm
+	url = https://github.com/tmux-plugins/tpm
