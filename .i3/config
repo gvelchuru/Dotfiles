@@ -205,6 +205,7 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id onedrive
 exec --no-startup-id redshift-gtk
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id lxsession
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
 exec compton -b -c --config ~/.compton.conf
