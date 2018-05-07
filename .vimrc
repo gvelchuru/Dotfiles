@@ -1,0 +1,1 @@
+/home/gauthv/.vim/vimrc
