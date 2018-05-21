@@ -68,6 +68,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source "$HOME/.rvm/scripts/rvm"
 
 # User configuration
 
@@ -174,3 +175,6 @@ bindkey -v  # VIM mode
 export PATH="/home/gauthv/.cargo/bin:$PATH"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
