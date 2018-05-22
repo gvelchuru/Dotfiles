@@ -1,6 +1,15 @@
 [submodule ".vim"]
 	path = .vim
-	url = ./.vim
+	url = https://github.com/gvelchuru/.vim.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = ./.oh-my-zsh
+	url = https://github.com/gvelchuru/oh-my-zsh
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/gvelchuru/oh-my-zsh.git
+[submodule "tmux-gruvbox"]
+	path = tmux-gruvbox
+	url = https://github.com/egel/tmux-gruvbox.git
+[submodule ".tmux/plugins/tpm/tpm"]
+	path = .tmux/plugins/tpm/tpm
+	url = https://github.com/tmux-plugins/tpm

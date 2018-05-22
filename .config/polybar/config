@@ -145,6 +145,7 @@ bar-used-fill-font = 6
 bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = ${colors.foreground}
+
 [module/xbacklight]
 type = internal/xbacklight
 
