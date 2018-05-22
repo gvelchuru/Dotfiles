@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
  export PATH=$HOME/.local/bin:$PATH
-
+ export PATH=$HOME/miniconda3/bin:$PATH
 setopt NO_BEEP
 
 # Path to your oh-my-zsh installation.
