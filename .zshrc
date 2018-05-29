@@ -15,6 +15,9 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs anaconda)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+POWERLEVEL9K_LINUX_ICON='\uf17c'
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
