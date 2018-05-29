@@ -45,7 +45,7 @@ font-0 = Sauce Code Pro Nerd Font:pixelsize=15;3
 font-1 = FontAwesome:pixelsize=14;3
 font-2 = IPAGothic:pixelsize=15;3
 
-modules-left = i3 powermenu  
+modules-left = powermenu i3 
 modules-center = date 
 modules-right = volume wireless-network temperature
 
@@ -517,33 +517,34 @@ mapped = true
 [module/powermenu]
 type = custom/menu
 
-format-padding = 5
+format-padding = 1
 
-label-open = 
-label-close = 
+label-open = ⏻
+label-close = ⏻
+
 
 menu-0-0 = Terminate WM
-menu-0-0-foreground = #fba922
+menu-0-0-foreground = ${colors.yellow}
 menu-0-0-exec = bspc quit -1
 menu-0-1 = Reboot
-menu-0-1-foreground = #fba922
+menu-0-1-foreground = ${colors.yellow}
 menu-0-1-exec = menu_open-1
 menu-0-2 = Power off
-menu-0-2-foreground = #fba922
+menu-0-2-foreground = ${colors.yellow}
 menu-0-2-exec = menu_open-2
 
-menu-1-0 = Cancel
-menu-1-0-foreground = #fba922
-menu-1-0-exec = menu_open-0
-menu-1-1 = Reboot
-menu-1-1-foreground = #fba922
-menu-1-1-exec = sudo reboot
+;menu-1-0 = Cancel
+;menu-1-0-foreground = ${colors.yellow}
+;menu-1-0-exec = menu_open-0
+;menu-1-1 = Reboot
+;menu-1-1-foreground = ${colors.yellow}
+;menu-1-1-exec = sudo reboot
 
 menu-2-0 = Power off
-menu-2-0-foreground = #fba922
+menu-2-0-foreground = ${colors.yellow}
 menu-2-0-exec = sudo poweroff
 menu-2-1 = Cancel
-menu-2-1-foreground = #fba922
+menu-2-1-foreground = ${colors.yellow}
 menu-2-1-exec = menu_open-0
 
 ;[module/clock]
