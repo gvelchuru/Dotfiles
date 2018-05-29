@@ -1,1 +1,1 @@
-/home/gauthv/.vim/vimrc
+/home/gvelchuru/.vim/vimrc

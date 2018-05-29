@@ -7,7 +7,7 @@ export PATH=$HOME/.local/bin:$PATH
 setopt NO_BEEP
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/gauthv/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # Set name of the theme to load. Optionally, if you set this to "random"
