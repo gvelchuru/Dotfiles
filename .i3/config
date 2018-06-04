@@ -34,7 +34,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+i exec google-chrome-unstable
+bindsym $mod+i exec firefox-nightly
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -210,5 +210,7 @@ exec --no-startup-id dunst
 exec --no-startup-id light-locker
 exec compton -b -c --config ~/.compton.conf
 exec_always feh --bg-scale ~/white_castle.jpg
-exec --no-startup-id /usr/bin/boinc  --no_gui_rpc
+exec --no-startup-id /usr/bin/boinc  
+exec --no-startup-id ~/backup.sh
+#--no_gui_rpc
 exec xautolock -detectsleep -time 5 -locker "light-locker-command -l" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
