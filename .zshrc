@@ -169,8 +169,8 @@ alias pactree='pactree --color'
 alias qutebrowser='qutebrowser --backend webengine'     # webengine in qutebrowser
 
 alias tree='tree -C'
-#alias vi='nvim'; alias vim='nvim'       # use nvim where vi or vim is called
-#alias vimdiff='nvim -d'                 # use nvim when diffing
+alias vi='nvim'; alias vim='nvim'       # use nvim where vi or vim is called
+alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 
 # {{{ ZSH OPTIONS
