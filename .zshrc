@@ -113,6 +113,9 @@ alias mkdir='mkdir -p'          # do not clobber files when making paths
 alias mv='mv -iv'               # interactive and verbose mv
 alias rm='rm -iv'               # interactive and verbose rm
 
+# Kitty aliases
+alias icat="kitty +kitten icat"
+
 #function ls {
     #command ls -F -h --color=always -v --author --time-style=long-iso -C "$@" | less -R -X -F
 #}
