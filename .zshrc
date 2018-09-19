@@ -185,3 +185,4 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+. /opt/anaconda/etc/profile.d/conda.sh
