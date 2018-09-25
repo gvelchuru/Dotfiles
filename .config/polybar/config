@@ -41,7 +41,7 @@ module-margin-right = 1
 ;font-2 = Termsynu:size=8:antialias=false;-2
 ;font-3 = FontAwesome:size=10;0
 
-font-0 = FuraCode Nerd Font:pixelsize=15;3
+font-0 = FuraCode Nerd Font:pixelsize=14;3
 font-1 = FontAwesome:pixelsize=14;3
 font-2 = IPAGothic:pixelsize=15;3
 
@@ -101,10 +101,10 @@ module-margin-right = 1
 ;font-3 = NotoSans-Regular:size=8;-1
 ;font-4 = MaterialIcons:size=10;-1
 ;font-5 = Termsynu:size=8:antialias=false;0
-font-0 = Sauce Code Pro Nerd Font:pixelsize=15;3
+font-0 = FuraCode Nerd Font:pixelsize=14;3
 
 ;modules-left = bspwm
-;modules-left= weather
+modules-left= weather
 modules-right = cpu memory filesystem
 
 ;[module/backlight]
@@ -572,12 +572,12 @@ label = %date% %time%
 ;exec = ~/.config/polybar/weather
 ;exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
 
-[module/weather]
-type = custom/script
-exec = ~/.config/polybar/modules/forecast/polybar-forecast
-exec-if = ping openweathermap.org -c 1
-interval = 600
-label-font = 3
+;[module/weather]
+;type = custom/script
+;exec = ~/.config/polybar/modules/forecast/polybar-forecast
+;exec-if = ping openweathermap.org -c 1
+;interval = 600
+;label-font = 3
 ;[module/weather]
 ;type = custom/script
 ;exec = weather-bar
