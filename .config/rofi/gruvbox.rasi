@@ -2,7 +2,7 @@
     selected-normal-foreground:  rgba ( 251, 241, 199, 100 % );
     foreground:                  rgba ( 235, 219, 178, 100 % );
     normal-foreground:           @foreground;
-    alternate-normal-background: rgba ( 50, 48, 47, 82 % );
+    alternate-normal-background: @normal-background;
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-urgent-foreground:  rgba ( 40, 40, 40, 100 % );
     blue:                        rgba ( 38, 139, 210, 100 % );

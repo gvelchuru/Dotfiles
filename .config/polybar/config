@@ -45,7 +45,7 @@ font-0 = FuraCode Nerd Font:pixelsize=14;3
 font-1 = FontAwesome:pixelsize=14;3
 font-2 = IPAGothic:pixelsize=15;3
 
-modules-left = i3 powermenu  
+modules-left = powermenu i3 
 modules-center = date 
 modules-right = volume xbacklight  wireless-network battery temperature
 
@@ -513,34 +513,43 @@ mapped = true
 [module/powermenu]
 type = custom/menu
 
-format-padding = 5
+; Padding doesn't seem to be working
+label-open = " "
+label-open-foreground = ${colors.yellow}
+label-close =  cancel
+label-close-foreground = ${colors.yellow}
+label-separator = " | "
 
-label-open = 
-label-close = 
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = quit i3
+menu-0-1-exec = menu-open-2
+menu-0-2 = power off
+menu-0-2-exec = menu-open-3
+menu-0-3 = hibernate
+menu-0-3-exec = menu-open-4
 
-menu-0-0 = Terminate WM
-menu-0-0-foreground = #fba922
-menu-0-0-exec = bspc quit -1
-menu-0-1 = Reboot
-menu-0-1-foreground = #fba922
-menu-0-1-exec = menu_open-1
-menu-0-2 = Power off
-menu-0-2-foreground = #fba922
-menu-0-2-exec = menu_open-2
-
-menu-1-0 = Cancel
-menu-1-0-foreground = #fba922
-menu-1-0-exec = menu_open-0
-menu-1-1 = Reboot
-menu-1-1-foreground = #fba922
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
 menu-1-1-exec = sudo reboot
 
-menu-2-0 = Power off
-menu-2-0-foreground = #fba922
-menu-2-0-exec = sudo poweroff
-menu-2-1 = Cancel
-menu-2-1-foreground = #fba922
-menu-2-1-exec = menu_open-0
+menu-2-0 = cancel
+menu-2-0-exec = menu-open-0
+menu-2-1      = shut off i3
+menu-2-1-exec = i3-msg exit
+
+menu-3-0 = power off
+menu-3-0-exec = sudo poweroff
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+menu-4-0 = hibernate
+menu-4-0-exec = systemctl suspend
+menu-4-1 = cancel
+menu-4-1-exec = menu-open-0
+
+
 
 ;[module/clock]
 ;type = internal/date
