@@ -94,7 +94,7 @@ line-color = ${bar/top.background}
 line-size = 2
 
 spacing = 3
-padding-left = 0
+padding-left = 2
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
@@ -108,8 +108,9 @@ module-margin-right = 1
 font-0 = FuraCode Nerd Font:pixelsize=14;3
 
 ;modules-left = bspwm
-modules-left= weather
-modules-right = cpu memory filesystem
+;modules-left= weather
+modules-left  = filesystem
+modules-right = cpu memory 
 
 ;[module/backlight]
 ;type = internal/xbacklight
@@ -134,8 +135,8 @@ modules-right = cpu memory filesystem
 type = internal/fs
 
 mount-0 = /
-format-mounted = <label> <bar-used>
-label-mounted = %mountpoint%
+format-mounted = <label-mounted> <bar-used>
+label-mounted = Disk
 bar-used-width = 30
 bar-used-foreground-0 = ${colors.green} 
 bar-used-foreground-1 = ${colors.green} 
