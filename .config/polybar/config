@@ -46,8 +46,8 @@ font-1 = FontAwesome:pixelsize=14;3
 font-2 = IPAGothic:pixelsize=15;3
 
 modules-left = powermenu i3 
-modules-center = date 
-modules-right = volume xbacklight  wireless-network battery temperature
+;modules-center = date 
+modules-right = volume wireless-network wired-network temperature date
 
 ;wm-restack = i3
 ;override-redirect = true
@@ -447,7 +447,7 @@ interface = wlp1s0
 interval = 6
 ping-interval = 6
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal> 
 format-packetloss = <animation-packetloss> <label-connected>
 label-connected = %essid%
 
@@ -474,8 +474,8 @@ type = internal/network
 interface = enp0s20f0u3
 interval = 3.0
 
-label-connected =    %{T3}%local_ip%%{T-}
-label-disconnected-foreground = #66
+label-connected =  
+label-disconnected-foreground = ${colors.red}
 
 ;[module/volume]
 ;type = internal/alsa
@@ -496,7 +496,7 @@ label-disconnected-foreground = #66
 [module/volume]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume> 
 label-volume = %percentage%
 label-muted =  00
 label-muted-foreground = ${colors.orange}
