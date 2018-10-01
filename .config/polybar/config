@@ -47,7 +47,7 @@ font-2 = IPAGothic:pixelsize=15;3
 
 modules-left = powermenu i3 
 ;modules-center = date 
-modules-right = volume wireless-network wired-network temperature date
+modules-right = battery volume wireless-network temperature date
 
 ;wm-restack = i3
 ;override-redirect = true
