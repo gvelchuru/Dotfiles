@@ -47,7 +47,7 @@ font-2 = IPAGothic:pixelsize=15;3
 
 modules-left = powermenu i3 
 ;modules-center = date 
-modules-right = battery volume wireless-network temperature date
+modules-right = battery volume xbacklight wireless-network temperature date
 
 ;wm-restack = i3
 ;override-redirect = true
@@ -149,7 +149,7 @@ bar-used-empty-foreground = ${colors.foreground}
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <ramp> <label>
+format = <ramp> 
 label = %percentage%
 
 ramp-0 = 
