@@ -568,7 +568,7 @@ time = %H:%M
 
 format-prefix = 
 format-prefix-foreground = ${colors.aqua}
-format-prefix-padding = 1
+format-prefix-padding = 0
 
 label = %date% %time%
 
