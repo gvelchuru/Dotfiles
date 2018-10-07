@@ -44,6 +44,7 @@ SPACESHIP_PROMPT_ORDER=(
   )
 
 SPACESHIP_NODE_DEFAULT_VERSION="v10.11.0"
+SPACESHIP_CONDA_SYMBOL=🐍
 
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
@@ -122,7 +123,7 @@ source "$HOME/.rvm/scripts/rvm"
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+export EDITOR='nvim'
 # fi
 
 # Compilation flags
