@@ -35,6 +35,10 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+i exec firefox-nightly
+
+# lock
+bindsym $mod+Escape exec "light-locker-command -l"
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show run
