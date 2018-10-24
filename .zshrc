@@ -43,8 +43,9 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
   )
 
-SPACESHIP_NODE_DEFAULT_VERSION="v10.11.0"
+SPACESHIP_NODE_DEFAULT_VERSION="v10.12.0"
 SPACESHIP_CONDA_SYMBOL=🐍
+SPACESHIP_EXIT_CODE_SHOW="true"
 
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
