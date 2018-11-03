@@ -1,12 +1,19 @@
 # If you come from bash you might have to change your $PATH.
- export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/miniconda3/bin:$PATH
 export TERM="xterm-256color"
 setopt NO_BEEP
+source "${HOME}/zgen/zgen.zsh"
+# if the init script doesn't exist
+if ! zgen saved; then
 
-autoload -U promptinit; promptinit
-prompt spaceship
+  # specify plugins here
+    zgen load denysdovhan/spaceship-prompt spaceship
+
+  # generate the init script from plugins above
+  zgen save
+fi
 
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
@@ -16,7 +23,7 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
-  node          # Node.js section
+  #node          # Node.js section
   ruby          # Ruby section
   elixir        # Elixir section
   xcode         # Xcode section
@@ -212,3 +219,5 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 . /opt/anaconda/etc/profile.d/conda.sh
+. $HOME/miniconda3/etc/profile.d/conda.sh
+conda activate

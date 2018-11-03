@@ -7,6 +7,6 @@
 [submodule ".tmux/plugins/tpm/tpm"]
 	path = .tmux/plugins/tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/gvelchuru/nvim.git
+[submodule "zgen"]
+	path = zgen
+	url = https://github.com/tarjoilija/zgen.git
