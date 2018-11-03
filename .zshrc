@@ -10,6 +10,7 @@ if ! zgen saved; then
 
   # specify plugins here
     zgen load denysdovhan/spaceship-prompt spaceship
+    zgen load zdharma/fast-syntax-highlighting
 
   # generate the init script from plugins above
   zgen save
@@ -103,8 +104,6 @@ plugins=(
   git
 )
 
-#source $ZSH/oh-my-zsh.sh
-source "$HOME/.rvm/scripts/rvm"
 
 # User configuration
 
@@ -212,12 +211,13 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 export PATH="/home/gauthv/.cargo/bin:$PATH"
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -d /opt/anaconda ]] ; then
 . /opt/anaconda/etc/profile.d/conda.sh
+else 
 . $HOME/miniconda3/etc/profile.d/conda.sh
+fi
 conda activate
