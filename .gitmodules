@@ -7,6 +7,3 @@
 [submodule ".tmux/plugins/tpm/tpm"]
 	path = .tmux/plugins/tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "zgen"]
-	path = zgen
-	url = https://github.com/tarjoilija/zgen.git
