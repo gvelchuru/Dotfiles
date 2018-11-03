@@ -41,13 +41,13 @@ module-margin-right = 1
 ;font-2 = Termsynu:size=8:antialias=false;-2
 ;font-3 = FontAwesome:size=10;0
 
-font-0 = Sauce Code Pro Nerd Font:pixelsize=15;3
+font-0 = FuraCode Nerd Font:pixelsize=14;3
 font-1 = FontAwesome:pixelsize=14;3
 font-2 = IPAGothic:pixelsize=15;3
 
 modules-left = powermenu i3 
-modules-center = date 
-modules-right = volume wireless-network temperature
+;modules-center = date 
+modules-right = volume wireless-network wired-network temperature date
 
 ;wm-restack = i3
 ;override-redirect = true
@@ -94,7 +94,7 @@ line-color = ${bar/top.background}
 line-size = 2
 
 spacing = 3
-padding-left = 0
+padding-left = 2
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
@@ -105,11 +105,12 @@ module-margin-right = 1
 ;font-3 = NotoSans-Regular:size=8;-1
 ;font-4 = MaterialIcons:size=10;-1
 ;font-5 = Termsynu:size=8:antialias=false;0
-font-0 = Sauce Code Pro Nerd Font:pixelsize=15;3
+font-0 = FuraCode Nerd Font:pixelsize=14;3
 
 ;modules-left = bspwm
-modules-left= weather
-modules-right = cpu memory filesystem
+;modules-left= weather
+modules-left  = filesystem
+modules-right = cpu memory 
 
 ;[module/backlight]
 ;type = internal/xbacklight
@@ -134,8 +135,8 @@ modules-right = cpu memory filesystem
 type = internal/fs
 
 mount-0 = /
-format-mounted = <label> <bar-used>
-label-mounted = %mountpoint%
+format-mounted = <label-mounted> <bar-used>
+label-mounted = Disk
 bar-used-width = 30
 bar-used-foreground-0 = ${colors.green} 
 bar-used-foreground-1 = ${colors.green} 
@@ -451,7 +452,7 @@ interface = wlp5s0
 interval = 6
 ping-interval = 6
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal> 
 format-packetloss = <animation-packetloss> <label-connected>
 label-connected = %essid%
 
@@ -475,11 +476,11 @@ animation-packetloss-framerate = 1000
 
 [module/wired-network]
 type = internal/network
-interface = wlp1s0
+interface = enp4s0
 interval = 3.0
 
-label-connected =    %{T3}%local_ip%%{T-}
-label-disconnected-foreground = #66
+label-connected =  
+label-disconnected-foreground = ${colors.red}
 
 ;[module/volume]
 ;type = internal/alsa
@@ -500,7 +501,7 @@ label-disconnected-foreground = #66
 [module/volume]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume> 
 label-volume = %percentage%
 label-muted =  00
 label-muted-foreground = ${colors.orange}
@@ -517,21 +518,60 @@ mapped = true
 [module/powermenu]
 type = custom/menu
 
-format-padding = 1
+; Padding doesn't seem to be working
+label-open = " "
+label-open-foreground = ${colors.yellow}
+label-close =  cancel
+label-close-foreground = ${colors.yellow}
+label-separator = " | "
 
-label-open = ⏻
-label-close = ⏻
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = quit i3
+menu-0-1-exec = menu-open-2
+menu-0-2 = power off
+menu-0-2-exec = menu-open-3
+menu-0-3 = hibernate
+menu-0-3-exec = menu-open-4
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = cancel
+menu-2-0-exec = menu-open-0
+menu-2-1      = shut off i3
+menu-2-1-exec = i3-msg exit
+
+menu-3-0 = power off
+menu-3-0-exec = poweroff
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+menu-4-0 = hibernate
+menu-4-0-exec = systemctl suspend
+menu-4-1 = cancel
+menu-4-1-exec = menu-open-0
+
+;[module/powermenu]
+;type = custom/menu
+
+;format-padding = 1
+
+;label-open = ⏻
+;label-close = ⏻
 
 
-menu-0-0 = Terminate WM
-menu-0-0-foreground = ${colors.yellow}
-menu-0-0-exec = bspc quit -1
-menu-0-1 = Reboot
-menu-0-1-foreground = ${colors.yellow}
-menu-0-1-exec = menu_open-1
-menu-0-2 = Power off
-menu-0-2-foreground = ${colors.yellow}
-menu-0-2-exec = menu_open-2
+;menu-0-0 = Terminate WM
+;menu-0-0-foreground = ${colors.yellow}
+;menu-0-0-exec = bspc quit -1
+;menu-0-1 = Reboot
+;menu-0-1-foreground = ${colors.yellow}
+;menu-0-1-exec = menu_open-1
+;menu-0-2 = Power off
+;menu-0-2-foreground = ${colors.yellow}
+;menu-0-2-exec = menu_open-2
 
 ;menu-1-0 = Cancel
 ;menu-1-0-foreground = ${colors.yellow}
@@ -540,12 +580,12 @@ menu-0-2-exec = menu_open-2
 ;menu-1-1-foreground = ${colors.yellow}
 ;menu-1-1-exec = sudo reboot
 
-menu-2-0 = Power off
-menu-2-0-foreground = ${colors.yellow}
-menu-2-0-exec = sudo poweroff
-menu-2-1 = Cancel
-menu-2-1-foreground = ${colors.yellow}
-menu-2-1-exec = menu_open-0
+;menu-2-0 = Power off
+;menu-2-0-foreground = ${colors.yellow}
+;menu-2-0-exec = sudo poweroff
+;menu-2-1 = Cancel
+;menu-2-1-foreground = ${colors.yellow}
+;menu-2-1-exec = menu_open-0
 
 ;[module/clock]
 ;type = internal/date

@@ -17,7 +17,7 @@ weather-underground-api-key = "2a79b5f8caf7662a"
 ;
 ; To hardcode a specific ICAO or WU PWS weather station, uncomment the following:
 ; station = "KMHK"
-; station = "KTXALAMO5"
+;  station = "KWABELLE141"
 
 
 [format]

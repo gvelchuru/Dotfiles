@@ -30,11 +30,15 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal 
+bindsym $mod+Return exec kitty 
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+i exec google-chrome-unstable
+bindsym $mod+i exec firefox
+
+# lock
+bindsym $mod+Escape exec "light-locker-command -l"
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -173,7 +177,7 @@ bindsym $mod+r mode "resize"
 #}
 
 # i3-gaps
-gaps inner 10
+gaps inner 0
 gaps outer 0
 #default_border normal 3
 #default_floating_border normal 3
@@ -202,6 +206,19 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+#Workspace
+workspace 1 output DP-1
+workspace 2 output DVI-D-0
+workspace 3 output DP-1
+workspace 4 output DVI-D-0
+workspace 5 output DP-1
+workspace 6 output DVI-D-0
+workspace 7 output DP-1
+workspace 8 output DVI-D-0
+workspace 9 output DP-1
+workspace 10 output DVI-D-0
+
+
 exec --no-startup-id onedrive
 exec --no-startup-id redshift-gtk
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -209,6 +226,9 @@ exec --no-startup-id lxsession
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
 exec compton -b -c --config ~/.compton.conf
-exec_always feh --bg-scale ~/white_castle.jpg
-exec --no-startup-id /usr/bin/boinc  --no_gui_rpc
+#exec_always feh --bg-scale ~/white_castle.jpg
+exec_always --no-startup-id hsetroot -solid "#282828"
+exec --no-startup-id /usr/bin/boinc  
+exec --no-startup-id ~/backup.sh
+#--no_gui_rpc
 exec xautolock -detectsleep -time 5 -locker "light-locker-command -l" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
