@@ -7,9 +7,6 @@
 [submodule ".tmux/plugins/tpm/tpm"]
 	path = .tmux/plugins/tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "zplug"]
-	path = zplug
-	url = https://github.com/zplug/zplug
 [submodule "autojump"]
 	path = autojump
 	url = git://github.com/wting/autojump.git
