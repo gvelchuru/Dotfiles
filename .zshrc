@@ -1,12 +1,27 @@
 # If you come from bash you might have to change your $PATH.
- export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/miniconda3/bin:$PATH
 export TERM="xterm-256color"
 setopt NO_BEEP
 
-autoload -U promptinit; promptinit
-prompt spaceship
+source ~/zplug/init.zsh
+  # specify plugins here
+zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+zplug zdharma/fast-syntax-highlighting
+zplug zsh-users/zsh-autosuggestions
+zplug ael-code/zsh-colored-man-pages
+zplug MichaelAquilina/zsh-you-should-use
+zplug bri3/nice-exit-code, from:oh-my-zsh
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load 
 
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
@@ -16,7 +31,7 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
-  node          # Node.js section
+  #node          # Node.js section
   ruby          # Ruby section
   elixir        # Elixir section
   xcode         # Xcode section
@@ -46,6 +61,7 @@ SPACESHIP_PROMPT_ORDER=(
 SPACESHIP_NODE_DEFAULT_VERSION="v11.0.0"
 SPACESHIP_CONDA_SYMBOL=🐍
 SPACESHIP_EXIT_CODE_SHOW="true"
+#SPACESHIP_EXIT_CODE_SUFFIX=$(nice_exit_code)
 
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
@@ -84,20 +100,6 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
-
-#source $ZSH/oh-my-zsh.sh
-source "$HOME/.rvm/scripts/rvm"
 
 # User configuration
 
@@ -181,6 +183,7 @@ alias weather='curl -s wttr.in/~白井市 | head -7'       # print weather
 alias weatherforecast='curl -s wttr.in/~白井市 | head -37 | tail -30'
 #   }}}
 
+# {{{ OTHER ALIASES
 alias ap='sudo create_ap --config ~/.config/create_ap.conf' # spawn wifi spot
 alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=.;nchar=N;uchar=?;details"'
 alias kal='khal interactive'                            # show calendar
@@ -205,10 +208,20 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 export PATH="/home/gauthv/.cargo/bin:$PATH"
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+# }}}
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin" 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -d /opt/anaconda ]] ; then
 . /opt/anaconda/etc/profile.d/conda.sh
+else 
+. $HOME/miniconda3/etc/profile.d/conda.sh
+fi
+#conda activate
+
+#[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source /home/gvelchuru/.autojump/etc/profile.d/autojump.sh
+source $HOME/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
+

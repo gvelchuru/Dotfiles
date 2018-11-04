@@ -37,7 +37,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+i exec firefox
 
 # lock
-bindsym $mod+Escape exec "light-locker-command -l"
+bindsym $mod+Escape exec "xautolock -locknow && xset dpms force off" 
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -224,11 +224,9 @@ exec --no-startup-id redshift-gtk
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id lxsession
 exec --no-startup-id dunst
-exec --no-startup-id light-locker
 exec compton -b -c --config ~/.compton.conf
-#exec_always feh --bg-scale ~/white_castle.jpg
-exec_always --no-startup-id hsetroot -solid "#282828"
+exec_always feh --bg-scale ~/fox.jpg
+#exec_always --no-startup-id hsetroot -solid "#282828"
 exec --no-startup-id /usr/bin/boinc  
-exec --no-startup-id ~/backup.sh
 #--no_gui_rpc
-exec xautolock -detectsleep -time 5 -locker "light-locker-command -l" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+exec xautolock -detectsleep -time 5 -locker "~/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
