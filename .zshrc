@@ -7,7 +7,9 @@ setopt NO_BEEP
 
 source ~/zplug/init.zsh
   # specify plugins here
-zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+#zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+#zplug mafredri/zsh-async, from:github
+#zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug zdharma/fast-syntax-highlighting
 zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
@@ -16,14 +18,22 @@ zplug bri3/nice-exit-code, from:oh-my-zsh
 zplug zplug/zplug, hook-build:'zplug --self-manage'
 zplug desyncr/auto-ls
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+#if ! zplug check --verbose; then
+    #printf "Install? [y/N]: "
+    #if read -q; then
+        #echo; zplug install
+    #fi
+#fi
+#
+zplug check || zplug install
 
-zplug load 
+#zplug load --verbose
+zplug load
+
+#fast-theme default
+
+autoload -U promptinit; promptinit
+prompt spaceship
 
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
@@ -60,7 +70,6 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
   )
 
-SPACESHIP_NODE_DEFAULT_VERSION="v11.0.0"
 SPACESHIP_CONDA_SYMBOL=🐍
 SPACESHIP_EXIT_CODE_SHOW="true"
 #SPACESHIP_EXIT_CODE_SUFFIX=$(nice_exit_code)
@@ -212,9 +221,6 @@ bindkey -v  # VIM mode
 export PATH="/home/gauthv/.cargo/bin:$PATH"
 # }}}
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin" 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 if [[ -d /opt/anaconda ]] ; then
 . /opt/anaconda/etc/profile.d/conda.sh
 else 
@@ -222,8 +228,9 @@ else
 fi
 #conda activate
 
-#[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source /home/gvelchuru/.autojump/etc/profile.d/autojump.sh
 source $HOME/.autojump/etc/profile.d/autojump.sh
-
 autoload -U compinit && compinit -u
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin" 
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

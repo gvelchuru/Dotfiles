@@ -10,3 +10,6 @@
 [submodule "autojump"]
 	path = autojump
 	url = git://github.com/wting/autojump.git
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug
