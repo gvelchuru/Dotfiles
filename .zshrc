@@ -218,7 +218,7 @@ if [[ -d /opt/anaconda ]] ; then
 else 
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
-conda activate
+#conda activate
 
 #[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source /home/gvelchuru/.autojump/etc/profile.d/autojump.sh
 source $HOME/.autojump/etc/profile.d/autojump.sh
