@@ -13,6 +13,7 @@ zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
 zplug bri3/nice-exit-code, from:oh-my-zsh
+zplug desyncr/auto-ls
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
