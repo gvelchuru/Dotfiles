@@ -5,11 +5,9 @@ export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP
 export TERM="xterm-256color"
 setopt NO_BEEP
 
-source ~/zplug/init.zsh
+source ~/zplug/init.zsh && zplug update > /dev/null
   # specify plugins here
-#zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
-#zplug mafredri/zsh-async, from:github
-#zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 zplug zdharma/fast-syntax-highlighting
 zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
@@ -31,9 +29,6 @@ zplug check || zplug install
 zplug load
 
 #fast-theme default
-
-autoload -U promptinit; promptinit
-prompt spaceship
 
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
@@ -142,6 +137,9 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 #   {{{ FILE MANAGEMENT
+
+
+alias startup="aurman -Syu && sudo ./backup.sh && sudo chown -R gauthv /mnt/data1/OneDrive/batcave_backup && onedrive --synchronize --verbose"
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
