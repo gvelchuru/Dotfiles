@@ -13,6 +13,7 @@ zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
 zplug bri3/nice-exit-code, from:oh-my-zsh
+zplug "plugins/git",   from:oh-my-zsh
 zplug zplug/zplug, hook-build:'zplug --self-manage'
 zplug desyncr/auto-ls
 
@@ -139,7 +140,7 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="aurman -Syu && sudo ./backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && grive -V"
+alias startup="aurman -Syu && sudo ./backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
@@ -156,6 +157,13 @@ alias icat="kitty +kitten icat"
 #function ls {
     #command ls -F -h --color=always -v --author --time-style=long-iso -C "$@" | less -R -X -F
 #}
+#
+function try_grive() {
+    grive -V
+    while [ $? -ne 0 ]; do
+        grive -V
+    done
+}
 
 function extract() {
     if [ -f $1 ] ; then
@@ -198,9 +206,9 @@ alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=
 alias kal='khal interactive'                            # show calendar
 alias ip='ip -c'                                        # colored ip
 
-alias gc='git commit -am'                               # git commit with message
-alias gl='git log --graph --oneline --decorate --all'   # graph git log
-alias gs='git status -sb'                               # simplify git status
+#alias gc='git commit -am'                               # git commit with message
+#alias gl='git log --graph --oneline --decorate --all'   # graph git log
+#alias gs='git status -sb'                               # simplify git status
 
 alias grep='grep --color=auto'                          # colored grep
 
