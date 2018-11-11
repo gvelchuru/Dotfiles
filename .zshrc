@@ -140,7 +140,7 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="aurman -Syu && sudo ./backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
+alias startup="aurman -Syu && sudo /home/gauthv/backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
