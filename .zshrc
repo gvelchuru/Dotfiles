@@ -5,7 +5,7 @@ export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP
 export TERM="xterm-256color"
 setopt NO_BEEP
 
-source ~/zplug/init.zsh && zplug update > /dev/null
+source ~/zplug/init.zsh 
   # specify plugins here
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 zplug zdharma/fast-syntax-highlighting
@@ -14,8 +14,10 @@ zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
 zplug bri3/nice-exit-code, from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh
+zplug "lib/history",   from:oh-my-zsh
 zplug zplug/zplug, hook-build:'zplug --self-manage'
 zplug desyncr/auto-ls
+zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 
 #if ! zplug check --verbose; then
     #printf "Install? [y/N]: "
@@ -24,12 +26,16 @@ zplug desyncr/auto-ls
     #fi
 #fi
 #
-zplug check || zplug install
+#zplug check || zplug install
 
 #zplug load --verbose
 zplug load
 
-#fast-theme default
+#Async updates for speed
+async_init
+async_start_worker my_worker 
+async_job my_worker zplug check || zplug install > /dev/null
+async_job my_worker zplug update > /dev/null
 
 SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
@@ -66,8 +72,13 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
   )
 
+SPACESHIP_CHAR_SYMBOL=❯
+SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_CONDA_SYMBOL=🐍
 SPACESHIP_EXIT_CODE_SHOW="true"
+SPACESHIP_GIT_STATUS_PREFIX="·"
+SPACESHIP_GIT_STATUS_SUFFIX=""
+SPACESHIP_GIT_STATUS_COLOR="magenta"
 #SPACESHIP_EXIT_CODE_SUFFIX=$(nice_exit_code)
 
 
@@ -140,7 +151,7 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="aurman -Syu && sudo /home/gauthv/backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
+alias startup="yay -Syu && yay -Yc && sudo /home/gauthv/backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
@@ -224,6 +235,7 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
+bindkey "^R" history-incremental-pattern-search-backward
 export PATH="/home/gauthv/.cargo/bin:$PATH"
 # }}}
 
