@@ -1,26 +1,43 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/miniconda3/bin:$PATH
-export TERM="xterm-256color"
 export PATH=$HOME/.local/bin:$PATH
-
+export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export TERM="xterm-256color"
 setopt NO_BEEP
 
-export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+source ~/zplug/init.zsh 
+  # specify plugins here
+zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+zplug zdharma/fast-syntax-highlighting
+zplug zsh-users/zsh-autosuggestions
+zplug ael-code/zsh-colored-man-pages
+zplug MichaelAquilina/zsh-you-should-use
+zplug bri3/nice-exit-code, from:oh-my-zsh
+zplug "plugins/git",   from:oh-my-zsh
+zplug "lib/history",   from:oh-my-zsh
+zplug zplug/zplug, hook-build:'zplug --self-manage'
+zplug desyncr/auto-ls
+zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 
-  autoload -U promptinit; promptinit
-  prompt spaceship
+#if ! zplug check --verbose; then
+    #printf "Install? [y/N]: "
+    #if read -q; then
+        #echo; zplug install
+    #fi
+#fi
+#
+#zplug check || zplug install
 
-  SPACESHIP_PROMPT_ORDER=(
+#zplug load --verbose
+zplug load
+
+#Async updates for speed
+async_init
+async_start_worker my_worker 
+async_job my_worker zplug check || zplug install > /dev/null
+async_job my_worker zplug update > /dev/null
+
+SPACESHIP_PROMPT_ORDER=(
   time          # Time stampts section
   user          # Username section
   dir           # Current directory section
@@ -28,7 +45,7 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
-  node          # Node.js section
+  #node          # Node.js section
   ruby          # Ruby section
   elixir        # Elixir section
   xcode         # Xcode section
@@ -55,9 +72,17 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
   char          # Prompt character
   )
 
-  SPACESHIP_CONDA_SYMBOL=🐍
+SPACESHIP_CHAR_SYMBOL=❯
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CONDA_SYMBOL=🐍
+SPACESHIP_EXIT_CODE_SHOW="true"
+SPACESHIP_GIT_STATUS_PREFIX="·"
+SPACESHIP_GIT_STATUS_SUFFIX=""
+SPACESHIP_GIT_STATUS_COLOR="magenta"
+#SPACESHIP_EXIT_CODE_SUFFIX=$(nice_exit_code)
 
 
+export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -94,14 +119,6 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -132,6 +149,9 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 #   {{{ FILE MANAGEMENT
+
+
+alias startup="yay -Syu && yay -Yc && sudo /home/gauthv/backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
@@ -148,6 +168,13 @@ alias icat="kitty +kitten icat"
 #function ls {
     #command ls -F -h --color=always -v --author --time-style=long-iso -C "$@" | less -R -X -F
 #}
+#
+function try_grive() {
+    grive -V
+    while [ $? -ne 0 ]; do
+        grive -V
+    done
+}
 
 function extract() {
     if [ -f $1 ] ; then
@@ -184,14 +211,15 @@ alias weather='curl -s wttr.in/~白井市 | head -7'       # print weather
 alias weatherforecast='curl -s wttr.in/~白井市 | head -37 | tail -30'
 #   }}}
 
+# {{{ OTHER ALIASES
 alias ap='sudo create_ap --config ~/.config/create_ap.conf' # spawn wifi spot
 alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=.;nchar=N;uchar=?;details"'
 alias kal='khal interactive'                            # show calendar
 alias ip='ip -c'                                        # colored ip
 
-alias gc='git commit -am'                               # git commit with message
-alias gl='git log --graph --oneline --decorate --all'   # graph git log
-alias gs='git status -sb'                               # simplify git status
+#alias gc='git commit -am'                               # git commit with message
+#alias gl='git log --graph --oneline --decorate --all'   # graph git log
+#alias gs='git status -sb'                               # simplify git status
 
 alias grep='grep --color=auto'                          # colored grep
 
@@ -207,9 +235,20 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
+bindkey "^R" history-incremental-pattern-search-backward
 export PATH="/home/gauthv/.cargo/bin:$PATH"
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+# }}}
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -d /opt/anaconda ]] ; then
+. /opt/anaconda/etc/profile.d/conda.sh
+else 
+. $HOME/miniconda3/etc/profile.d/conda.sh
+fi
+#conda activate
+
+source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin" 
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

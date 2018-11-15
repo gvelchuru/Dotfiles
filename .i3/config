@@ -34,7 +34,7 @@ bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+i exec firefox-nightly
+bindsym $mod+i exec firefox
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -173,7 +173,7 @@ bindsym $mod+r mode "resize"
 #}
 
 # i3-gaps
-gaps inner 10
+gaps inner 0
 gaps outer 0
 #default_border normal 3
 #default_floating_border normal 3
@@ -209,5 +209,6 @@ exec --no-startup-id lxsession
 exec --no-startup-id dunst
 exec --no-startup-id light-locker
 exec compton -b --config ~/.compton.conf
-exec_always feh --bg-scale ~/white_castle.jpg
+#exec_always feh --bg-scale ~/white_castle.jpg
+exec_always --no-startup-id hsetroot -solid "#282828"
 exec xautolock -detectsleep -time 5 -locker "light-locker-command -l" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"

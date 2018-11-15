@@ -10,3 +10,6 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = https://gitlab.com/gvelchuru/nvim.git
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug.git
