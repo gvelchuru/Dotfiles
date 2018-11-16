@@ -240,13 +240,17 @@ export PATH="/home/gauthv/.cargo/bin:$PATH"
 # }}}
 
 if [[ -d /opt/anaconda ]] ; then
-. /opt/anaconda/etc/profile.d/conda.sh
+    . /opt/anaconda/etc/profile.d/conda.sh
 else 
-. $HOME/miniconda3/etc/profile.d/conda.sh
+    . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 #conda activate
-
-source $HOME/.autojump/etc/profile.d/autojump.sh
+#
+if [ -f /etc/profile.d/autojump.sh ]; then
+    source /etc/profile.d/autojump.sh
+else
+    source $HOME/.autojump/etc/profile.d/autojump.sh
+fi
 autoload -U compinit && compinit -u
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
