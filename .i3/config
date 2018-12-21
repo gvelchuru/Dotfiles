@@ -228,5 +228,8 @@ exec compton -b -c --config ~/.compton.conf
 exec_always feh --bg-scale ~/fox.jpg
 #exec_always --no-startup-id hsetroot -solid "#282828"
 exec --no-startup-id /usr/bin/boinc  
+exec --no-startup-id google-drive-ocamlfuse /mnt/data1/caml_drive
+#exec --no-startup-id xscreensaver -no-splash
+#exec --no-startup-id FAHControl
 #--no_gui_rpc
 exec xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"

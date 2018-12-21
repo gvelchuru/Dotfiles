@@ -1,23 +1,28 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
 export TERM="xterm-256color"
 setopt NO_BEEP
 
-source ~/zplug/init.zsh 
+if [[ -e /usr/share/zsh/scripts/zplug/init.zsh ]] ; then
+    source /usr/share/zsh/scripts/zplug/init.zsh
+else
+    source ~/zplug/init.zsh 
+    zplug zplug/zplug, hook-build:'zplug --self-manage'
+fi
   # specify plugins here
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 zplug zdharma/fast-syntax-highlighting
 zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
-zplug bri3/nice-exit-code, from:oh-my-zsh
+zplug "bri3/nice-exit-code", from:oh-my-zsh
+#zplug bri3/nice-exit-code
 zplug "plugins/git",   from:oh-my-zsh
 zplug "lib/history",   from:oh-my-zsh
-zplug zplug/zplug, hook-build:'zplug --self-manage'
+zplug "plugins/command-not-found", from:oh-my-zsh
 zplug desyncr/auto-ls
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "ardagnir/athame"
 
 #if ! zplug check --verbose; then
     #printf "Install? [y/N]: "
@@ -151,7 +156,8 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="yay -Syu && yay -Yc && sudo /home/gauthv/backup.sh && sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && cd /mnt/data1/gdrive && try_grive"
+alias startup="yay -Syu --devel && yay -Yc && [ -d /mnt/data1/caml_drive/batcave_backup ] && sudo sh /home/gauthv/backup.sh && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
+alias backup_copy="sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && yes | cp -r /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive && exit"
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
@@ -169,6 +175,11 @@ alias icat="kitty +kitten icat"
     #command ls -F -h --color=always -v --author --time-style=long-iso -C "$@" | less -R -X -F
 #}
 #
+#function backup() {
+
+
+#}
+
 function try_grive() {
     grive -V
     while [ $? -ne 0 ]; do
@@ -237,7 +248,9 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 export PATH="/home/gauthv/.cargo/bin:$PATH"
+export PATH="/usr/lib/ccache/bin/:$PATH"
 # }}}
+#
 
 if [[ -d /opt/anaconda ]] ; then
 . /opt/anaconda/etc/profile.d/conda.sh
@@ -246,9 +259,16 @@ else
 fi
 #conda activate
 
-source $HOME/.autojump/etc/profile.d/autojump.sh
+if [[ -e /etc/profile.d/autojump.zsh ]] ; then
+    source /etc/profile.d/autojump.zsh
+else
+    source $HOME/.autojump/etc/profile.d/autojump.sh
+fi
 autoload -U compinit && compinit -u
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin" 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# opam configuration
+test -r /home/gauthv/.opam/opam-init/init.zsh && . /home/gauthv/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

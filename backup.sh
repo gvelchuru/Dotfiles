@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setting this, so the repo does not need to be given on the commandline:
-export BORG_REPO='/home/gauthv/gdrive/batmobile_backup'
+export BORG_REPO='/mnt/data1/gdrive/batcave_backup/main'
 
 # Setting this, so you won't be asked for your repository passphrase:
 export BORG_PASSPHRASE='e7UVx6j9tFTY'
@@ -30,6 +30,9 @@ borg create                         \
     --exclude     /lost+found       \
     --exclude     /mnt              \
     --exclude     /var/lib/lxcfs    \
+                                    \
+    ::'{hostname}-{now}'            \
+    /                               \
 
 
 backup_exit=$?
