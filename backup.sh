@@ -2,6 +2,7 @@
 
 # Setting this, so the repo does not need to be given on the commandline:
 export BORG_REPO='/mnt/data1/gdrive/batcave_backup/main'
+#export BORG_REPO='/mnt/data1/caml_drive/batcave_backup'
 
 # Setting this, so you won't be asked for your repository passphrase:
 export BORG_PASSPHRASE='e7UVx6j9tFTY'

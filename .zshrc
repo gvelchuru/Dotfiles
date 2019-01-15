@@ -156,8 +156,30 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="yay -Syu --devel && yay -Yc && [ -d /mnt/data1/caml_drive/batcave_backup ] && sudo sh /home/gauthv/backup.sh && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
-alias backup_copy="sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && yes | cp -r /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive && exit"
+alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh <= 1 && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
+#alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh"
+#alias startup="yay -Syu --devel && sudo google-drive-ocamlfuse /mnt/data1/caml_drive && sudo sh /home/gauthv/backup.sh && exit"
+
+function backup_copy() {
+    sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && 
+    check_caml &&
+    #if [ -d /mnt/data1/caml_drive/batcave_backup  -a ! -d /mnt/data1/caml_drive/batcave_backup_old ]; then
+        #mv /mnt/data1/caml_drive/batcave_backup /mnt/data1/caml_drive/batcave_backup_old 
+    #fi
+    #command cp -nrv /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
+    rsync -aHAXPv /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
+    #rm -rf /mnt/data1/caml_drive/batcave_backup_old
+    exit
+}
+
+function check_caml() {
+    if [ -z "$(ls -a /mnt/data1/caml_drive)" ]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
