@@ -156,7 +156,7 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh <= 1 && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
+alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
 #alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh"
 #alias startup="yay -Syu --devel && sudo google-drive-ocamlfuse /mnt/data1/caml_drive && sudo sh /home/gauthv/backup.sh && exit"
 
