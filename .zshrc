@@ -148,7 +148,9 @@ export EDITOR='nvim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
+alias lock="xset dpms force off && /home/gauthv/lock.sh"
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -156,7 +158,7 @@ export EDITOR='nvim'
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
+alias startup="yay -Syu --devel --sudoloop && check_caml && sudo sh /home/gauthv/backup.sh && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
 #alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh"
 #alias startup="yay -Syu --devel && sudo google-drive-ocamlfuse /mnt/data1/caml_drive && sudo sh /home/gauthv/backup.sh && exit"
 
@@ -168,6 +170,7 @@ function backup_copy() {
     #fi
     #command cp -nrv /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
     rsync -aHAXPv /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
+    #msrsync -P -p16 --stats --rsync "-aHAX" /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
     #rm -rf /mnt/data1/caml_drive/batcave_backup_old
     exit
 }
