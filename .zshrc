@@ -6,7 +6,7 @@ setopt NO_BEEP
 if [[ -e /usr/share/zsh/scripts/zplug/init.zsh ]] ; then
     source /usr/share/zsh/scripts/zplug/init.zsh
 else
-    source ~/zplug/init.zsh 
+    source ~/zplug/init.zsh
     zplug zplug/zplug, hook-build:'zplug --self-manage'
 fi
   # specify plugins here
@@ -38,7 +38,7 @@ zplug load
 
 #Async updates for speed
 async_init
-async_start_worker my_worker 
+async_start_worker my_worker
 async_job my_worker zplug check || zplug install > /dev/null
 async_job my_worker zplug update > /dev/null
 
@@ -158,30 +158,8 @@ alias lock="xset dpms force off && /home/gauthv/lock.sh"
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="yay -Syu --devel --sudoloop && check_caml && sudo sh /home/gauthv/backup.sh && notify-send -u critical -t 10000 -- 'Need sudo for backup' && backup_copy"
-#alias startup="yay -Syu --devel && check_caml && sudo sh /home/gauthv/backup.sh"
-#alias startup="yay -Syu --devel && sudo google-drive-ocamlfuse /mnt/data1/caml_drive && sudo sh /home/gauthv/backup.sh && exit"
-
-function backup_copy() {
-    sudo chown -R gauthv /mnt/data1/gdrive/batcave_backup && 
-    check_caml &&
-    #if [ -d /mnt/data1/caml_drive/batcave_backup  -a ! -d /mnt/data1/caml_drive/batcave_backup_old ]; then
-        #mv /mnt/data1/caml_drive/batcave_backup /mnt/data1/caml_drive/batcave_backup_old 
-    #fi
-    #command cp -nrv /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
-    rsync -aHAXPv /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
-    #msrsync -P -p16 --stats --rsync "-aHAX" /mnt/data1/gdrive/batcave_backup /mnt/data1/caml_drive
-    #rm -rf /mnt/data1/caml_drive/batcave_backup_old
-    exit
-}
-
-function check_caml() {
-    if [ -z "$(ls -a /mnt/data1/caml_drive)" ]; then
-        return 1
-    else
-        return 0
-    fi
-}
+alias mount="google-drive-ocamlfuse -o allow_root /mnt/data1/caml_drive"
+alias startup="yay -Syu --devel --sudoloop && check_caml && sudo sh /home/gauthv/backup.sh"
 
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
@@ -200,17 +178,6 @@ alias icat="kitty +kitten icat"
     #command ls -F -h --color=always -v --author --time-style=long-iso -C "$@" | less -R -X -F
 #}
 #
-#function backup() {
-
-
-#}
-
-function try_grive() {
-    grive -V
-    while [ $? -ne 0 ]; do
-        grive -V
-    done
-}
 
 function extract() {
     if [ -f $1 ] ; then
@@ -279,7 +246,7 @@ export PATH="/usr/lib/ccache/bin/:$PATH"
 
 if [[ -d /opt/anaconda ]] ; then
 . /opt/anaconda/etc/profile.d/conda.sh
-else 
+else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 #conda activate
@@ -292,7 +259,7 @@ fi
 autoload -U compinit && compinit -u
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin" 
+#export PATH="$PATH:$HOME/.rvm/bin"
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # opam configuration
