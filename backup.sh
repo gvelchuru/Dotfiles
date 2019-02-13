@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setting this, so the repo does not need to be given on the commandline:
-export BORG_REPO='/mnt/data1/caml_drive/batcave_backup/main'
+export BORG_REPO='/mnt/data1/insync/batcave_backup/main'
 #export BORG_REPO='/mnt/data1/caml_drive/batcave_backup'
 
 # Setting this, so you won't be asked for your repository passphrase:
@@ -18,22 +18,22 @@ info "Starting backup"
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
 
-borg create                         \
-    --verbose                       \
-    --list                          \
-    --stats                         \
-    --compression lzma              \
-    --exclude     /dev              \
-    --exclude     /proc             \
-    --exclude     /sys              \
-    --exclude     /var/run          \
-    --exclude     /run              \
-    --exclude     /lost+found       \
-    --exclude     /mnt              \
-    --exclude     /var/lib/lxcfs    \
-                                    \
-    ::'{hostname}-{now}'            \
-    /                               \
+borg create                           \
+    --verbose                         \
+    --list                            \
+    --stats                           \
+    --compression lzma                \
+    --exclude     /dev                \
+    --exclude     /proc               \
+    --exclude     /sys                \
+    --exclude     /var/run            \
+    --exclude     /run                \
+    --exclude     /lost+found         \
+    --exclude     /mnt                \
+    --exclude     /var/lib/lxcfs      \
+                                      \
+    ::'{hostname}-{now}'              \
+    /                                 \
 
 
 backup_exit=$?

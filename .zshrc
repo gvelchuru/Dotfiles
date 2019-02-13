@@ -158,8 +158,8 @@ alias lock="xset dpms force off && /home/gauthv/lock.sh"
 #   {{{ FILE MANAGEMENT
 
 
-alias mount="google-drive-ocamlfuse -o allow_root /mnt/data1/caml_drive"
-alias startup="yay -Syu --devel --sudoloop && check_caml && sudo sh /home/gauthv/backup.sh"
+#alias startup="yay -Syu --devel --sudoloop && sudo sh /home/gauthv/backup.sh && rclone -P sync /mnt/data1/gdrive/batcave_backup gdrive:batcave_backup && exit"
+alias startup="yay -Syu --devel --sudoloop && gksu sh /home/gauthv/backup.sh && exit"
 
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
@@ -261,6 +261,3 @@ autoload -U compinit && compinit -u
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# opam configuration
-test -r /home/gauthv/.opam/opam-init/init.zsh && . /home/gauthv/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

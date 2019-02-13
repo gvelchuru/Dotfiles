@@ -38,7 +38,7 @@ bindsym $mod+i exec firefox
 
 
 bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+l exec --no-startup-id rofi -show window
+#bindsym $mod+l exec --no-startup-id rofi -show window
 
 # change focus
 bindsym $mod+j focus left
