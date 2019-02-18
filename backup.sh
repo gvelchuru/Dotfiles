@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setting this, so the repo does not need to be given on the commandline:
-export BORG_REPO='/mnt/data1/insync/batcave_backup/main'
+export BORG_REPO='/mnt/data1/insync/batcave_backup/'
 #export BORG_REPO='/mnt/data1/caml_drive/batcave_backup'
 
 # Setting this, so you won't be asked for your repository passphrase:
@@ -13,24 +13,44 @@ export BORG_PASSCOMMAND='pass show backup'
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
+info "Checking borg"
+
+borg check --repository-only $BORG_REPO
+
+check_exit=$?
+
+if [ ${check_exit} -eq 1 ];
+then
+    notify-send -t 10000 -- "Borg check had warning"
+fi
+
+if [ ${check_exit} -gt 1 ];
+then
+    notify-send -u critical -t 10000 -- "Borg check had error"
+fi
+
 info "Starting backup"
 
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
+    #--verbose                         \
+    #--list                            \
+    #--stats                           \
+    #--exclude     /lost+found         \
 
 borg create                           \
-    --verbose                         \
-    --list                            \
     --stats                           \
+    --progress                        \
     --compression lzma                \
-    --exclude     /dev                \
-    --exclude     /proc               \
-    --exclude     /sys                \
-    --exclude     /var/run            \
-    --exclude     /run                \
-    --exclude     /lost+found         \
-    --exclude     /mnt                \
-    --exclude     /var/lib/lxcfs      \
+    --exclude     /dev              \
+    --exclude     /proc             \
+    --exclude     /sys              \
+    --exclude     /var/run          \
+    --exclude     /run              \
+    --exclude     /mnt              \
+    --exclude     /var/lib/lxcfs    \
+    --exclude     /tmp              \
+    --exclude     /home/*/.cache/mozilla \
                                       \
     ::'{hostname}-{now}'              \
     /                                 \
