@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:$PATH export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
-export TERM="xterm-256color" setopt NO_BEEP
+#export TERM="xterm-256color" setopt NO_BEEP
+setopt NO_BEEP
 
 if [[ -e /usr/share/zsh/scripts/zplug/init.zsh ]] ; then
     source /usr/share/zsh/scripts/zplug/init.zsh
@@ -157,9 +158,11 @@ alias lock="xset dpms force off && /home/gauthv/lock.sh"
 #   {{{ FILE MANAGEMENT
 
 
-alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && backup"
+alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
+alias startup_backup="startup && backup"
 #alias startup="yay -Syu --devel --sudoloop && backup"
-alias backup="sudo sh /home/gauthv/backup.sh && gksudo 'chown -R gauthv:users /mnt/data1/insync/batcave_backup' && killall insync && insync start && exit"
+alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
+alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files

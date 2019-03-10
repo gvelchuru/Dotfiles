@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setting this, so the repo does not need to be given on the commandline:
-export BORG_REPO='/mnt/data1/insync/batcave_backup/'
+export BORG_REPO='/mnt/data1/gdrive/batcave_backup/'
 #export BORG_REPO='/mnt/data1/caml_drive/batcave_backup'
 
 # Setting this, so you won't be asked for your repository passphrase:
@@ -42,15 +42,16 @@ borg create                           \
     --stats                           \
     --progress                        \
     --compression lzma                \
-    --exclude     /dev              \
-    --exclude     /proc             \
-    --exclude     /sys              \
-    --exclude     /var/run          \
-    --exclude     /run              \
-    --exclude     /mnt              \
-    --exclude     /var/lib/lxcfs    \
-    --exclude     /tmp              \
-    --exclude     /home/*/.cache/mozilla \
+    --exclude /dev                    \
+    --exclude /proc                   \
+    --exclude /sys                    \
+    --exclude /var/run                \
+    --exclude /run                    \
+    --exclude /mnt                    \
+    --exclude /var/lib/lxcfs          \
+    --exclude /tmp                    \
+    --exclude /home/*/.cache/         \
+    --exclude /home/*/slots           \
                                       \
     ::'{hostname}-{now}'              \
     /                                 \
