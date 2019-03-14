@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:FuraCode Nerd Font 14
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -163,11 +163,11 @@ set $myaqua #689d6a
     #status_command bumblebee-status -m spotify pasink sensors time -p time.format="%H:%M" -t gruvbox-powerline
     #colors {
         #background #282828
-			## Type             border  background font
-	#focused_workspace  $myaqua $myaqua $offwhite
-	#active_workspace   $bg1 $bg1 $offwhite
-	#inactive_workspace $bg1 $bg1 $offwhite
-	#urgent_workspace   $myorange $myorange $offwhite
+                        ## Type             border  background font
+        #focused_workspace  $myaqua $myaqua $offwhite
+        #active_workspace   $bg1 $bg1 $offwhite
+        #inactive_workspace $bg1 $bg1 $offwhite
+        #urgent_workspace   $myorange $myorange $offwhite
     #}
 #}
 
