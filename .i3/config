@@ -199,8 +199,6 @@ exec --no-startup-id dunst
 exec compton -b -c --config ~/.compton.conf
 exec_always feh --bg-scale ~/fox.jpg
 #exec_always ~/.config/i3/i3scripts/autoname_workspaces.py &
-exec --no-startup-id /usr/bin/boinc
-#exec --no-startup-id /opt/OpenDrive/odrive
 exec --no-startup-id FAHControl
 exec --no-startup-id /usr/bin/aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"

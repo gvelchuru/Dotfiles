@@ -38,23 +38,23 @@ info "Starting backup"
     #--stats                           \
     #--exclude     /lost+found         \
 
-borg create                           \
-    --stats                           \
-    --progress                        \
-    --compression lzma                \
-    --exclude /dev                    \
-    --exclude /proc                   \
-    --exclude /sys                    \
-    --exclude /var/run                \
-    --exclude /run                    \
-    --exclude /mnt                    \
-    --exclude /var/lib/lxcfs          \
-    --exclude /tmp                    \
-    --exclude /home/*/.cache/         \
-    --exclude /home/*/slots           \
-                                      \
-    ::'{hostname}-{now}'              \
-    /                                 \
+borg create                                    \
+    --stats                                    \
+    --progress                                 \
+    --compression lzma                         \
+    --exclude /dev                             \
+    --exclude /proc                            \
+    --exclude /sys                             \
+    --exclude /var/run                         \
+    --exclude /run                             \
+    --exclude /mnt                             \
+    --exclude /var/lib/lxcfs                   \
+    --exclude /var/lib/.boinc-backup_asd/slots \
+    --exclude /tmp                             \
+    --exclude /home/*/.cache/                  \
+                                               \
+    ::'{hostname}-{now}'                       \
+    /                                          \
 
 
 backup_exit=$?
