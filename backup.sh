@@ -15,7 +15,7 @@ trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 info "Checking borg"
 
-borg check --repository-only $BORG_REPO
+borg check $BORG_REPO
 
 check_exit=$?
 

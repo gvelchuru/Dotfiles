@@ -3,7 +3,7 @@ configuration {
 	width: 50;
 	lines: 15;
 	columns: 2;
-	font: "Sauce Code Pro Medium 10";
+	font: "Fira Code 10";
 	bw: 2;
 /*	location: 0;*/
 	padding: 10;
