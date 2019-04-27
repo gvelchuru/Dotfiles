@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$PATH export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
 #export TERM="xterm-256color" setopt NO_BEEP
 setopt NO_BEEP
 
@@ -238,6 +239,11 @@ alias tree='tree -C'
 alias vi='nvim'; alias vim='nvim'       # use nvim where vi or vim is called
 alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
+alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
+alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
+
+alias dislock='killall xautolock'
+alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
 
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode

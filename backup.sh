@@ -13,21 +13,21 @@ export BORG_PASSCOMMAND='pass show backup'
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
-info "Checking borg"
+#info "Checking borg"
 
-borg check $BORG_REPO
+#borg check $BORG_REPO
 
-check_exit=$?
+#check_exit=$?
 
-if [ ${check_exit} -eq 1 ];
-then
-    notify-send -t 10000 -- "Borg check had warning"
-fi
+#if [ ${check_exit} -eq 1 ];
+#then
+    #notify-send -t 10000 -- "Borg check had warning"
+#fi
 
-if [ ${check_exit} -gt 1 ];
-then
-    notify-send -u critical -t 10000 -- "Borg check had error"
-fi
+#if [ ${check_exit} -gt 1 ];
+#then
+    #notify-send -u critical -t 10000 -- "Borg check had error"
+#fi
 
 info "Starting backup"
 
@@ -35,13 +35,12 @@ info "Starting backup"
 # the machine this script is currently running on:
     #--verbose                         \
     #--list                            \
-    #--stats                           \
     #--exclude     /lost+found         \
 
 borg create                                    \
     --stats                                    \
     --progress                                 \
-    --compression lzma                         \
+    --compression auto,lzma                    \
     --exclude /dev                             \
     --exclude /proc                            \
     --exclude /sys                             \
@@ -49,9 +48,7 @@ borg create                                    \
     --exclude /run                             \
     --exclude /mnt                             \
     --exclude /var/lib/lxcfs                   \
-    --exclude /var/lib/.boinc-backup_asd/slots \
     --exclude /tmp                             \
-    --exclude /home/*/.cache/                  \
                                                \
     ::'{hostname}-{now}'                       \
     /                                          \
@@ -65,14 +62,15 @@ info "Pruning repository"
 # archives of THIS machine. The '{hostname}-' prefix is very important to
 # limit prune's operation to this machine's archives and not apply to
 # other machines' archives also:
+    #--keep-daily    7               \
+    #--keep-weekly   4               \
+    #--keep-monthly  6               \
 
 borg prune                          \
     --list                          \
     --prefix '{hostname}-'          \
     --show-rc                       \
-    --keep-daily    7               \
-    --keep-weekly   4               \
-    --keep-monthly  6               \
+    --keep-last 10                  \
 
 prune_exit=$?
 
