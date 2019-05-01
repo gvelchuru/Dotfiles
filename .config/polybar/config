@@ -62,7 +62,7 @@ type = internal/temperature
 
 hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
 
-warn-temperature = 65
+warn-temperature = 60
 
 format = <ramp> <label>
 label = %temperature-c%
