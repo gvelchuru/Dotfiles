@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
 #export TERM="xterm-256color" setopt NO_BEEP
 setopt NO_BEEP
 
@@ -16,12 +13,12 @@ zplug zdharma/fast-syntax-highlighting
 zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
-zplug "bri3/nice-exit-code", from:oh-my-zsh
+#zplug "bri3/nice-exit-code", from:oh-my-zsh
 #zplug bri3/nice-exit-code
 zplug "plugins/git",   from:oh-my-zsh
 zplug "lib/history",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
-zplug desyncr/auto-ls
+#zplug desyncr/auto-ls
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "ardagnir/athame"
 
@@ -49,29 +46,29 @@ SPACESHIP_PROMPT_ORDER=(
   dir           # Current directory section
   host          # Hostname section
   git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
+  #hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
   #node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  xcode         # Xcode section
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
+  #ruby          # Ruby section
+  #elixir        # Elixir section
+  #xcode         # Xcode section
+  #swift         # Swift section
+  #golang        # Go section
+  #php           # PHP section
   rust          # Rust section
-  haskell       # Haskell Stack section
-  julia         # Julia section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
+  #haskell       # Haskell Stack section
+  #julia         # Julia section
+  #docker        # Docker section
+  #aws           # Amazon Web Services section
+  #venv          # virtualenv section
   conda         # conda virtualenv section
-  pyenv         # Pyenv section
-  dotnet        # .NET section
-  ember         # Ember.js section
-  kubecontext   # Kubectl context section
+  #pyenv         # Pyenv section
+  #dotnet        # .NET section
+  #ember         # Ember.js section
+  #kubecontext   # Kubectl context section
   exec_time     # Execution time
   line_sep      # Line break
-  battery       # Battery level and status
+  #battery       # Battery level and status
   #vi_mode       # Vi-mode indicator
   jobs          # Background jobs indicator
   exit_code     # Exit code section
@@ -118,7 +115,7 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -248,8 +245,13 @@ alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -noti
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
-export PATH="/home/gauthv/.cargo/bin:$PATH"
-export PATH="/usr/lib/ccache/bin/:$PATH"
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
+export PATH=$HOME/.mozbuild/moz-phab:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=/usr/lib/ccache/bin/:$PATH
+export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
 # }}}
 #
 
@@ -265,7 +267,14 @@ if [[ -e /etc/profile.d/autojump.zsh ]] ; then
 else
     source $HOME/.autojump/etc/profile.d/autojump.sh
 fi
+
+source $HOME/.cargo/env
+
 autoload -U compinit && compinit -u
+
+autoload bashcompinit
+bashcompinit
+source $HOME/mozilla_unified/python/mach/bash-completion.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
