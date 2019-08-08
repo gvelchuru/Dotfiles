@@ -255,12 +255,11 @@ export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
 # }}}
 #
 
-if [[ -d /opt/anaconda ]] ; then
-. /opt/anaconda/etc/profile.d/conda.sh
+if [[ -d $HOME/anaconda3 ]] ; then
+. $HOME/anaconda3/etc/profile.d/conda.sh
 else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
-#conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
