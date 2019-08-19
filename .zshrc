@@ -94,15 +94,6 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # sensitive completion must be off. _ and - will be interchangeable.
  HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -149,13 +140,7 @@ export EDITOR='nvim'
 
 alias lock="xset dpms force off && /home/gauthv/lock.sh"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 #   {{{ FILE MANAGEMENT
-
-
 alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
 alias startup_backup="startup && backup"
 #alias startup="yay -Syu --devel --sudoloop && backup"
@@ -230,7 +215,6 @@ alias grep='grep --color=auto'                          # colored grep
 alias less='less -i'                                    # case insensitive search
 alias mutt='neomutt'                                    # neomutt
 alias pactree='pactree --color'
-alias qutebrowser='qutebrowser --backend webengine'     # webengine in qutebrowser
 
 alias tree='tree -C'
 alias vi='nvim'; alias vim='nvim'       # use nvim where vi or vim is called
@@ -260,6 +244,7 @@ if [[ -d $HOME/anaconda3 ]] ; then
 else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
+conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
