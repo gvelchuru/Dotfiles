@@ -13,25 +13,12 @@ zplug zdharma/fast-syntax-highlighting
 zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
-#zplug "bri3/nice-exit-code", from:oh-my-zsh
-#zplug bri3/nice-exit-code
 zplug "plugins/git",   from:oh-my-zsh
 zplug "lib/history",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
-#zplug desyncr/auto-ls
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "ardagnir/athame"
 
-#if ! zplug check --verbose; then
-    #printf "Install? [y/N]: "
-    #if read -q; then
-        #echo; zplug install
-    #fi
-#fi
-#
-#zplug check || zplug install
-
-#zplug load --verbose
 zplug load
 
 #Async updates for speed
@@ -82,7 +69,6 @@ SPACESHIP_EXIT_CODE_SHOW="true"
 SPACESHIP_GIT_STATUS_PREFIX="·"
 SPACESHIP_GIT_STATUS_SUFFIX=""
 SPACESHIP_GIT_STATUS_COLOR="magenta"
-#SPACESHIP_EXIT_CODE_SUFFIX=$(nice_exit_code)
 
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
@@ -93,9 +79,6 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
  HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
  ENABLE_CORRECTION="true"
@@ -108,11 +91,6 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # much, much faster.
  DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -120,12 +98,7 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
 export EDITOR='nvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -143,7 +116,6 @@ alias lock="xset dpms force off && /home/gauthv/lock.sh"
 #   {{{ FILE MANAGEMENT
 alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
 alias startup_backup="startup && backup"
-#alias startup="yay -Syu --devel --sudoloop && backup"
 alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
 alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 
@@ -159,11 +131,6 @@ alias rm='rm -iv'               # interactive and verbose rm
 
 # Kitty aliases
 alias icat="kitty +kitten icat"
-
-#function ls {
-    #command ls -F -h --color=always -v --author --time-style=long-iso -C "$@" | less -R -X -F
-#}
-#
 
 function extract() {
     if [ -f $1 ] ; then
@@ -237,7 +204,6 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=/usr/lib/ccache/bin/:$PATH
 export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
 # }}}
-#
 
 if [[ -d $HOME/anaconda3 ]] ; then
 . $HOME/anaconda3/etc/profile.d/conda.sh
@@ -259,7 +225,3 @@ autoload -U compinit && compinit -u
 autoload bashcompinit
 bashcompinit
 source $HOME/mozilla_unified/python/mach/bash-completion.sh
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
