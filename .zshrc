@@ -173,10 +173,6 @@ alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=
 alias kal='khal interactive'                            # show calendar
 alias ip='ip -c'                                        # colored ip
 
-#alias gc='git commit -am'                               # git commit with message
-#alias gl='git log --graph --oneline --decorate --all'   # graph git log
-#alias gs='git status -sb'                               # simplify git status
-
 alias grep='grep --color=auto'                          # colored grep
 
 alias less='less -i'                                    # case insensitive search
@@ -196,6 +192,7 @@ alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -noti
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
+bindkey "^T" push-line-or-edit
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -213,7 +210,7 @@ else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 conda activate
-[[ -z $TMUX ]] || conda deactivate; conda activate 
+[[ -z $TMUX ]] || conda deactivate; conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
@@ -228,3 +225,13 @@ autoload -U compinit && compinit -u
 autoload bashcompinit
 bashcompinit
 [[ -f $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
+
+#AMAZON
+export BRAZIL_COLORS=1
+export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
+export P4CONFIG=.p4config  # see wiki/?P4CONFIG
+export P4EDITOR=$EDITOR        # editor used for perforce forms (submit, etc)
+export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
+export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
+alias bb='brazil-build'
