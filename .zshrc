@@ -14,6 +14,7 @@ zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
 zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/git-auto-fetch", from:oh-my-zsh
 zplug "lib/history",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
@@ -214,6 +215,8 @@ conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
+elif [[ -e /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh ]] ; then
+    source /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh
 else
     source $HOME/.autojump/etc/profile.d/autojump.sh
 fi
