@@ -204,6 +204,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=/usr/lib/ccache/bin/:$PATH
 export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+export PATH=/apollo/env/SDETools/bin:$PATH
 # }}}
 
 if [[ -d $HOME/anaconda3 ]] ; then
@@ -212,6 +213,7 @@ else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 conda activate
+[[ -z $TMUX ]] || conda deactivate; conda activate 
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
