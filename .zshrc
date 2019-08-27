@@ -219,10 +219,10 @@ else
     source $HOME/.autojump/etc/profile.d/autojump.sh
 fi
 
-source $HOME/.cargo/env
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
 autoload -U compinit && compinit -u
 
 autoload bashcompinit
 bashcompinit
-source $HOME/mozilla_unified/python/mach/bash-completion.sh
+[[ -f $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
