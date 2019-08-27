@@ -203,6 +203,7 @@ export PATH=$HOME/.mozbuild/moz-phab:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=/usr/lib/ccache/bin/:$PATH
 export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 # }}}
 
 if [[ -d $HOME/anaconda3 ]] ; then
