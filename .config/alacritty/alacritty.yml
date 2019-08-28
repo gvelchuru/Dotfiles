@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -108,7 +108,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: FuraCode Nerd Font Mono
+    family: FuraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Retina
@@ -119,7 +119,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FuraCode Nerd Font Mono
+    family: FuraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -130,13 +130,13 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: FuraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Italic
 
   # Point size
-  size: 11.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -170,12 +170,12 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Tomorrow Night Bright)
+# Colors (Gruvbox)
 colors:
   # Default colors
   primary:
-    background: '0x282828'
-    foreground: '0xebdbb2'
+    background: '0xf2e5bc'
+    foreground: '0x3c3836'
 
     # Bright and dim foreground colors
     #
@@ -201,28 +201,26 @@ colors:
   #selection:
   #  text: '0xeaeaea'
   #  background: '0x404040'
-
-  # Normal colors
   normal:
-    black:   '0x282828'
+    black:   '0xfbf1c7'
     red:     '0xcc241d'
     green:   '0x98971a'
     yellow:  '0xd79921'
     blue:    '0x458588'
     magenta: '0xb16286'
     cyan:    '0x689d6a'
-    white:   '0xa89984'
+    white:   '0x7c6f64'
 
   # Bright colors
   bright:
     black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
+    red:     '0x9d0006'
+    green:   '0x79740e'
+    yellow:  '0xb57614'
+    blue:    '0x076678'
+    magenta: '0x8f3f71'
+    cyan:    '0x427b58'
+    white:   '0x3c3836'
 
   # Dim colors
   #
