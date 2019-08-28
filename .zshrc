@@ -1,5 +1,27 @@
-#export TERM="xterm-256color" setopt NO_BEEP
 setopt NO_BEEP
+if [[ -d /apollo/env ]] ; then
+  #export PATH=/apollo/env/SDETools/bin:$PATH
+  export PATH=/apollo/env/ApolloCommandLine/bin:$PATH
+  export PATH=/apollo/env/AmazonAwsCli/bin:$PATH
+  export PATH=/apollo/env/envImprovement/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
+  export BRAZIL_COLORS=1
+  export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
+  export P4CONFIG=.p4config  # see wiki/?P4CONFIG
+  export P4EDITOR=$EDITOR        # editor used for perforce forms (submit, etc)
+  export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
+  export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
+  export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
+  alias bb='/apollo/env/SDETools/bin/brazil-build'
+else
+  export PATH=$HOME/.local/bin:$PATH
+  export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
+  export PATH=$HOME/.mozbuild/moz-phab:$PATH
+  export PATH=$HOME/.cargo/bin:$PATH
+  export PATH=/usr/lib/ccache/bin:$PATH
+  export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
+fi
 
 if [[ -e /usr/share/zsh/scripts/zplug/init.zsh ]] ; then
     source /usr/share/zsh/scripts/zplug/init.zsh
@@ -194,15 +216,7 @@ alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -noti
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
-export PATH=$HOME/.mozbuild/moz-phab:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=/usr/lib/ccache/bin/:$PATH
-export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
-export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-export PATH=/apollo/env/SDETools/bin:$PATH
+
 # }}}
 
 if [[ -d $HOME/anaconda3 ]] ; then
@@ -224,17 +238,12 @@ fi
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
 autoload -U compinit && compinit -u
+source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
 
 autoload bashcompinit
 bashcompinit
 [[ -f $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
 
-#AMAZON
-export BRAZIL_COLORS=1
-export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
-export P4CONFIG=.p4config  # see wiki/?P4CONFIG
-export P4EDITOR=$EDITOR        # editor used for perforce forms (submit, etc)
-export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
-export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
-export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
-alias bb='brazil-build'
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s main
+fi
