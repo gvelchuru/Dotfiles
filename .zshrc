@@ -45,7 +45,6 @@ zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
 zplug MichaelAquilina/zsh-you-should-use
 zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/git-auto-fetch", from:oh-my-zsh
 zplug "lib/history",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
