@@ -4,10 +4,6 @@ if [[ -d /apollo/env ]] ; then
   export PATH=/apollo/env/ApolloCommandLine/bin:$PATH
   export PATH=/apollo/env/AmazonAwsCli/bin:$PATH
   export PATH=/apollo/env/envImprovement/bin:$PATH
-  export PATH=/usr/local/bin:$PATH
-  export PATH=/usr/bin:$PATH
-  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
   export BRAZIL_COLORS=1
   export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
   export P4CONFIG=.p4config  # see wiki/?P4CONFIG
@@ -23,13 +19,23 @@ else
   export PATH=$HOME/.cargo/bin:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
-  alias dislock='killall xautolock'
-  alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
+  #alias dislock='killall xautolock'
+  #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
   alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
+fi
+if [[ -d /apollo/env ]] ; then
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
+fi
+  export PATH=/usr/local/bin:$PATH
+  export PATH=/usr/bin:$PATH
+
+if command -v tmux &> /dev/null && [[ -d /apollo/env ]] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s main
 fi
 
 if [[ -e /usr/share/zsh/scripts/zplug/init.zsh ]] ; then
@@ -48,7 +54,6 @@ zplug "plugins/git",   from:oh-my-zsh
 zplug "lib/history",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-zplug "ardagnir/athame"
 
 zplug load
 
@@ -125,8 +130,7 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
- export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 export EDITOR='nvim'
 
@@ -135,12 +139,6 @@ export EDITOR='nvim'
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
 
 #   {{{ FILE MANAGEMENT
 
@@ -193,7 +191,6 @@ qrcode() { echo $@ | curl -F-=\<- qrenco.de; }          # print qrcode
 # {{{ OTHER ALIASES
 alias ap='sudo create_ap --config ~/.config/create_ap.conf' # spawn wifi spot
 alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=.;nchar=N;uchar=?;details"'
-alias kal='khal interactive'                            # show calendar
 alias ip='ip -c'                                        # colored ip
 
 alias grep='grep --color=auto'                          # colored grep
@@ -240,8 +237,4 @@ if [[ -d /apollo/env ]] ; then
   source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
 else
   [[ -f $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
-fi
-
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s main
 fi
