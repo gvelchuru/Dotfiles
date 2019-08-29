@@ -1,5 +1,36 @@
-#export TERM="xterm-256color" setopt NO_BEEP
 setopt NO_BEEP
+if [[ -d /apollo/env ]] ; then
+  export PATH=/apollo/env/SDETools/bin:$PATH
+  export PATH=/apollo/env/ApolloCommandLine/bin:$PATH
+  export PATH=/apollo/env/AmazonAwsCli/bin:$PATH
+  export PATH=/apollo/env/envImprovement/bin:$PATH
+  export PATH=/usr/local/bin:$PATH
+  export PATH=/usr/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
+  export BRAZIL_COLORS=1
+  export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
+  export P4CONFIG=.p4config  # see wiki/?P4CONFIG
+  export P4EDITOR=$EDITOR        # editor used for perforce forms (submit, etc)
+  export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
+  export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
+  export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
+  alias bb='brazil-build'
+else
+  export PATH=$HOME/.local/bin:$PATH
+  export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
+  export PATH=$HOME/.mozbuild/moz-phab:$PATH
+  export PATH=$HOME/.cargo/bin:$PATH
+  export PATH=/usr/lib/ccache/bin:$PATH
+  export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
+  alias dislock='killall xautolock'
+  alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
+  alias lock="xset dpms force off && /home/gauthv/lock.sh"
+  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
+  alias startup_backup="startup && backup"
+  alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
+  alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
+fi
 
 if [[ -e /usr/share/zsh/scripts/zplug/init.zsh ]] ; then
     source /usr/share/zsh/scripts/zplug/init.zsh
@@ -70,7 +101,6 @@ SPACESHIP_GIT_STATUS_PREFIX="·"
 SPACESHIP_GIT_STATUS_SUFFIX=""
 SPACESHIP_GIT_STATUS_COLOR="magenta"
 
-
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 
 # Uncomment the following line to use case-sensitive completion.
@@ -111,13 +141,8 @@ export EDITOR='nvim'
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias lock="xset dpms force off && /home/gauthv/lock.sh"
 
 #   {{{ FILE MANAGEMENT
-alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
-alias startup_backup="startup && backup"
-alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
-alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 
 alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
@@ -163,8 +188,6 @@ alias testpowerline='echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"'
 #   {{{ WEB SERVICES
 cheatsheet() { curl cheat.sh/$1; }                      # get command cheatsheet
 qrcode() { echo $@ | curl -F-=\<- qrenco.de; }          # print qrcode
-alias weather='curl -s wttr.in/~白井市 | head -7'       # print weather
-alias weatherforecast='curl -s wttr.in/~白井市 | head -37 | tail -30'
 #   }}}
 
 # {{{ OTHER ALIASES
@@ -172,10 +195,6 @@ alias ap='sudo create_ap --config ~/.config/create_ap.conf' # spawn wifi spot
 alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=.;nchar=N;uchar=?;details"'
 alias kal='khal interactive'                            # show calendar
 alias ip='ip -c'                                        # colored ip
-
-#alias gc='git commit -am'                               # git commit with message
-#alias gl='git log --graph --oneline --decorate --all'   # graph git log
-#alias gs='git status -sb'                               # simplify git status
 
 alias grep='grep --color=auto'                          # colored grep
 
@@ -190,19 +209,10 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 
-alias dislock='killall xautolock'
-alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
-
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/neovim/bin:$PATH #TODO: CLEAN UP export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
-export PATH=$HOME/.mozbuild/moz-phab:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=/usr/lib/ccache/bin/:$PATH
-export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
+bindkey "^T" push-line-or-edit
 # }}}
 
 if [[ -d $HOME/anaconda3 ]] ; then
@@ -210,18 +220,28 @@ if [[ -d $HOME/anaconda3 ]] ; then
 else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
+
 conda activate
+[[ -z $TMUX ]] || conda deactivate; conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
+elif [[ -e /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh ]] ; then
+    source /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh
 else
     source $HOME/.autojump/etc/profile.d/autojump.sh
 fi
 
-source $HOME/.cargo/env
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
 autoload -U compinit && compinit -u
+autoload bashcompinit && bashcompinit
+if [[ -d /apollo/env ]] ; then
+  source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
+else
+  [[ -f $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
+fi
 
-autoload bashcompinit
-bashcompinit
-source $HOME/mozilla_unified/python/mach/bash-completion.sh
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s main
+fi
