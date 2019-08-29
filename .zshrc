@@ -223,7 +223,7 @@ conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
-elif [[ -e /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh ]] ; then
+  elif [[ -e /home/linuxbrew ]] ; then
     source /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh
 else
     source $HOME/.autojump/etc/profile.d/autojump.sh
@@ -232,9 +232,7 @@ fi
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
 autoload -U compinit && compinit -u
+
 autoload bashcompinit && bashcompinit
-if [[ -d /apollo/env ]] ; then
-  source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
-else
-  [[ -f $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
-fi
+[[ -d /apollo/env ]] && source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
+[[ -d $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
