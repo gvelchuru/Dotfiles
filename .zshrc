@@ -144,8 +144,7 @@ else
 . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 
-conda activate
-[[ -z $TMUX ]] || conda deactivate; conda activate
+[[ -z $TMUX ]] && conda activate || conda deactivate; conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
     source /etc/profile.d/autojump.zsh
