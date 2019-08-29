@@ -4,6 +4,8 @@ if [[ -d /apollo/env ]] ; then
   export PATH=/apollo/env/ApolloCommandLine/bin:$PATH
   export PATH=/apollo/env/AmazonAwsCli/bin:$PATH
   export PATH=/apollo/env/envImprovement/bin:$PATH
+  export PATH=/usr/bin:$PATH
+  export PATH=/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
   export BRAZIL_COLORS=1
@@ -29,8 +31,6 @@ else
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 fi
-if [[ -d /apollo/env ]] ; then
-fi
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
@@ -43,7 +43,6 @@ else
     zplug zplug/zplug, hook-build:'zplug --self-manage'
 fi
   # specify plugins here
-zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 zplug zdharma/fast-syntax-highlighting
 zplug zsh-users/zsh-autosuggestions
 zplug ael-code/zsh-colored-man-pages
@@ -61,48 +60,48 @@ async_start_worker my_worker
 async_job my_worker zplug check || zplug install > /dev/null
 async_job my_worker zplug update > /dev/null
 
-SPACESHIP_PROMPT_ORDER=(
-  time          # Time stampts section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  #hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-  #node          # Node.js section
-  #ruby          # Ruby section
-  #elixir        # Elixir section
-  #xcode         # Xcode section
-  #swift         # Swift section
-  #golang        # Go section
-  #php           # PHP section
-  rust          # Rust section
-  #haskell       # Haskell Stack section
-  #julia         # Julia section
-  #docker        # Docker section
-  #aws           # Amazon Web Services section
-  #venv          # virtualenv section
-  conda         # conda virtualenv section
-  #pyenv         # Pyenv section
-  #dotnet        # .NET section
-  #ember         # Ember.js section
-  #kubecontext   # Kubectl context section
-  exec_time     # Execution time
-  line_sep      # Line break
-  #battery       # Battery level and status
-  #vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-  )
+#SPACESHIP_PROMPT_ORDER=(
+  #time          # Time stampts section
+  #user          # Username section
+  #dir           # Current directory section
+  #host          # Hostname section
+  #git           # Git section (git_branch + git_status)
+  ##hg            # Mercurial section (hg_branch  + hg_status)
+  #package       # Package version
+  ##node          # Node.js section
+  ##ruby          # Ruby section
+  ##elixir        # Elixir section
+  ##xcode         # Xcode section
+  ##swift         # Swift section
+  ##golang        # Go section
+  ##php           # PHP section
+  #rust          # Rust section
+  ##haskell       # Haskell Stack section
+  ##julia         # Julia section
+  ##docker        # Docker section
+  ##aws           # Amazon Web Services section
+  ##venv          # virtualenv section
+  #conda         # conda virtualenv section
+  ##pyenv         # Pyenv section
+  ##dotnet        # .NET section
+  ##ember         # Ember.js section
+  ##kubecontext   # Kubectl context section
+  #exec_time     # Execution time
+  #line_sep      # Line break
+  ##battery       # Battery level and status
+  ##vi_mode       # Vi-mode indicator
+  #jobs          # Background jobs indicator
+  #exit_code     # Exit code section
+  #char          # Prompt character
+  #)
 
-SPACESHIP_CHAR_SYMBOL=❯
-SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_CONDA_SYMBOL=🐍
-SPACESHIP_EXIT_CODE_SHOW="true"
-SPACESHIP_GIT_STATUS_PREFIX="·"
-SPACESHIP_GIT_STATUS_SUFFIX=""
-SPACESHIP_GIT_STATUS_COLOR="magenta"
+#SPACESHIP_CHAR_SYMBOL=❯
+#SPACESHIP_CHAR_SUFFIX=" "
+#SPACESHIP_CONDA_SYMBOL=🐍
+#SPACESHIP_EXIT_CODE_SHOW="true"
+#SPACESHIP_GIT_STATUS_PREFIX="·"
+#SPACESHIP_GIT_STATUS_SUFFIX=""
+#SPACESHIP_GIT_STATUS_COLOR="magenta"
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 
@@ -230,3 +229,5 @@ fi
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 [[ -d /apollo/env ]] && autoload -U compinit && compinit -u && source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
 [[ -d $HOME/mozilla_unified ]] && autoload bashcompinit && bashcompinit && source $HOME/mozilla_unified/python/mach/bash-completion.sh
+
+eval "$(starship init zsh)"
