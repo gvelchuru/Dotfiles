@@ -4,6 +4,8 @@ if [[ -d /apollo/env ]] ; then
   export PATH=/apollo/env/ApolloCommandLine/bin:$PATH
   export PATH=/apollo/env/AmazonAwsCli/bin:$PATH
   export PATH=/apollo/env/envImprovement/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
   export BRAZIL_COLORS=1
   export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
   export P4CONFIG=.p4config  # see wiki/?P4CONFIG
@@ -28,13 +30,9 @@ else
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 fi
 if [[ -d /apollo/env ]] ; then
-  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
 fi
-  export PATH=/usr/local/bin:$PATH
-  export PATH=/usr/bin:$PATH
 
-if command -v tmux &> /dev/null && [[ -d /apollo/env ]] && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
 fi
 
@@ -230,9 +228,5 @@ else
 fi
 
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
-
-autoload -U compinit && compinit -u
-
-autoload bashcompinit && bashcompinit
-[[ -d /apollo/env ]] && source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
-[[ -d $HOME/mozilla_unified ]] && source $HOME/mozilla_unified/python/mach/bash-completion.sh
+[[ -d /apollo/env ]] && autoload -U compinit && compinit -u && source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
+[[ -d $HOME/mozilla_unified ]] && autoload bashcompinit && bashcompinit && source $HOME/mozilla_unified/python/mach/bash-completion.sh
