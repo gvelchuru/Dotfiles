@@ -12,6 +12,7 @@ if [[ -d /apollo/env ]] ; then
   export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
   export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
+  export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
 else
   export PATH=$HOME/.local/bin:$PATH
