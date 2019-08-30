@@ -1,9 +1,10 @@
 setopt NO_BEEP
 if [[ -d /apollo/env ]] ; then
-  export PATH=/apollo/env/envImprovement/bin:/apollo/env/SDETools/bin:/apollo/env/ApolloCommandLine/bin:/apollo/env/AmazonAwsCli/bin:$PATH
-  export PATH=/usr/bin:/bin$PATH
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
+  for d in /apollo/env/*; do
+    export PATH=$d/bin:$PATH
+  done
   export BRAZIL_COLORS=1
   export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man
   export P4CONFIG=.p4config  # see wiki/?P4CONFIG
@@ -11,7 +12,8 @@ if [[ -d /apollo/env ]] ; then
   export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
   export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
-  alias bb='brazil-build'
+  export BRAZIL_PLATFORM_OVERRIDE=AL2012
+  alias bb='bear -a brazil-build'
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -52,12 +54,8 @@ export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 # much, much faster.
  DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
-
 export LANG=en_US.UTF-8
-
 export EDITOR='nvim'
 
 # Compilation flags
