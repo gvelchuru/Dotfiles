@@ -49,6 +49,7 @@ borg create                                    \
     --exclude /var/lib/lxcfs                   \
     --exclude /tmp                             \
     --exclude /home/*/.ccache                  \
+    --exclude /home/*/.cache                   \
                                                \
     ::'{hostname}-{now}'                       \
     /                                          \
