@@ -30,23 +30,12 @@ font pango:FuraCode Nerd Font 14
 floating_modifier $mod
 
 # start a terminal
-<<<<<<< HEAD
-bindsym $mod+Return exec kitty
-
-# kill focused window
-bindsym $mod+Shift+q kill
-bindsym $mod+i exec firefox
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-=======
 bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+i exec firefox-nightly
 
-
->>>>>>> batcave
 bindsym $mod+d exec --no-startup-id rofi -show run
 #bindsym $mod+l exec --no-startup-id rofi -show window
 
