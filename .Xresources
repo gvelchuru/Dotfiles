@@ -17,7 +17,7 @@ URxvt.transparent: true
 URxvt.shading: 40
 
 ! font
-URxvt*font: xft:Sauce Code Pro Nerd Font Mono:size=11:antialias=true:hinting=true,xft:Inconsolata Nerd Font:size=11:antialias=true;hinting=true, xft:Ubuntu Mono Nerd Font Mono:size=11:antialias=true:hinting=true
+URxvt*font: xft:Sauce Code Pro Nerd Font Mono:size=12:antialias=true:hinting=true,xft:Inconsolata Nerd Font:size=12:antialias=true;hinting=true, xft:Ubuntu Mono Nerd Font Mono:size=12:antialias=true:hinting=true
 
 ! terminal padding
 URxvt.internalBorder: 5
@@ -106,3 +106,6 @@ URxvt.matcher.rend.0: Bold fg6
 *.color246: #a89984
 *.color248: #bdae93
 *.color250: #d5c4a1
+
+
+xscreensaver.newLoginCommand: dm-tool switch-to-greeter

@@ -1,12 +1,15 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = https://github.com/gvelchuru/oh-my-zsh.git
-[submodule "tmux-gruvbox"]
-	path = tmux-gruvbox
-	url = https://github.com/egel/tmux-gruvbox.git
+	url = https://github.com/gvelchuru/oh-my-zsh
+[submodule ".tmux/plugins/tpm/tpm"]
+	path = .tmux/plugins/tpm/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "autojump"]
+	path = autojump
+	url = git://github.com/wting/autojump.git
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = https://gitlab.com/gvelchuru/nvim.git
-[submodule "zplug"]
-	path = zplug
-	url = https://github.com/zplug/zplug.git

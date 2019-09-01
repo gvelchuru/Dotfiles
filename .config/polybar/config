@@ -15,10 +15,12 @@ aqua = #689d6a
 orange = #d65d0e
 
 [bar/top]
+tray-position = right
+
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-monitor = ${env:MONITOR:} 
+monitor = ${env:MONITOR:}
 width = 100%
 height = 28
 
@@ -31,7 +33,7 @@ line-size = 16
 ;spacing =2
 
 padding-left = 0
-padding-right = 2 
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
@@ -45,9 +47,9 @@ font-0 = FuraCode Nerd Font:pixelsize=14;3
 font-1 = FontAwesome:pixelsize=14;3
 font-2 = IPAGothic:pixelsize=15;3
 
-modules-left = powermenu i3 
-;modules-center = date 
-modules-right = battery volume xbacklight wireless-network temperature date
+modules-left = powermenu i3
+;modules-center = date
+modules-right = volume wireless-network wired-network temperature date
 
 ;wm-restack = i3
 ;override-redirect = true
@@ -55,8 +57,12 @@ modules-right = battery volume xbacklight wireless-network temperature date
 [module/temperature]
 interval = 2
 type = internal/temperature
-thermal-zone = 3
-warn-temperature = 75
+;thermal-zone = 3
+
+
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
+
+warn-temperature = 60
 
 format = <ramp> <label>
 label = %temperature-c%
@@ -78,10 +84,10 @@ ramp-4 = 
 ramp-4-foreground = ${colors.red}
 
 [bar/bottom]
-monitor = ${env:MONITOR:} 
+monitor = ${env:MONITOR:}
 bottom = true
 width = 100%
-height = 20 
+height = 20
 
 background = ${bar/top.background}
 foreground = ${bar/top.foreground}
@@ -90,7 +96,7 @@ line-color = ${bar/top.background}
 line-size = 2
 
 spacing = 3
-padding-left = 0
+padding-left = 2
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
@@ -101,11 +107,12 @@ module-margin-right = 1
 ;font-3 = NotoSans-Regular:size=8;-1
 ;font-4 = MaterialIcons:size=10;-1
 ;font-5 = Termsynu:size=8:antialias=false;0
-font-0 = FuraCode Nerd Font:pixelsize=11;3
+font-0 = FuraCode Nerd Font:pixelsize=14;3
 
 ;modules-left = bspwm
-modules-left= weather
-modules-right = cpu memory filesystem
+;modules-left= weather
+modules-left  = filesystem
+modules-right = cpu memory
 
 ;[module/backlight]
 ;type = internal/xbacklight
@@ -130,16 +137,16 @@ modules-right = cpu memory filesystem
 type = internal/fs
 
 mount-0 = /
-format-mounted = <label> <bar-used>
-label-mounted = %mountpoint%
+format-mounted = <label-mounted> <bar-used>
+label-mounted = Disk
 bar-used-width = 30
-bar-used-foreground-0 = ${colors.green} 
-bar-used-foreground-1 = ${colors.green} 
-bar-used-foreground-2 = ${colors.orange} 
-bar-used-foreground-3 = ${colors.red} 
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.orange}
+bar-used-foreground-3 = ${colors.red}
 bar-used-indicator = |
 bar-used-indicator-font = 6
-bar-used-indicator-foreground = ${colors.white} 
+bar-used-indicator-foreground = ${colors.white}
 bar-used-fill = ─
 bar-used-fill-font = 6
 bar-used-empty = ─
@@ -369,22 +376,22 @@ ramp-coreload-0-font = 2
 ramp-coreload-0-foreground = ${colors.green}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = ${colors.green} 
+ramp-coreload-1-foreground = ${colors.green}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = ${colors.green} 
+ramp-coreload-2-foreground = ${colors.green}
 ramp-coreload-3 = ▄
 ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = ${colors.green} 
+ramp-coreload-3-foreground = ${colors.green}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = ${colors.orange} 
+ramp-coreload-4-foreground = ${colors.orange}
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = ${colors.orange} 
+ramp-coreload-5-foreground = ${colors.orange}
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = ${colors.red} 
+ramp-coreload-6-foreground = ${colors.red}
 ramp-coreload-7 = █
 ramp-coreload-7-font = 2
 ramp-coreload-7-foreground = ${colors.red}
@@ -400,13 +407,13 @@ format = <label> <bar-used>
 label = RAM
 
 bar-used-width = 30
-bar-used-foreground-0 = ${colors.green} 
-bar-used-foreground-1 = ${colors.green} 
-bar-used-foreground-2 = ${colors.orange} 
-bar-used-foreground-3 = ${colors.red} 
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.orange}
+bar-used-foreground-3 = ${colors.red}
 bar-used-indicator = |
 bar-used-indicator-font = 6
-bar-used-indicator-foreground = ${colors.white} 
+bar-used-indicator-foreground = ${colors.white}
 bar-used-fill = ─
 bar-used-fill-font = 6
 bar-used-empty = ─
@@ -443,11 +450,11 @@ bar-used-empty-foreground = ${colors.foreground}
 
 [module/wireless-network]
 type = internal/network
-interface = wlp1s0
+interface = wlp5s0
 interval = 6
 ping-interval = 6
 
-format-connected = <ramp-signal> 
+format-connected = <ramp-signal>
 format-packetloss = <animation-packetloss> <label-connected>
 label-connected = %essid%
 
@@ -471,10 +478,10 @@ animation-packetloss-framerate = 1000
 
 [module/wired-network]
 type = internal/network
-interface = enp0s20f0u3
+interface = enp4s0
 interval = 3.0
 
-label-connected =  
+label-connected = 
 label-disconnected-foreground = ${colors.red}
 
 ;[module/volume]
@@ -496,7 +503,7 @@ label-disconnected-foreground = ${colors.red}
 [module/volume]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> 
+format-volume = <ramp-volume>
 label-volume = %percentage%
 label-muted =  00
 label-muted-foreground = ${colors.orange}
@@ -526,13 +533,15 @@ menu-0-1 = quit i3
 menu-0-1-exec = menu-open-2
 menu-0-2 = power off
 menu-0-2-exec = menu-open-3
-menu-0-3 = hibernate
+menu-0-3 = suspend
 menu-0-3-exec = menu-open-4
+menu-0-4 = hibernate
+menu-0-4-exec = menu-open-5
 
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
 menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1-exec = reboot
 
 menu-2-0 = cancel
 menu-2-0-exec = menu-open-0
@@ -540,16 +549,52 @@ menu-2-1      = shut off i3
 menu-2-1-exec = i3-msg exit
 
 menu-3-0 = power off
-menu-3-0-exec = sudo poweroff
+menu-3-0-exec = poweroff
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
-menu-4-0 = hibernate
+menu-4-0 = suspend
 menu-4-0-exec = systemctl suspend
 menu-4-1 = cancel
 menu-4-1-exec = menu-open-0
 
+menu-5-0 = hibernate
+menu-5-0-exec = systemctl hibernate
+menu-5-1 = cancel
+menu-5-1-exec = menu-open-0
 
+;[module/powermenu]
+;type = custom/menu
+
+;format-padding = 1
+
+;label-open = ⏻
+;label-close = ⏻
+
+
+;menu-0-0 = Terminate WM
+;menu-0-0-foreground = ${colors.yellow}
+;menu-0-0-exec = bspc quit -1
+;menu-0-1 = Reboot
+;menu-0-1-foreground = ${colors.yellow}
+;menu-0-1-exec = menu_open-1
+;menu-0-2 = Power off
+;menu-0-2-foreground = ${colors.yellow}
+;menu-0-2-exec = menu_open-2
+
+;menu-1-0 = Cancel
+;menu-1-0-foreground = ${colors.yellow}
+;menu-1-0-exec = menu_open-0
+;menu-1-1 = Reboot
+;menu-1-1-foreground = ${colors.yellow}
+;menu-1-1-exec = sudo reboot
+
+;menu-2-0 = Power off
+;menu-2-0-foreground = ${colors.yellow}
+;menu-2-0-exec = sudo poweroff
+;menu-2-1 = Cancel
+;menu-2-1-foreground = ${colors.yellow}
+;menu-2-1-exec = menu_open-0
 
 ;[module/clock]
 ;type = internal/date
