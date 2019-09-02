@@ -18,10 +18,10 @@ configuration {
 /*	run-list-command: "";*/
 /*	run-shell-command: "{terminal} -e {cmd}";*/
 /*	window-command: "xkill -id {window}";*/
-	drun-icon-theme: "Paper";
+	icon-theme: "Paper";
 /*	disable-history: false;*/
 	sort: true;
-	levenshtein-sort: true;
+	/*levenshtein-sort: true;*/
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
@@ -36,7 +36,7 @@ configuration {
 /*	line-margin: 2;*/
 /*	line-padding: 1;*/
 /*	filter: ;*/
-    separator-style: "none";
+	separator-style: "none";
 	hide-scrollbar: true;
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/

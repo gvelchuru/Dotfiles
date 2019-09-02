@@ -54,7 +54,6 @@ borg create                                    \
     ::'{hostname}-{now}'                       \
     /                                          \
 
-
 backup_exit=$?
 
 info "Pruning repository"

@@ -137,12 +137,7 @@ bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
 # }}}
 
-if [[ -d $HOME/anaconda3 ]] ; then
-. $HOME/anaconda3/etc/profile.d/conda.sh
-else
 . $HOME/miniconda3/etc/profile.d/conda.sh
-fi
-
 [[ -z $TMUX ]] && conda activate || conda deactivate; conda activate
 
 if [[ -e /etc/profile.d/autojump.zsh ]] ; then
