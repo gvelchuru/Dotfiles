@@ -25,6 +25,7 @@ else
   #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
   alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
+  alias yumstartup="sudo yum update && sudo yum upgrade && brew update && brew upgrade"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
@@ -34,7 +35,11 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux new-session -A -s main
 fi
 
+typeset -ga precmd_functions
+typeset -ga preexec_functions
+
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -229,6 +234,12 @@ if [[ -d /apollo/env ]]; then
           fi
       }
   fi
+
+ if command -v __check_kinit >/dev/null
+ then 
+   precmd_functions+='__check_kinit'
+ fi
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
