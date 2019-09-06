@@ -129,8 +129,8 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias sshdev='ssh -X dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
-alias sshcdev='ssh -X dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
+alias sshdev='ssh -Y dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
+alias sshcdev='ssh -Y dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
