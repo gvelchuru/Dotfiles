@@ -14,6 +14,7 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
+  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -25,7 +26,6 @@ else
   #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
   alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
-  alias yumstartup="sudo yum update && sudo yum upgrade && brew update && brew upgrade"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
@@ -134,7 +134,7 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias sshdev='ssh -XC dev-dsk-velchug-2a-2333da45.us-west-2.amazon.com'
+alias sshdev='mosh dev-dsk-velchug-2a-2333da45.us-west-2.amazon.com'
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
