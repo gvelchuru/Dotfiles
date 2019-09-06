@@ -14,6 +14,7 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
+  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -34,7 +35,11 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux new-session -A -s main
 fi
 
+typeset -ga precmd_functions
+typeset -ga preexec_functions
+
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -129,8 +134,7 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias sshdev='ssh -Y dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
-alias sshcdev='ssh -Y dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
+alias sshdev='mosh dev-dsk-velchug-2a-2333da45.us-west-2.amazon.com'
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
@@ -209,6 +213,33 @@ if [[ -d /apollo/env ]]; then
   else
       start_agent;
     fi
+
+
+  if command -v klist > /dev/null
+  then
+      if [ -d ~/.envimprovement ] && ! [ -e ~/.envimprovement/kinit ]
+      then
+          echo "this file's timestamp is used during kerberos expiration testing" > ~/.envimprovement/kinit
+          touch -d "-2 hours" ~/.envimprovement/kinit
+      fi
+      __check_kinit() {
+          if touch ~/.envimprovement/kinit-now 2>/dev/null \
+              && [ ~/.envimprovement/kinit-now -nt ~/.envimprovement/kinit ]
+          then
+              touch -d "+1 hour" ~/.envimprovement/kinit
+              if ! klist -s
+              then
+                  echo "Your kerberos ticket has expired - please run kinit -f"
+              fi
+          fi
+      }
+  fi
+
+ if command -v __check_kinit >/dev/null
+ then 
+   precmd_functions+='__check_kinit'
+ fi
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
