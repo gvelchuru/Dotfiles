@@ -1,4 +1,5 @@
 setopt NO_BEEP
+alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
@@ -24,7 +25,7 @@ else
   #alias dislock='killall xautolock'
   #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
+  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
@@ -207,3 +208,5 @@ if [[ -d /apollo/env ]]; then
 fi
 
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
