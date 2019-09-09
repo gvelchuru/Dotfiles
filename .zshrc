@@ -15,6 +15,7 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
+  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -25,7 +26,7 @@ else
   #alias dislock='killall xautolock'
   #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup"
+  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup && antibody update"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
@@ -35,7 +36,11 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux new-session -A -s main
 fi
 
+typeset -ga precmd_functions
+typeset -ga preexec_functions
+
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -130,8 +135,7 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias sshdev='ssh -X dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
-alias sshcdev='ssh -X dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
+alias sshdev='mosh dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
@@ -175,11 +179,6 @@ antibody_source() {
 [[ -f ~/.zsh_plugins.sh ]] || antibody_source
 source ~/.zsh_plugins.sh
 
-#Async updates for speed
-async_init
-async_start_worker my_worker
-async_job my_worker antibody update > /dev/null
-
 [[ -d $HOME/mozilla_unified ]] && autoload bashcompinit && bashcompinit && source $HOME/mozilla_unified/python/mach/bash-completion.sh
 
 if [[ -d /apollo/env ]]; then
@@ -207,6 +206,7 @@ if [[ -d /apollo/env ]]; then
     fi
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
