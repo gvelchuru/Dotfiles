@@ -14,7 +14,7 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
-  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade"
+  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -25,7 +25,7 @@ else
   #alias dislock='killall xautolock'
   #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop"
+  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && antibody update"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
@@ -183,11 +183,6 @@ antibody_source() {
 [[ -f ~/.zsh_plugins.sh ]] || antibody_source
 source ~/.zsh_plugins.sh
 
-#Async updates for speed
-async_init
-async_start_worker my_worker
-async_job my_worker antibody update > /dev/null
-
 [[ -d $HOME/mozilla_unified ]] && autoload bashcompinit && bashcompinit && source $HOME/mozilla_unified/python/mach/bash-completion.sh
 
 if [[ -d /apollo/env ]]; then
@@ -213,32 +208,6 @@ if [[ -d /apollo/env ]]; then
   else
       start_agent;
     fi
-
-
-  if command -v klist > /dev/null
-  then
-      if [ -d ~/.envimprovement ] && ! [ -e ~/.envimprovement/kinit ]
-      then
-          echo "this file's timestamp is used during kerberos expiration testing" > ~/.envimprovement/kinit
-          touch -d "-2 hours" ~/.envimprovement/kinit
-      fi
-      __check_kinit() {
-          if touch ~/.envimprovement/kinit-now 2>/dev/null \
-              && [ ~/.envimprovement/kinit-now -nt ~/.envimprovement/kinit ]
-          then
-              touch -d "+1 hour" ~/.envimprovement/kinit
-              if ! klist -s
-              then
-                  echo "Your kerberos ticket has expired - please run kinit -f"
-              fi
-          fi
-      }
-  fi
-
- if command -v __check_kinit >/dev/null
- then 
-   precmd_functions+='__check_kinit'
- fi
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
