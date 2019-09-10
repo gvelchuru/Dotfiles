@@ -2,10 +2,22 @@
 disabled = true
 
 [username]
-style = "fg:black"
+style_user = ""
+
+[directory]
+style = ""
 
 [hostname]
-style = "fg:black"
+style = ""
 
 [git_branch]
-style = "bold green"
+style = ""
+
+[git_status]
+style = ""
+
+[git_state]
+style = ""
+
+[cmd_duration]
+style = ""

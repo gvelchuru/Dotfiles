@@ -21,7 +21,6 @@ else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
-  export PATH=$HOME/.cargo/bin:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
   #alias dislock='killall xautolock'
@@ -32,6 +31,7 @@ else
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 fi
+export PATH=$HOME/.cargo/bin:$PATH
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
@@ -156,7 +156,6 @@ fi
 
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
-fpath+=~/.zfunc
 autoload -Uz compinit 
 export zcompdump=${HOME}/.zcompdump
 
