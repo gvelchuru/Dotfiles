@@ -1,6 +1,6 @@
 setopt NO_BEEP
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
-alias pythonstartup="conda update --all"
+alias pythonstartup="conda update --all && conda env export > environment.yaml"
 if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
