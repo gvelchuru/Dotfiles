@@ -21,3 +21,6 @@ style = ""
 
 [cmd_duration]
 style = ""
+
+[character]
+style_success = ""
