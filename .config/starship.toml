@@ -24,3 +24,6 @@ style = ""
 
 [character]
 style_success = ""
+
+[python]
+style = ""
