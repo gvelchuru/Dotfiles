@@ -22,8 +22,8 @@ else
   export PATH=$HOME/.cargo/bin:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
-  #alias dislock='killall xautolock'
-  #alias relock=xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
+  alias dislock='killall xautolock'
+  alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
   alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup"
   alias startup_backup="startup && backup"
