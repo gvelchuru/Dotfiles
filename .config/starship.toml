@@ -1,2 +1,29 @@
 [nodejs]
 disabled = true
+
+[username]
+style_user = ""
+
+[directory]
+style = ""
+
+[hostname]
+style = ""
+
+[git_branch]
+style = ""
+
+[git_status]
+style = ""
+
+[git_state]
+style = ""
+
+[cmd_duration]
+style = ""
+
+[character]
+style_success = ""
+
+[python]
+style = ""

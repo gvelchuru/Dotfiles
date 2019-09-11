@@ -1,5 +1,6 @@
 setopt NO_BEEP
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
+alias pythonstartup="conda update --all && conda env export > environment.yaml"
 if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
@@ -15,27 +16,32 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
+  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update && pythonstartup"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
-  export PATH=$HOME/.cargo/bin:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
   alias dislock='killall xautolock'
   alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup"
+  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup && antibody update && pythonstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 fi
+export PATH=$HOME/.cargo/bin:$PATH
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
 fi
 
+typeset -ga precmd_functions
+typeset -ga preexec_functions
+
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # Uncomment the following line to use case-sensitive completion.
  CASE_SENSITIVE="true"
@@ -130,8 +136,7 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias sshdev='ssh -X dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
-alias sshcdev='ssh -X dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
+alias sshdev='ssh dev-dsk-velchug-2a-37dc3842.us-west-2.amazon.com'
 # {{{ ZSH OPTIONS
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
@@ -175,11 +180,6 @@ antibody_source() {
 [[ -f ~/.zsh_plugins.sh ]] || antibody_source
 source ~/.zsh_plugins.sh
 
-#Async updates for speed
-async_init
-async_start_worker my_worker
-async_job my_worker antibody update > /dev/null
-
 [[ -d $HOME/mozilla_unified ]] && autoload bashcompinit && bashcompinit && source $HOME/mozilla_unified/python/mach/bash-completion.sh
 
 if [[ -d /apollo/env ]]; then
@@ -207,6 +207,5 @@ if [[ -d /apollo/env ]]; then
     fi
 fi
 
-eval "$(starship init zsh)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(starship init zsh)"

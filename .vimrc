@@ -1,1 +1,0 @@
-/home/gvelchuru/.vim/vimrc
