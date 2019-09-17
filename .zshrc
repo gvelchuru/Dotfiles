@@ -16,6 +16,7 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
+  alias bre='brazil-runtime-exec'
   alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update && pythonstartup"
 else
   export PATH=$HOME/.local/bin:$PATH
@@ -42,17 +43,14 @@ typeset -ga preexec_functions
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
+export ARCHFLAGS="-arch x86_64"
 HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# export MANPATH="/usr/local/man:$MANPATH"
-export LANG=en_US.UTF-8
-export EDITOR='nvim'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
