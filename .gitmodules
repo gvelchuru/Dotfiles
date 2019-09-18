@@ -6,4 +6,4 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".config/nvim"]
 	path = .config/nvim
-	url = https://gitlab.com/gvelchuru/nvim.git
+	url = git@gitlab.com:gvelchuru/nvim.git

@@ -1,6 +1,7 @@
 setopt NO_BEEP
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
-alias pythonstartup="conda update --all && conda env export > environment.yaml"
+alias pythonstartup="yes | conda update --all && conda env export > environment.yaml"
+alias fzf="fzf --bind '~:execute(nvim {})'"
 if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
@@ -16,7 +17,8 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
-  alias yumstartup="kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update && pythonstartup"
+  alias bre='brazil-runtime-exec'
+  alias yumstartup="cd ~ && gl && kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update && pythonstartup"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -26,7 +28,7 @@ else
   alias dislock='killall xautolock'
   alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup && antibody update && pythonstartup"
+  alias startup="cd ~ && gl && illall insync && insync start && yay -Syu --devel --sudoloop && vimstartup && antibody update && pythonstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
@@ -42,17 +44,14 @@ typeset -ga preexec_functions
 
 export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
+export ARCHFLAGS="-arch x86_64"
 HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# export MANPATH="/usr/local/man:$MANPATH"
-export LANG=en_US.UTF-8
-export EDITOR='nvim'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -169,28 +168,7 @@ source ~/.zsh_plugins.sh
 [[ -d $HOME/mozilla_unified ]] && autoload bashcompinit && bashcompinit && source $HOME/mozilla_unified/python/mach/bash-completion.sh
 
 if [[ -d /apollo/env ]]; then
-  SSH_ENV="$HOME/.ssh/environment"
-  source /apollo/env/AmazonAwsCli/bin/aws_zsh_completer.sh
-   
-  function start_agent {
-      echo "Initialising new SSH agent..."
-      /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-      echo succeeded
-      chmod 600 "${SSH_ENV}"
-      . "${SSH_ENV}" > /dev/null
-      /usr/bin/ssh-add;
-  }
-
-  # Source SSH settings, if applicable
-  if [ -f "${SSH_ENV}" ]; then
-      . "${SSH_ENV}" > /dev/null
-      #ps ${SSH_AGENT_PID} doesn't work under cywgin
-      ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-          start_agent;
-      }  
-  else
-      start_agent;
-    fi
+  source ~/.apollorc
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
