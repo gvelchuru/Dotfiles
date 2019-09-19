@@ -64,7 +64,7 @@ alias cp='cp -iv'               # interactive and verbose cp
 alias l='ls -l -a'              # list all files
 alias ll='ls -l'                # list files
 
-alias ls="exa -bghHliS"
+alias ls="exa -bghHlS --color never"
 
 alias mkdir='mkdir -p'          # do not clobber files when making paths
 alias mv='mv -iv'               # interactive and verbose mv
