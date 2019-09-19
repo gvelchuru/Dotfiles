@@ -4,6 +4,7 @@ alias pythonstartup="yes | conda update --all && conda env export > environment.
 alias fzf="fzf --bind '~:execute(nvim {})'"
 if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
   for d in /apollo/env/*; do
     export PATH=$d/bin:$PATH
@@ -18,7 +19,8 @@ if [[ -d /apollo/env ]] ; then
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias yumstartup="cd ~ && gl && kinit -f && sudo yum update && sudo yum upgrade && brew update && brew upgrade && antibody update && pythonstartup"
+  alias brewstartup="brew update && brew upgrade && brew list > .brew_packages"
+  alias yumstartup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && vimstartup && antibody update && pythonstartup"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
