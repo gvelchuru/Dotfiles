@@ -1,0 +1,31 @@
+
+Rocks installed for Lua 5.3
+---------------------------
+
+argparse
+   0.7.0-1 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+dkjson
+   2.5-2 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+inspect
+   3.1.1-0 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+lcf
+   5.3-4 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+lpeglabel
+   1.5.0-1 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+lua-lsp
+   scm-2 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+luacheck
+   0.23.0-1 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+luacov
+   0.13.0-1 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
+luafilesystem
+   1.7.0-2 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
+
