@@ -1769,7 +1769,7 @@
         "P[c:-5%] (255,80,0), P[c:28%](239,10,129),   P[c:62%](129,10,239), P[c:94%](10,60,255),   P[c:128%](255,80,0)",
         "P[c:-3%] (255,80,0), P[c:30%](239,10,129),   P[c:64%](129,10,239), P[c:96%](10,60,255),   P[c:130%](255,80,0)"
       ],
-      "settings": "framedelay:3, framestretch, loop, replace:clear, pfunc:interp, start"
+      "settings": "framedelay:3, framestretch, loop, replace:clear, pfunc:interp"
     },
     "miami_wave": {
       "type": "custom",
