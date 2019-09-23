@@ -38,7 +38,7 @@ else
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && [ "$(uname)" != "Darwin" ]; then
   if [[ -d /apollo/env ]] ; then
     exec tmux new-session -A -s main -c /workplace/$(whoami)
   else 
