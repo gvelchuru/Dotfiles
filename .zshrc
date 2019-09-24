@@ -2,6 +2,7 @@ setopt NO_BEEP
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && conda env export > environment.yaml"
 alias nodestartup="npm-check -gy && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_packages"
+alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
@@ -21,7 +22,7 @@ if [[ -d /apollo/env ]] ; then
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
   alias brewstartup="brew update && brew upgrade && brew list > .brew_packages"
-  alias yumstartup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && vimstartup && antibody update && pythonstartup && nodestartup"
+  alias yumstartup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -31,7 +32,7 @@ else
   alias dislock='killall xautolock'
   alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="cd ~ && gl && killall insync && insync start && yay -Syu --devel --sudoloop && vimstartup && antibody update && pythonstartup && nodestartup"
+  alias startup="cd ~ && gl && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
