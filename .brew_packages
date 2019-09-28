@@ -113,10 +113,12 @@ python
 python@2
 readline
 ripgrep
+ruby
 rust
 shared-mime-info
 sqlite
 starship
+swig
 uncrustify
 unibilium
 unzip
