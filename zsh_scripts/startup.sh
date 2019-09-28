@@ -8,6 +8,11 @@ if [[ -d /apollo/env ]] ; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
+  if [[ ! -d /home/linuxbrew ]] ; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' ~/.brew_packages | xargs brew install
+    brew install getantibody/tap/antibody
+  fi
   for d in /apollo/env/*; do
     export PATH=$d/bin:$PATH
   done
@@ -38,3 +43,4 @@ else
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
+export UNAME=$(uname)
