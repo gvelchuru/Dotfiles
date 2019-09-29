@@ -1,6 +1,6 @@
 setopt NO_BEEP
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
-alias pythonstartup="yes | conda update --all && conda env export > environment.yaml"
+alias pythonstartup="yes | conda update --all && conda env export > environment_$(hostname).yaml"
 alias nodestartup="npm-check -gy && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias fzf="fzf --bind '~:execute(nvim {})'"
