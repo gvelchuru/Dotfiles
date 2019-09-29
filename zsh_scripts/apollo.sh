@@ -21,9 +21,7 @@ else
     start_agent;
 fi
 
-
-if command -v klist > /dev/null
-then
+if command -v klist > /dev/null; then
     if [ -d ~/.envimprovement ] && ! [ -e ~/.envimprovement/kinit ]
     then
         echo "this file's timestamp is used during kerberos expiration testing" > ~/.envimprovement/kinit
@@ -41,7 +39,6 @@ then
         fi
     }
 fi
-
 
 if command -v __check_kinit >/dev/null
 then
