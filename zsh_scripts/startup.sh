@@ -5,7 +5,7 @@ alias nodestartup="npm-check -gy && npm list --global --parseable --depth=0 | se
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
-if [[ -z $APOLLO_EXISTS ]]; then
+if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH

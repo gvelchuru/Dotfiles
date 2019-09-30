@@ -20,7 +20,7 @@ source $HOME/zsh_scripts/source_autojump.sh
 source $HOME/zsh_scripts/zsh_completion.sh
 source $HOME/zsh_scripts/antibody.sh
 
-if [[ -z $APOLLO_EXISTS ]]; then
+if [[ $APOLLO_EXISTS -eq 0 ]]; then
   source $HOME/zsh_scripts/apollo.sh
 fi
 
