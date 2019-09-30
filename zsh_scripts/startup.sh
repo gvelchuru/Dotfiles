@@ -29,6 +29,8 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias bre='brazil-runtime-exec'
   alias brewstartup="brew update && brew upgrade && brew list > .brew_packages"
   alias yumstartup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
+  alias sshdev='ssh2 dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
+  alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
