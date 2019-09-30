@@ -1,4 +1,4 @@
-if [[ $APOLLO_EXISTS -eq 0]] ; then
+if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export CONDA_ENV_FILE="apollo"
 elif [[ $UNAME =~ "Darwin" ]]; then
     export CONDA_ENV_FILE="mac"
