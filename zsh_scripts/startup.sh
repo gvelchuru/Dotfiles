@@ -4,7 +4,8 @@ alias pythonstartup="yes | conda update --all && conda env export > environment_
 alias nodestartup="npm-check -gy && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias fzf="fzf --bind '~:execute(nvim {})'"
-if [[ -d /apollo/env ]] ; then
+[ -d /apollo/env ];export APOLLO_EXISTS=$?
+if [ -z $APOLLO_EXISTS ]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
