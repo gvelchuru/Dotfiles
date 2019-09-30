@@ -23,9 +23,6 @@ lua-lsp
 luacheck
    0.23.0-1 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
 
-luacov
-   0.13.0-1 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
-
 luafilesystem
    1.7.0-2 (installed) - /home/linuxbrew/.linuxbrew/lib/luarocks/rocks-5.3
 
