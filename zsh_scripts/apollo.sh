@@ -11,7 +11,7 @@ function start_agent {
 }
 
 # Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
+if [[ -f "${SSH_ENV}" ]] ; then
     . "${SSH_ENV}" > /dev/null
     #ps ${SSH_AGENT_PID} doesn't work under cywgin
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
@@ -22,7 +22,7 @@ else
 fi
 
 if command -v klist > /dev/null; then
-    if [ -d ~/.envimprovement ] && ! [ -e ~/.envimprovement/kinit ]
+    if [[ -d ~/.envimprovement ]] && ! [[ -e ~/.envimprovement/kinit ]]
     then
         echo "this file's timestamp is used during kerberos expiration testing" > ~/.envimprovement/kinit
         touch -d "-2 hours" ~/.envimprovement/kinit

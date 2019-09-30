@@ -20,9 +20,9 @@ source $HOME/zsh_scripts/source_autojump.sh
 source $HOME/zsh_scripts/zsh_completion.sh
 source $HOME/zsh_scripts/antibody.sh
 
-if [ -z $APOLLO_EXISTS ]; then
+if [[ -z $APOLLO_EXISTS ]]; then
   source $HOME/zsh_scripts/apollo.sh
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 eval "$(starship init zsh)"

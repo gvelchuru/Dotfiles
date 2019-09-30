@@ -7,7 +7,7 @@ for match in $zcompdump*(.Nmh+24); do
    break
 done
 
-if [ "$re_initialize" -eq "1" ]; then
+if [[ "$re_initialize" -eq "1" ]] ; then
    compinit;
    compdump;
 else
