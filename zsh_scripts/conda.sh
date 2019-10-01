@@ -6,15 +6,16 @@ elif [[ $UNAME =~ "Darwin" ]];then
     export CONDA_EXEC="$($HOME/miniconda3/bin/conda shell.zsh hook)"
 fi
 
-if [[ ! -d $HOME/miniconda3 ]] ; then
+function get_conda() {
   if [[ ! -f $HOME/$CONDA_SCRIPT_NAME ]]; then
         wget https://repo.anaconda.com/miniconda/$CONDA_SCRIPT_NAME
   fi
   chmod u+x $HOME/$CONDA_SCRIPT_NAME
   . $HOME/$CONDA_SCRIPT_NAME
   conda create -n dev --file ~/environment_$HOSTNAME.yaml python=3
-fi
-eval $CONDA_EXEC
+}
+
+eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
 [[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev
 
 
