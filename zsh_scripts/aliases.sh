@@ -1,4 +1,4 @@
-export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)))"   # use all vcpus when compiling
+export MAKEFLAGS="$MAKEFLAGS -j$NUM_CORES"   # use all vcpus when compiling
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8

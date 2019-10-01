@@ -6,18 +6,21 @@ else
     export CONDA_ENV_FILE=$(hostname)
 fi
 
-
-if [[ ! -f $HOME/miniconda3/etc/profile.d/conda.sh ]]; then
-    if [[ $UNAME =~ "Linux" ]]; then
-        if [[ ! -f $HOME/Miniconda3-latest-Linux-x86_64.sh ]]; then
-            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-        fi
-        chmod u+x ~/Miniconda3-latest-Linux-x86_64.sh
-        . $HOME/Miniconda3-latest-Linux-x86_64.sh
-        conda env create --name=dev --file=~/environment_$CONDA_ENV_FILE.yaml
-    fi
-fi
 if [[ $UNAME =~ "Linux" ]]; then
-    . $HOME/miniconda3/etc/profile.d/conda.sh
+    export CONDA_SCRIPT_NAME=Miniconda3-latest-Linux-x86_64.sh
+    export CONDA_EXEC=". $HOME/miniconda3/etc/profile.d/conda.sh"
+elif [[ $UNAME =~ "Darwin" ]];then 
+    export CONDA_SCRIPT_NAME=Miniconda3-latest-MacOSX-x86_64.sh
+    export CONDA_EXEC="$($HOME/miniconda3/bin/conda shell.zsh hook)"
 fi
+
+if [[ ! -d $HOME/miniconda3 ]]; then
+    if [[ ! -f $HOME/$CONDA_SCRIPT_NAME ]]; then
+        wget https://repo.anaconda.com/miniconda/$CONDA_SCRIPT_NAME
+    fi
+    chmod u+x $HOME/$CONDA_SCRIPT_NAME
+    . $HOME/$CONDA_SCRIPT_NAME
+    conda create -n dev --file ~/environment_$CONDA_ENV_FILE.yaml python=3
+fi
+eval $CONDA_EXEC
 [[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev

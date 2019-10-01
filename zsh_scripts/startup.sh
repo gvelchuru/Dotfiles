@@ -1,6 +1,12 @@
 setopt NO_BEEP
+export UNAME=$(uname)
+if [[ $UNAME =~ "Linux" ]] ; then
+  export NUM_CORES=$(nproc)
+else if [[ $UNAME =~ "Darwin" ]]
+  export NUM_CORES=$(sysctl -n hw.ncpu)
+fi
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
-alias pythonstartup="yes | conda update --all && conda env export > environment_$(hostname).yaml"
+alias pythonstartup="yes | conda update --all && conda update -n base -c defaults conda && conda env export > environment_$(hostname).yaml"
 alias nodestartup="npm-check -gy && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias fzf="fzf --bind '~:execute(nvim {})'"
@@ -46,4 +52,3 @@ else
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync && insync start && exit"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
-export UNAME=$(uname)
