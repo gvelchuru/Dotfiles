@@ -12,7 +12,7 @@ bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
 # }}}
 
-source $HOME/zsh_scripts/poetry.sh
+source $HOME/zsh_scripts/conda.sh
 source $HOME/zsh_scripts/source_autojump.sh
 
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
