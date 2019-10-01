@@ -50,7 +50,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias startup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && gl && brewstartup && commonstartup"
-  alias sshdev='ssh2 dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
+  alias sshdev='ssh dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
 else
   export PATH=$HOME/.local/bin:$PATH
