@@ -4,6 +4,7 @@ export UNAME=$(uname)
 [[ $UNAME =~ "Linux" ]];export IS_LINUX=$?
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
+(( $+commands[brew] ));export HAS_BREW=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export HOSTNAME="apollo"
@@ -12,14 +13,14 @@ elif [[ $IS_MAC -eq 0 ]]; then
 else
     export HOSTNAME=$(hostname)
 fi
-
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
+export PYENV_LATEST_LOCATION=$HOME/.pyenv/plugins/xxenv-latest
 
 
 ([[ $IS_LINUX -eq 0 ]] && export NUM_CORES=$(nproc)) || ([[ $IS_MAC -eq 0 ]] && export NUM_CORES=$(sysctl -n hw.ncpu))
 
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
-alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
+alias pythonstartup="pyenv update && pyenv latest install && pyenv latest global && cd $PYENV_LATEST_LOCATION && gl && cd ~"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias brewstartup="brew update && brew upgrade && brew list > $BREW_PACKAGES"
@@ -29,7 +30,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
-  if [[ ! -d /home/linuxbrew ]] ; then
+  if [[ $HAS_BREW -eq 0 ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_PACKAGES | xargs brew install
     brew install getantibody/tap/antibody
