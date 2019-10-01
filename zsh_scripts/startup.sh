@@ -1,23 +1,37 @@
 setopt NO_BEEP
+
 export UNAME=$(uname)
-if [[ $UNAME =~ "Linux" ]] ; then
-  export NUM_CORES=$(nproc)
-else if [[ $UNAME =~ "Darwin" ]]
-  export NUM_CORES=$(sysctl -n hw.ncpu)
-fi
-alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
-alias pythonstartup="yes | conda update --all && conda update -n base -c defaults conda && conda env export > environment_$(hostname).yaml"
-alias nodestartup="npm-check -gy && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_packages"
-alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
-alias fzf="fzf --bind '~:execute(nvim {})'"
+[[ $UNAME =~ "Linux" ]];export IS_LINUX=$?
+[[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
+
+if [[ $APOLLO_EXISTS -eq 0 ]] ; then
+    export HOSTNAME="apollo"
+elif [[ $IS_MAC -eq 0 ]]; then
+    export HOSTNAME="mac"
+else
+    export HOSTNAME=$(hostname)
+fi
+
+export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
+
+
+([[ $IS_LINUX -eq 0 ]] && export NUM_CORES=$(nproc)) || ([[ $IS_MAC -eq 0 ]] && export NUM_CORES=$(sysctl -n hw.ncpu))
+
+alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
+alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
+alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
+alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
+alias brewstartup="brew update && brew upgrade && brew list > $BREW_PACKAGES"
+alias fzf="fzf --bind '~:execute(nvim {})'"
+
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
   if [[ ! -d /home/linuxbrew ]] ; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' ~/.brew_packages | xargs brew install
+    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_PACKAGES | xargs brew install
     brew install getantibody/tap/antibody
   fi
   for d in /apollo/env/*; do
@@ -33,10 +47,11 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias brewstartup="brew update && brew upgrade && brew list > .brew_packages"
-  alias yumstartup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
+  alias startup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
   alias sshdev='ssh2 dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
+elif [[ $IS_MAC -eq 0 ]] ; then
+  alias startup="cd ~ && gl && brewstartup && commonstartup"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH

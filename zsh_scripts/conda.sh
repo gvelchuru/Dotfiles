@@ -1,11 +1,3 @@
-if [[ $APOLLO_EXISTS -eq 0 ]] ; then
-    export CONDA_ENV_FILE="apollo"
-elif [[ $UNAME =~ "Darwin" ]]; then
-    export CONDA_ENV_FILE="mac"
-else
-    export CONDA_ENV_FILE=$(hostname)
-fi
-
 if [[ $UNAME =~ "Linux" ]]; then
     export CONDA_SCRIPT_NAME=Miniconda3-latest-Linux-x86_64.sh
     export CONDA_EXEC=". $HOME/miniconda3/etc/profile.d/conda.sh"
@@ -20,7 +12,7 @@ if [[ ! -d $HOME/miniconda3 ]]; then
     fi
     chmod u+x $HOME/$CONDA_SCRIPT_NAME
     . $HOME/$CONDA_SCRIPT_NAME
-    conda create -n dev --file ~/environment_$CONDA_ENV_FILE.yaml python=3
+    conda create -n dev --file ~/environment_$HOSTNAME.yaml python=3
 fi
 eval $CONDA_EXEC
 [[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev
