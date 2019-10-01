@@ -1,3 +1,13 @@
+zmodload zsh/datetime
+setopt PROMPT_SUBST
+PS4='+$EPOCHREALTIME %N:%i> '
+
+logfile=$(mktemp zsh_profile.XXXXXXXX)
+echo "Logging to $logfile"
+exec 3>&2 2>$logfile
+
+setopt XTRACE
+
 source $HOME/zsh_scripts/startup.sh
 source $HOME/zsh_scripts/tmux_setup.sh
 
@@ -26,3 +36,6 @@ fi
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
+
+unsetopt XTRACE
+exec 2>&3 3>&-

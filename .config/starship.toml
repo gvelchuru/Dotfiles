@@ -26,4 +26,5 @@ style = ""
 style_success = ""
 
 [python]
+disabled = true
 style = ""

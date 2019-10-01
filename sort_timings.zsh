@@ -16,10 +16,10 @@ while read line; do
         prev_time=$this_time
 
         local this_command=$match[3]
-        if [[ ${#this_command} -le 80 ]]; then
+        if [[ ${#this_command} -le 150 ]]; then
             prev_command=$this_command
         else
-            prev_command="${this_command:0:77}..."
+            prev_command="${this_command:0:147}..."
         fi
     fi
 done < ${1:-/dev/stdin}
