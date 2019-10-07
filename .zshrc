@@ -10,6 +10,8 @@ source $HOME/zsh_scripts/aliases.sh
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
+setopt PROMPT_SUBST
+autoload -U colors && colors
 # }}}
 
 source $HOME/zsh_scripts/conda.sh
@@ -24,16 +26,8 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   source $HOME/zsh_scripts/apollo.sh
 fi
 
-function get_pwd() {
-   echo "${PWD/$HOME/~}"
- }
-
-setopt PROMPT_SUBST
 PROMPT='
-
-$(get_pwd)
-'
-
-RPS1='%B%(?.%F{green}.%F{red})%?%f%b'
+%~ %{$fg[red]%}$(nice_exit_code) 
+%{$reset_color%}❯ '
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
