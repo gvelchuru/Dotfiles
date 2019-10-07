@@ -24,5 +24,16 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   source $HOME/zsh_scripts/apollo.sh
 fi
 
+function get_pwd() {
+   echo "${PWD/$HOME/~}"
+ }
+
+setopt PROMPT_SUBST
+PROMPT='
+
+$(get_pwd)
+'
+
+RPS1='%B%(?.%F{green}.%F{red})%?%f%b'
+
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-eval "$(starship init zsh)"
