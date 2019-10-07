@@ -66,6 +66,7 @@ alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=
 alias ip='ip -c'                                        # colored ip
 
 alias grep='grep --color=auto'                          # colored grep
+alias rg='rg -S'
 
 alias less='less -i'                                    # case insensitive search
 alias mutt='neomutt'                                    # neomutt

@@ -18,11 +18,15 @@ else
 fi
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 
-([[ $IS_LINUX -eq 0 ]] && export NUM_CORES=$(nproc)) || ([[ $IS_MAC -eq 0 ]] && export NUM_CORES=$(sysctl -n hw.ncpu))
+if [[ $IS_LINUX -eq 0 ]]; then 
+  export NUM_CORES=$(nproc) 
+elif [[ $IS_MAC -eq 0 ]] ; then
+  export NUM_CORES=$(sysctl -n hw.ncpu)
+fi
 
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
-alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
+alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
 alias brewstartup="brew update && brew upgrade && brew list > $BREW_PACKAGES"
 alias fzf="fzf --bind '~:execute(nvim {})'"

@@ -13,6 +13,7 @@ function get_conda() {
   chmod u+x $HOME/$CONDA_SCRIPT_NAME
   . $HOME/$CONDA_SCRIPT_NAME
   conda create -n dev --file ~/environment_$HOSTNAME.yaml python=3
+  conda install conda -c conda-canary
 }
 
 eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
