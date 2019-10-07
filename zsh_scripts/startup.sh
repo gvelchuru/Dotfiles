@@ -24,7 +24,7 @@ alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
-alias brewstartup="brew update && brew upgrade && brew list > $BREW_PACKAGES"
+alias brewstartup="brew update && brew upgrade && brew cask upgrade && brew list > $BREW_PACKAGES && brew cask ls > ~/.mac_brew_cask_list"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
