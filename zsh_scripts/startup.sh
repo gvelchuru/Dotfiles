@@ -4,10 +4,7 @@ export UNAME=$(uname)
 [[ $UNAME =~ "Linux" ]];export IS_LINUX=$?
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
-
-function check_brew() {
-  (( $+commands[brew] ));export HAS_BREW=$?
-}
+(( $+commands[brew] ));export HAS_BREW=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export HOSTNAME="apollo"
@@ -28,14 +25,13 @@ alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
 alias commonstartup="vimstartup && antibody update && nodestartup; pythonstartup"
-alias brewstartup="brew update && brew upgrade && brew list > $BREW_PACKAGES"
+alias brewstartup="brew update && brew upgrade && brew cask upgrade && brew list > $BREW_PACKAGES && brew cask ls > ~/.mac_brew_cask_list"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
   export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
-  check_brew
   if [[ $HAS_BREW -gt 0 ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_PACKAGES | xargs brew install
@@ -56,7 +52,6 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias bre='brazil-runtime-exec'
   alias startup="cd ~ && gl && kinit -f && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  check_brew
   alias startup="cd ~ && gl && brewstartup && commonstartup"
   alias sshdev='ssh dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
