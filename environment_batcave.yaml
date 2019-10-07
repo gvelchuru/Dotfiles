@@ -15,13 +15,13 @@ dependencies:
   - msgpack-python=0.6.1=py37hfd86e86_1
   - ncurses=6.1=he6710b0_1
   - neovim=0.3.1=py37_0
-  - openssl=1.1.1d=h7b6447c_1
+  - openssl=1.1.1d=h7b6447c_2
   - pip=19.2.3=py37_0
   - pynvim=0.3.2=py37_0
   - python=3.7.4=h265db76_1
   - readline=7.0=h7b6447c_5
   - setuptools=41.2.0=py37_0
-  - sqlite=3.29.0=h7b6447c_0
+  - sqlite=3.30.0=h7b6447c_0
   - tk=8.6.8=hbc83047_0
   - wheel=0.33.6=py37_0
   - xz=5.2.4=h14c3975_4
