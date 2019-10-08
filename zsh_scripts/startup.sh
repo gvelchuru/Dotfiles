@@ -14,6 +14,7 @@ else
     export HOSTNAME=$(hostname)
 fi
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
+export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 
 if [[ $IS_LINUX -eq 0 ]]; then 
   export NUM_CORES=$(nproc) 
@@ -25,7 +26,7 @@ alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
 alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup; pythonstartup"
-alias brewstartup="brew update && brew upgrade && brew cask upgrade && brew list > $BREW_PACKAGES && brew cask ls > $HOME/.$brew_$HOSTNAME\_cask_list"
+alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BREW_PACKAGES; brew cask ls > $BREW_CASKS"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
