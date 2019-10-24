@@ -6,11 +6,13 @@ stocks = [
     ("nudm", 22, 26.68, 0.1),
     ("numv", 3, 29.36, 0.1),
     ("numg", 6, 32.91, 0.1),
-    ("blv", 7, 101.26, 0.1),
     ("nulc", 51, 27.69, 0.3),
+    ("nuag", 0, 24.75, 0.1),
 ]
 buying_power = .16 
 total = sum(count * price for _, count, price, _ in stocks)
+
+print("SUM" + str(sum(x[3] for x in stocks)))
 
 
 def get_percent_diff(count, price, percent):
