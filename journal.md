@@ -20,3 +20,11 @@ In particular, we are working on making sure I don't do too many revisions.
 In particular, I don't really know what to do during the off times, although it seems watching videos and looking at outstanding tasks is a good idea.
 I am also continuing to struggle with the CR process. It seems that even thouhgh I am attempting to pay more attention, style issues are especially bad.
 I need to continue to seek out more opportunities to lead, especially when it comes to helping others and being a better communicator. This may also help my issue with CRs, if I start looking at things through other people's eyes. Taking this extra step will simultaneously save me boredom in the short run and give me time in the long run, as well as will build rapport.
+
+2019-11-03 13:57 @work finished the l1 testing for the CoAP server.
+I am getting better at taking ownership
+
+##LPs
+* Taking Ownership 
+* Be Right, A Lot/Earn Trust -- working on pushing less CRs and getting code right
+* Deliver Results/Bias For Action -- driving the project, didn't need much coaching
