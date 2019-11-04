@@ -16,8 +16,8 @@ fi
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 
-if [[ $IS_LINUX -eq 0 ]]; then 
-  export NUM_CORES=$(nproc) 
+if [[ $IS_LINUX -eq 0 ]]; then
+  export NUM_CORES=$(nproc)
 elif [[ $IS_MAC -eq 0 ]] ; then
   export NUM_CORES=$(sysctl -n hw.ncpu)
 fi
@@ -42,6 +42,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   for d in /apollo/env/*; do
     export PATH=$d/bin:$PATH
   done
+  export PATH=$HOME/.toolbox/bin:$PATH
   export BRAZIL_COLORS=1
   export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man:$MANPATH
   export P4CONFIG=.p4config  # see wiki/?P4CONFIG
@@ -50,6 +51,8 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
+  export EC2_ACCESS_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Principal com.amazon.ebs-server.gameday)
+  export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
   alias startup="cd ~ && gl && apollo_auth_init && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"

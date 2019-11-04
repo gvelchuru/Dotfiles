@@ -98,12 +98,14 @@ lua@5.1
 luajit
 luarocks
 m4
+meson
 mosh
 mpfr
 msgpack
 ncurses
 neofetch
 neovim
+ninja
 nnn
 node
 openexr
