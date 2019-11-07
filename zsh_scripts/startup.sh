@@ -61,6 +61,7 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   #alias sshdev='ssh -XC dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
+  export PATH="$PATH:/Users/velchug/.dotnet/tools"
 else
   export PATH=$HOME/.local/bin:$PATH
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
