@@ -21,6 +21,7 @@ freetype
 gcc
 gcc@6
 gcc@9
+gdb
 gdbm
 gettext
 git
@@ -48,6 +49,7 @@ libgit2
 libheif
 libice
 libmpc
+libnsl
 libomp
 libpciaccess
 libpng
@@ -56,6 +58,7 @@ libsm
 libssh2
 libtermkey
 libtiff
+libtirpc
 libtool
 libuv
 libvterm
