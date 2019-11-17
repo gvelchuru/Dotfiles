@@ -156,20 +156,6 @@ set $myorange #d65d0e
 set $mygreen  #b8bb26
 set $myaqua #689d6a
 
-#bar
-#bar {
-    #position top
-    #status_command bumblebee-status -m spotify pasink sensors time -p time.format="%H:%M" -t gruvbox-powerline
-    #colors {
-        #background #282828
-                        ## Type             border  background font
-        #focused_workspace  $myaqua $myaqua $offwhite
-        #active_workspace   $bg1 $bg1 $offwhite
-        #inactive_workspace $bg1 $bg1 $offwhite
-        #urgent_workspace   $myorange $myorange $offwhite
-    #}
-#}
-
 # i3-gaps
 gaps inner 0
 gaps outer 0

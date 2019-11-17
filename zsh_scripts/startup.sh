@@ -68,6 +68,7 @@ else
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
+  export PATH=$PATH:$HOME/open_source/depot_tools
   alias dislock='killall xautolock'
   alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
