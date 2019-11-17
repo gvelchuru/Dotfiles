@@ -11,6 +11,7 @@ bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
 setopt PROMPT_SUBST
+setopt hist_ignore_dups
 autoload -U colors && colors
 # }}}
 
@@ -27,7 +28,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
 fi
 
 PROMPT='
-%~ %{$fg[red]%}$(nice_exit_code) 
+%~ %{$fg[red]%}$(nice_exit_code)
 %{$reset_color%}❯ '
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
