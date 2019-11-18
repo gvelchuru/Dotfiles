@@ -25,6 +25,9 @@ I need to continue to seek out more opportunities to lead, especially when it co
 I am getting better at taking ownership
 
 ##LPs
-* Taking Ownership 
+* Taking Ownership
 * Be Right, A Lot/Earn Trust -- working on pushing less CRs and getting code right
 * Deliver Results/Bias For Action -- driving the project, didn't need much coaching
+
+2019-11-18 10:36 @work Need to work on focusing on a single thing at a time, and "hitting it out of the ballpark".
+This synergizes well with my long work hours, where I can do one thing at a time yet achieve multiple things pseudo-simultaneously. Also, I need to work on better communication about my process.
