@@ -56,9 +56,9 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && gl && apollo_auth_init && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
+  alias startup="cd ~ && gl && git submodule update --recursive --remote && apollo_auth_init && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && gl && apollo_auth_init && brewstartup && commonstartup"
+  alias startup="cd ~ && gl && git submodule update --recursive --remote && apollo_auth_init && brewstartup && commonstartup"
   #alias sshdev='ssh -XC dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
