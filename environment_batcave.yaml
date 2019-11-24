@@ -28,5 +28,11 @@ dependencies:
   - xz=5.2.4=h14c3975_4
   - yaml=0.1.7=had09818_2
   - zlib=1.2.11=h7b6447c_3
+  - pip:
+    - argcomplete==1.10.2
+    - click==7.0
+    - distro==1.4.0
+    - pipx==0.14.0.0
+    - userpath==1.3.0
 prefix: /home/gauthv/miniconda3/envs/dev
 

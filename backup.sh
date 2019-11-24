@@ -48,8 +48,9 @@ borg create                                    \
     --exclude /mnt                             \
     --exclude /var/lib/lxcfs                   \
     --exclude /tmp                             \
-    --exclude /home/*/.ccache                  \
-    --exclude /home/*/.cache                   \
+    --exclude /home/gauthv/.ccache             \
+    --exclude /home/gauthv/.cache              \
+    --exclude /home/mahiv/.cache               \
                                                \
     ::'{hostname}-{now}'                       \
     /                                          \
