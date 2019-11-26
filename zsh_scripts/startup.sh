@@ -59,10 +59,10 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias startup="cd ~ && gl && git submodule update --recursive --remote && apollo_auth_init && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && gl && git submodule update --recursive --remote && apollo_auth_init && brewstartup && commonstartup"
-  #alias sshdev='ssh -XC dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
-  alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
+  alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
+  alias mac_copy="nc -l 2000 | pbcopy"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
