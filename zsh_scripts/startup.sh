@@ -59,6 +59,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
   alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup"
+  alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
   #alias sshdev='ssh -XC dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
