@@ -13,6 +13,7 @@ const stocks = stocktable.map((item: string[]) => {
 });
 const quotes = {};
 
+//TODO: BATCH
 async function stockUpdate(stock: string) {
   try {
     const response = await axios.get(

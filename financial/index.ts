@@ -17,11 +17,19 @@ const quotes = {};
 
 async function last3Months(stock: string) {
   try {
+    //const response = await axios.get(
+    //"https://api.tdameritrade.com/v1/marketdata/" + stock + "/quotes"
+    //);
+    //TODO: SWITCH TO LIVE DATA
     const response = await axios.get(
-      iex_url + "stock/" + stock + "/chart/3m/",
+      "https://api.tdameritrade.com/v1/marketdata/" + stock + "/pricehistory",
       {
         params: {
-          token: iex_token
+          apikey: api_key,
+          periodType: "month",
+          period: "3",
+          frequencyType: "daily",
+          frequency: "1"
         }
       }
     );
@@ -60,6 +68,14 @@ async function get_auth() {
 Promise.all(
   stocks.map(async (stock: string) => {
     let latestQuote = await last3Months(stock);
-    console.log(latestQuote);
+    latestQuote = latestQuote[latestQuote.length - 1];
+    //const quoteData = latestQuote[stock];
+    //if (quoteData) {
+    //quotes[stock] = quoteData["lastPrice"];
+    //}
   })
-).then(() => {});
+).then(() => {
+  console.log(quotes);
+  console.log(Object.keys(quotes).length);
+});
+//});
