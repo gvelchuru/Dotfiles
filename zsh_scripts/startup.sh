@@ -79,9 +79,9 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && gl && git submodule update --recursive --remote && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && brewstartup && commonstartup"
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && rpi-upgrade && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
+  alias startup="cd ~ && git_init && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
