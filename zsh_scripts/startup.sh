@@ -13,6 +13,8 @@ elif [[ $IS_MAC -eq 0 ]]; then
 else
     export HOSTNAME=$(hostname)
 fi
+
+[[ $HOSTNAME =~ "batmobile" ]]; export IS_BATMOBILE=$?
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 
@@ -66,6 +68,8 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
   alias mac_copy="nc -l 2000 | pbcopy"
+elif [[ $IS_BATMOBILE -eq 0 ]] ; then
+  alias startup="cd ~ && git_init && rpi-upgrade && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
