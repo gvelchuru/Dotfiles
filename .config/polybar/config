@@ -49,39 +49,10 @@ font-2 = IPAGothic:pixelsize=15;3
 
 modules-left = powermenu i3
 ;modules-center = date
-modules-right = volume wireless-network wired-network temperature date
+modules-right = volume wireless-network wired-network
 
 ;wm-restack = i3
 ;override-redirect = true
-
-[module/temperature]
-interval = 2
-type = internal/temperature
-;thermal-zone = 3
-
-
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
-
-warn-temperature = 60
-
-format = <ramp> <label>
-label = %temperature-c%
-label-foreground = ${colors.foreground}
-
-format-warn = <ramp> <label-warn>
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-0-foreground = ${colors.green}
-ramp-1 = 
-ramp-1-foreground = ${colors.green}
-ramp-2 = 
-ramp-2-foreground = ${colors.green}
-ramp-3 = 
-ramp-3-foreground = ${colors.yellow}
-ramp-4 = 
-ramp-4-foreground = ${colors.red}
 
 [bar/bottom]
 monitor = ${env:MONITOR:}
@@ -156,7 +127,7 @@ bar-used-empty-foreground = ${colors.foreground}
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <ramp> 
+format = <ramp>
 label = %percentage%
 
 ramp-0 = 
@@ -396,11 +367,6 @@ ramp-coreload-7 = █
 ramp-coreload-7-font = 2
 ramp-coreload-7-foreground = ${colors.red}
 
-;[module/date]
-;type = internal/date
-;date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-;date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
-
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
@@ -530,7 +496,7 @@ label-separator = " | "
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = lock
-menu-0-1-exec = dm-tool lock 
+menu-0-1-exec = dm-tool lock
 menu-0-2 = power off
 menu-0-2-exec = menu-open-3
 menu-0-3 = suspend

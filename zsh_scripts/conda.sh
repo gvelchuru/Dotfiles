@@ -16,7 +16,6 @@ function get_conda() {
   conda install conda -c conda-canary
 }
 
-eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
-[[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev
-
-
+if [[ $IS_BATMOBILE -gt 0 ]]; then
+    eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
+fi

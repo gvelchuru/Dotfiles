@@ -17,7 +17,7 @@ else
     export HOSTNAME=$(hostname)
 fi
 
-
+[[ $HOSTNAME =~ "batmobile" ]]; export IS_BATMOBILE=$?
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 
@@ -45,7 +45,9 @@ alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | s
 alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup; pythonstartup"
 alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BREW_PACKAGES; brew cask ls > $BREW_CASKS"
 alias fzf="fzf --bind '~:execute(nvim {})'"
-alias apollo_auth_init="mwinit -o && kinit -f"
+alias apollo_auth_init="kinit -f"
+alias git_init="gl && git submodule update --recursive --remote"
+alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
@@ -66,16 +68,19 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && gl && git submodule update --recursive --remote && apollo_auth_init && yes | sudo yum update && yes | sudo yum upgrade && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup"
+  alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && gl && git submodule update --recursive --remote && apollo_auth_init && brewstartup && commonstartup"
-  #alias sshdev='ssh -XC dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
-  alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
+  alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
+  alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
+  alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
   alias startup="cd ~ && gl && git submodule update --recursive --remote && brewstartup && commonstartup"
+elif [[ $IS_BATMOBILE -eq 0 ]] ; then
+  alias startup="cd ~ && git_init && rpi-upgrade && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
@@ -86,7 +91,7 @@ else
   alias dislock='killall xautolock'
   alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="cd ~ && gl && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup"
+  alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
