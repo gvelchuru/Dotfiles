@@ -5,14 +5,19 @@ export UNAME=$(uname)
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
 [[ -d /home/linuxbrew ]];export HAS_BREW=$?
+[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ HOSTNAME != "batcave" ]];export IS_EC2=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export HOSTNAME="apollo"
 elif [[ $IS_MAC -eq 0 ]]; then
     export HOSTNAME="mac"
+elif [[ $IS_EC2 -eq 0 ]]; then
+    export HOSTNAME="ec2"
 else
     export HOSTNAME=$(hostname)
 fi
+
+
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 
@@ -21,6 +26,18 @@ if [[ $IS_LINUX -eq 0 ]]; then
 elif [[ $IS_MAC -eq 0 ]] ; then
   export NUM_CORES=$(sysctl -n hw.ncpu)
 fi
+
+brew_startup() {
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
+  if [[ $HAS_BREW -gt 0 ]]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_PACKAGES | xargs brew install
+    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_CASKS | xargs brew install cask
+    brew install getantibody/tap/antibody
+  fi
+}
 
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
@@ -32,14 +49,7 @@ alias apollo_auth_init="mwinit -o && kinit -f"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
-  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  export PATH=/home/linuxbrew/.linuxbrew/sbin:$PATH
-  export PATH=/home/linuxbrew/.linuxbrew/opt/ccache/libexec:$PATH
-  if [[ $HAS_BREW -gt 0 ]]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_PACKAGES | xargs brew install
-    brew install getantibody/tap/antibody
-  fi
+  brew_startup
   for d in /apollo/env/*; do
     export PATH=$d/bin:$PATH
   done
@@ -63,6 +73,9 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
+elif [[ $IS_EC2 -eq 0 ]] ; then
+  brew_startup
+  alias startup="cd ~ && gl && git submodule update --recursive --remote && brewstartup && commonstartup"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
