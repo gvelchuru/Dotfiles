@@ -2,7 +2,8 @@ import * as fs from "fs";
 import * as parse from "csv-parse/lib/sync";
 const axios = require("axios").default;
 import * as querystring from "querystring";
-const client_id = "OHJS1MS1CB75NCZVB63AFEKCNAGF7Y0A@AMER.OAUTHAP";
+//import axiosRetry, { exponentialDelay } from "axios-retry";
+const client_id = "E7M6UYRBBDLH15WDB1RK5IMAHZRRUBOK@AMER.OAUTHAP";
 const api_key = "E7M6UYRBBDLH15WDB1RK5IMAHZRRUBOK";
 const iex_url = "https://cloud.iexapis.com/stable/";
 const iex_token = "pk_a4c32445d1ee48c88bee5c0548275088";
@@ -10,9 +11,10 @@ const iex_token = "pk_a4c32445d1ee48c88bee5c0548275088";
 let rawstocks = fs.readFileSync("SUSL_holdings.csv", { encoding: "utf-8" });
 rawstocks = rawstocks.substring(rawstocks.indexOf("Ticker"));
 const stocktable = parse(rawstocks, { skip_lines_with_error: true });
-const stocks = stocktable.map((item: string[]) => {
-  return item[0];
-});
+//const stocks = stocktable.map((item: string[]) => {
+//return item[0];
+//});
+const stocks = ["MSFT"];
 const quotes = {};
 
 async function last3Months(stock: string) {
@@ -21,11 +23,12 @@ async function last3Months(stock: string) {
     //"https://api.tdameritrade.com/v1/marketdata/" + stock + "/quotes"
     //);
     //TODO: SWITCH TO LIVE DATA
+    //axiosRetry(axios, { retries: 5 });
+    //axiosRetry(axios, { retryDelay: exponentialDelay });
     const response = await axios.get(
       "https://api.tdameritrade.com/v1/marketdata/" + stock + "/pricehistory",
       {
         params: {
-          apikey: api_key,
           periodType: "month",
           period: "3",
           frequencyType: "daily",
@@ -52,8 +55,9 @@ async function get_auth() {
         grant_type: "refresh_token",
         refresh_token: refresh_token,
         client_id: client_id,
-        redirect_uri: "",
-        code: ""
+        access_type: "",
+        code: "",
+        redirect_uri: ""
       })
     );
     return response.data.access_token;
@@ -62,20 +66,20 @@ async function get_auth() {
   }
 }
 
-//get_auth().then(auth_string => {
-//console.log(auth_string);
-//axios.defaults.headers.common["Authorization"] = "Bearer " + auth_string;
-Promise.all(
-  stocks.map(async (stock: string) => {
-    let latestQuote = await last3Months(stock);
-    latestQuote = latestQuote[latestQuote.length - 1];
-    //const quoteData = latestQuote[stock];
-    //if (quoteData) {
-    //quotes[stock] = quoteData["lastPrice"];
-    //}
-  })
-).then(() => {
-  console.log(quotes);
-  console.log(Object.keys(quotes).length);
+get_auth().then(auth_string => {
+  console.log(auth_string);
+  //axios.defaults.headers.common["Authorization"] = "Bearer " + auth_string;
+  //Promise.all(
+  //stocks.map(async (stock: string) => {
+  //let latestQuote = await last3Months(stock);
+  //latestQuote = latestQuote[latestQuote.length - 1];
+  ////const quoteData = latestQuote[stock];
+  ////if (quoteData) {
+  ////quotes[stock] = quoteData["lastPrice"];
+  ////}
+  //})
+  //).then(() => {
+  //console.log(quotes);
+  //console.log(Object.keys(quotes).length);
+  //});
 });
-//});
