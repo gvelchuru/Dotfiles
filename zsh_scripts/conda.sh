@@ -16,4 +16,6 @@ function get_conda() {
   conda install conda -c conda-canary
 }
 
-eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
+if [[ $IS_BATMOBILE -gt 0 ]]; then
+    eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
+fi
