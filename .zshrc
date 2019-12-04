@@ -33,3 +33,5 @@ PROMPT='
 %{$reset_color%}❯ '
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+export PATH=$HOME/.toolbox/bin:$PATH
