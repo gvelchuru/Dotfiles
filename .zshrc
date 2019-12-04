@@ -11,6 +11,7 @@ bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
 setopt PROMPT_SUBST
+setopt HIST_IGNORE_ALL_DUPS
 setopt hist_ignore_dups
 autoload -U colors && colors
 # }}}
