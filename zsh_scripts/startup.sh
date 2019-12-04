@@ -5,7 +5,7 @@ export UNAME=$(uname)
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
 [[ -d /home/linuxbrew ]];export HAS_BREW=$?
-[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ HOSTNAME != "batcave" ]];export IS_EC2=$?
+[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ $(hostname) != "batcave" ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export HOSTNAME="apollo"
