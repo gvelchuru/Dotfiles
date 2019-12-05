@@ -45,7 +45,7 @@ alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | s
 alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup; pythonstartup"
 alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BREW_PACKAGES; brew cask ls > $BREW_CASKS"
 alias fzf="fzf --bind '~:execute(nvim {})'"
-alias apollo_auth_init="kinit -f"
+alias apollo_auth_init="mwinit -o && kinit -f"
 alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
 
@@ -68,7 +68,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
