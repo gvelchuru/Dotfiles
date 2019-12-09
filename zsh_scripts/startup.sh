@@ -5,7 +5,7 @@ export UNAME=$(uname)
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
 [[ -d /home/linuxbrew ]];export HAS_BREW=$?
-[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ HOSTNAME != "batcave" ]];export IS_EC2=$?
+[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ $(hostname) != "batcave" ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export HOSTNAME="apollo"
@@ -68,7 +68,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
@@ -80,9 +80,10 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && gl && git submodule update --recursive --remote && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && yumstartup && brewstartup && commonstartup"
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && rpi-upgrade && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
+  alias startup="cd ~ && git_init && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
+  export SPOTINST_KEY="92fb104ae0051d0d85b8f72bbb7acc7cd78efac9ff5018c30838d59f05936685"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
