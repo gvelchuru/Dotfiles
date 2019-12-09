@@ -18,4 +18,5 @@ function get_conda() {
 
 if [[ $IS_BATMOBILE -gt 0 ]]; then
     eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
+    conda activate dev
 fi

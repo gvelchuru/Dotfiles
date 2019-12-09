@@ -45,7 +45,7 @@ alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | s
 alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup; pythonstartup"
 alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BREW_PACKAGES; brew cask ls > $BREW_CASKS"
 alias fzf="fzf --bind '~:execute(nvim {})'"
-alias apollo_auth_init="kinit -f"
+alias apollo_auth_init="mwinit -o && kinit -f"
 alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
 
@@ -73,7 +73,8 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
   alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com -R 2000:localhost:2000'
-  alias sshcrate='ssh -C dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
+  alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
+  alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
   alias mac_copy="nc -l 2000 | pbcopy"
