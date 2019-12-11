@@ -1,5 +1,6 @@
 import argparse
 import os
+
 import requests
 
 API_TOKEN = os.environ["SPOTINST_KEY"]
@@ -38,6 +39,26 @@ def manage_instance(type, to_start):
     print(r.json())
 
 
+def burst_instance():
+    r = requests.put(
+        SPOTINST_URL + "/{}/accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
+        headers=SPOTINST_HEADERS,
+        data={
+            "managedInstance": {
+                "compute": {
+                    "launchSpecification": {
+                        "creditSpecification": {"cpuCredits": "unlimited"}
+                    }
+                }
+            }
+        },
+    )
+    try:
+        print(r.json())
+    except:
+        print(r.text)
+
+
 def get_all():
     print(
         requests.get(
@@ -47,6 +68,7 @@ def get_all():
 
 
 if __name__ == "__main__":
+    burst_instance()
     parser = argparse.ArgumentParser()
     parser.add_argument("type")
     start_or_stop = parser.add_mutually_exclusive_group(required=True)
