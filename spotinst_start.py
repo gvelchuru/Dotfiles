@@ -68,7 +68,7 @@ def get_all():
 
 
 if __name__ == "__main__":
-    burst_instance()
+    # burst_instance()
     parser = argparse.ArgumentParser()
     parser.add_argument("type")
     start_or_stop = parser.add_mutually_exclusive_group(required=True)
