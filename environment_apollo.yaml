@@ -14,7 +14,7 @@ dependencies:
   - cffi=1.13.2=py37h2e261b9_0
   - chardet=3.0.4=py37_1003
   - click=7.0=py37_0
-  - conda=4.7.12=py37_0
+  - conda=4.8.0=py37_0
   - conda-package-handling=1.6.0=py37h7b6447c_0
   - cpplint=1.4.4=py_0
   - cryptography=2.8=py37h1ba5d50_0
@@ -43,7 +43,7 @@ dependencies:
   - python=3.7.5=h0371630_0
   - pyyaml=5.1.2=py37h7b6447c_0
   - readline=7.0=h7b6447c_5
-  - requests=2.22.0=py37_0
+  - requests=2.22.0=py37_1
   - ruamel_yaml=0.15.46=py37h14c3975_0
   - setuptools=42.0.2=py37_0
   - six=1.13.0=py37_0
@@ -51,7 +51,7 @@ dependencies:
   - tk=8.6.8=hbc83047_0
   - toml=0.10.0=py37h28b3542_0
   - tqdm=4.40.0=py_0
-  - urllib3=1.24.2=py37_0
+  - urllib3=1.25.7=py37_0
   - wheel=0.33.6=py37_0
   - wrapt=1.11.2=py37h7b6447c_0
   - xz=5.2.4=h14c3975_4

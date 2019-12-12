@@ -73,7 +73,8 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
   alias sshdev='ssh -C dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com -R 2000:localhost:2000'
-  alias sshcrate='ssh -C dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
+  alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
+  alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   alias moshdev='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server dev-dsk-velchug-2a-92c3caa5.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
   alias mac_copy="nc -l 2000 | pbcopy"

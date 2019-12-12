@@ -1,5 +1,6 @@
 import argparse
 import os
+
 import requests
 import sys
 
@@ -39,6 +40,26 @@ def manage_instance(type, action):
 	    print(r.json())
 
 
+def burst_instance():
+    r = requests.put(
+        SPOTINST_URL + "/{}/accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
+        headers=SPOTINST_HEADERS,
+        data={
+            "managedInstance": {
+                "compute": {
+                    "launchSpecification": {
+                        "creditSpecification": {"cpuCredits": "unlimited"}
+                    }
+                }
+            }
+        },
+    )
+    try:
+        print(r.json())
+    except:
+        print(r.text)
+
+
 def get_all():
     print(
         requests.get(
@@ -48,6 +69,7 @@ def get_all():
 
 
 if __name__ == "__main__":
+    # burst_instance()
     parser = argparse.ArgumentParser()
     parser.add_argument("--type")
     parser.add_argument(
