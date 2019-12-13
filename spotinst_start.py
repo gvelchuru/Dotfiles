@@ -1,8 +1,8 @@
 import argparse
 import os
+import sys
 
 import requests
-import sys
 
 API_TOKEN = os.environ["SPOTINST_KEY"]
 SPOTINST_URL = "https://api.spotinst.io/aws/ec2/managedInstance"
@@ -15,7 +15,30 @@ SPOTINST_INST = "smi-bcc8c967"
 
 
 def manage_instance(type, action):
-    if action in ["pause", "recycle"] and type:
+    if action in ["resume", "recycle"] and type:
+        preferredTypes = (
+            [
+                "m1.xlarge",
+                "m3.xlarge",
+                "m4.xlarge",
+                "m5.xlarge",
+                "m5a.xlarge",
+                "m5ad.xlarge",
+                "m5d.xlarge",
+                "m5dn.xlarge",
+                "m5n.xlarge",
+                "t2.xlarge",
+                "t3.xlarge",
+                "t3a.xlarge",
+                "c3.xlarge",
+                "c4.xlarge",
+                "c5.xlarge",
+                "c5d.xlarge",
+                "c5n.xlarge",
+            ]
+            if type == "t3.xlarge"
+            else [type]
+        )
         r = requests.put(
             SPOTINST_URL + "/{}/accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
             headers=SPOTINST_HEADERS,
@@ -23,7 +46,10 @@ def manage_instance(type, action):
                 "managedInstance": {
                     "compute": {
                         "launchSpecification": {
-                            "instanceTypes": {"preferredType": {type}, "types": [type]}
+                            "instanceTypes": {
+                                "preferredType": {type},
+                                "types": preferredTypes,
+                            }
                         }
                     }
                 }
@@ -31,13 +57,11 @@ def manage_instance(type, action):
         )
     r = requests.put(
         SPOTINST_URL
-        + "/{}/{}?accountId={}".format(
-            SPOTINST_INST, action, SPOTINST_ACCOUNT
-        ),
+        + "/{}/{}?accountId={}".format(SPOTINST_INST, action, SPOTINST_ACCOUNT),
         headers=SPOTINST_HEADERS,
     )
     if int(r.code) != 200:
-	    print(r.json())
+        print(r.json())
 
 
 def burst_instance():
@@ -71,7 +95,7 @@ def get_all():
 if __name__ == "__main__":
     # burst_instance()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type")
+    parser.add_argument("--type", optional=True)
     parser.add_argument(
         "--action", choices=["pause", "resume", "recycle"], required=True
     )
