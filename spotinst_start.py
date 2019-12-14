@@ -2,8 +2,8 @@
 import argparse
 import os
 import sys
-import boto3
 
+import boto3
 import requests
 
 API_TOKEN = os.environ["SPOTINST_KEY"]
@@ -61,6 +61,27 @@ def burst_instance():
         print(r.text)
 
 
+def persist_block_devices(SPOTINST_INST):
+    r = requests.put(
+        SPOTINST_URL + "/{}/accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
+        headers=SPOTINST_HEADERS,
+        data={"managedInstance": {"persistence": {"persistBlockDevices": True}}},
+    )
+    try:
+        print(r.json())
+    except:
+        print(r.text)
+    r = requests.put(
+        SPOTINST_URL + "/{}?accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
+        headers=SPOTINST_HEADERS,
+        json={"managedInstance": {"compute": {"elasticIp": None}}},
+    )
+    try:
+        print(r.json())
+    except:
+        print(r.text)
+
+
 def get_all():
     items = requests.get(
         SPOTINST_URL + "?accountId=" + SPOTINST_ACCOUNT, headers=SPOTINST_HEADERS
@@ -84,5 +105,16 @@ if __name__ == "__main__":
     if args.list:
         client = boto3.client("ec2")
         instances = client.describe_instances()
-	instances = [reservation["Instances"] for reservation in instances["Reservations"]]
-	print([instance.keys() for instance in instances])
+        instances = [
+            reservation["Instances"] for reservation in instances["Reservations"]
+        ]
+        interfaces = [
+            [
+                (instance_obj["InstanceType"], instance_obj["NetworkInterfaces"][0]["Association"]["PublicIp"])
+                for instance_obj in instance
+            ]
+            for instance in instances
+        ]
+        flat_interfaces = [item for sublist in interfaces for item in sublist]
+        print(flat_interfaces)
+        # print([interface.keys() for interface in interfaces])

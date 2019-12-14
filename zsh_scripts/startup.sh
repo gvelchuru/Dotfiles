@@ -20,6 +20,7 @@ fi
 [[ $HOSTNAME =~ "batmobile" ]]; export IS_BATMOBILE=$?
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
+export SPOTINST_KEY="92fb104ae0051d0d85b8f72bbb7acc7cd78efac9ff5018c30838d59f05936685"
 
 if [[ $IS_LINUX -eq 0 ]]; then
   export NUM_CORES=$(nproc)
@@ -83,7 +84,6 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   alias startup="cd ~ && git_init && yumstartup && brewstartup && commonstartup"
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   alias startup="cd ~ && git_init && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
-  export SPOTINST_KEY="92fb104ae0051d0d85b8f72bbb7acc7cd78efac9ff5018c30838d59f05936685"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
