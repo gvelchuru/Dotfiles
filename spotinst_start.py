@@ -110,7 +110,10 @@ if __name__ == "__main__":
         ]
         interfaces = [
             [
-                (instance_obj["InstanceType"], instance_obj["NetworkInterfaces"][0]["Association"]["PublicIp"])
+                (
+                    instance_obj["InstanceType"],
+                    instance_obj["NetworkInterfaces"][0]["Association"]["PublicIp"],
+                )
                 for instance_obj in instance
             ]
             for instance in instances
