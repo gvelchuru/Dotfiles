@@ -16,23 +16,7 @@ SPOTINST_INST = "smi-bcc8c967"
 
 def manage_instance(type, action):
     if action in ["resume", "recycle"] and type:
-        preferredTypes = (
-            [
-                "m5.xlarge",
-                "m5a.xlarge",
-                "m5ad.xlarge",
-                "m5d.xlarge",
-                "m5dn.xlarge",
-                "m5n.xlarge",
-                "t3.xlarge",
-                "t3a.xlarge",
-                "c5.xlarge",
-                "c5d.xlarge",
-                "c5n.xlarge",
-            ]
-            if type == "t3.xlarge"
-            else [type]
-        )
+        preferredTypes = [type]
         r = requests.put(
             SPOTINST_URL + "/{}/accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
             headers=SPOTINST_HEADERS,
