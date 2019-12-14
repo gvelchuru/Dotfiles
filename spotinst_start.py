@@ -22,7 +22,7 @@ def manage_instance(type, action):
                     "compute": {
                         "launchSpecification": {
                             "instanceTypes": {
-                                "preferredType": {type},
+                                "preferredType": type,
                                 "types": preferredTypes,
                             }
                         }
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     # burst_instance()
     # get_all()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type", optional=True)
+    parser.add_argument("--type")
     parser.add_argument(
         "--action", choices=["pause", "resume", "recycle"], required=True
     )
