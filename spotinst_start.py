@@ -1,43 +1,43 @@
 import argparse
 import os
+import sys
 
 import requests
-import sys
 
 API_TOKEN = os.environ["SPOTINST_KEY"]
 SPOTINST_URL = "https://api.spotinst.io/aws/ec2/managedInstance"
-SPOTINST_HEADERS = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + API_TOKEN,
-}
+SPOTINST_HEADERS = {"Authorization": "Bearer " + API_TOKEN}
 SPOTINST_ACCOUNT = "act-63ceca67"
 SPOTINST_INST = "smi-bcc8c967"
 
 
 def manage_instance(type, action):
-    if action in ["pause", "recycle"] and type:
+    if action in ["resume", "recycle"] and type:
+        preferredTypes = [type]
         r = requests.put(
-            SPOTINST_URL + "/{}/accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
+            SPOTINST_URL + "/{}?accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
             headers=SPOTINST_HEADERS,
-            data={
+            json={
                 "managedInstance": {
                     "compute": {
                         "launchSpecification": {
-                            "instanceTypes": {"preferredType": {type}, "types": [type]}
+                            "instanceTypes": {
+                                "preferredType": type,
+                                "types": preferredTypes,
+                            }
                         }
                     }
                 }
             },
         )
+        print(r.text)
     r = requests.put(
         SPOTINST_URL
-        + "/{}/{}?accountId={}".format(
-            SPOTINST_INST, action, SPOTINST_ACCOUNT
-        ),
+        + "/{}/{}?accountId={}".format(SPOTINST_INST, action, SPOTINST_ACCOUNT),
         headers=SPOTINST_HEADERS,
     )
-    if int(r.code) != 200:
-	    print(r.json())
+    # if int(r.code) != 200:
+    print(r.json())
 
 
 def burst_instance():
@@ -70,6 +70,7 @@ def get_all():
 
 if __name__ == "__main__":
     # burst_instance()
+    # get_all()
     parser = argparse.ArgumentParser()
     parser.add_argument("--type")
     parser.add_argument(
