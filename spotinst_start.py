@@ -18,20 +18,14 @@ def manage_instance(type, action):
     if action in ["resume", "recycle"] and type:
         preferredTypes = (
             [
-                "m1.xlarge",
-                "m3.xlarge",
-                "m4.xlarge",
                 "m5.xlarge",
                 "m5a.xlarge",
                 "m5ad.xlarge",
                 "m5d.xlarge",
                 "m5dn.xlarge",
                 "m5n.xlarge",
-                "t2.xlarge",
                 "t3.xlarge",
                 "t3a.xlarge",
-                "c3.xlarge",
-                "c4.xlarge",
                 "c5.xlarge",
                 "c5d.xlarge",
                 "c5n.xlarge",
