@@ -1,8 +1,8 @@
 import argparse
 import os
+import sys
 
 import requests
-import sys
 
 API_TOKEN = os.environ["SPOTINST_KEY"]
 SPOTINST_URL = "https://api.spotinst.io/aws/ec2/managedInstance"
@@ -12,7 +12,8 @@ SPOTINST_INST = "smi-bcc8c967"
 
 
 def manage_instance(type, action):
-    if action in ["pause", "recycle"] and type:
+    if action in ["resume", "recycle"] and type:
+        preferredTypes = [type]
         r = requests.put(
             SPOTINST_URL + "/{}?accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
             headers=SPOTINST_HEADERS,
@@ -20,7 +21,10 @@ def manage_instance(type, action):
                 "managedInstance": {
                     "compute": {
                         "launchSpecification": {
-                            "instanceTypes": {"preferredType": type, "types": [type]}
+                            "instanceTypes": {
+                                "preferredType": {type},
+                                "types": preferredTypes,
+                            }
                         }
                     }
                 }
@@ -68,7 +72,7 @@ if __name__ == "__main__":
     # burst_instance()
     # get_all()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type")
+    parser.add_argument("--type", optional=True)
     parser.add_argument(
         "--action", choices=["pause", "resume", "recycle"], required=True
     )
