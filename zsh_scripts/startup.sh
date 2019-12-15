@@ -83,6 +83,8 @@ elif [[ $IS_MAC -eq 0 ]] ; then
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
   alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup"
+  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
+  export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update"
 else

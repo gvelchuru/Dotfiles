@@ -109,12 +109,11 @@ if __name__ == "__main__":
         instances = [
             reservation["Instances"] for reservation in instances["Reservations"]
         ]
-	print(instances)
         interfaces = [
             [
                 (
                     instance_obj["InstanceType"],
-                    instance_obj["NetworkInterfaces"][0]["Association"]["PublicIp"],
+                    instance_obj["NetworkInterfaces"][0]["Association"]["PublicDnsName"],
                 )
                 for instance_obj in instance if instance_obj["NetworkInterfaces"]
             ]
