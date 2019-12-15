@@ -116,7 +116,7 @@ if __name__ == "__main__":
                     instance_obj["InstanceType"],
                     instance_obj["NetworkInterfaces"][0]["Association"]["PublicIp"],
                 )
-                for instance_obj in instance
+                for instance_obj in instance if instance_obj["NetworkInterfaces"]
             ]
             for instance in instances
         ]
