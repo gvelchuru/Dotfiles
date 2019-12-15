@@ -20,6 +20,7 @@ gcc
 gdbm
 gettext
 git
+git-cinnabar
 gmp
 gnutls
 gperf
@@ -46,6 +47,7 @@ libxml2
 libyaml
 luajit
 m4
+mercurial
 mpfr
 msgpack
 ncurses
@@ -62,8 +64,6 @@ pkg-config
 python
 python@2
 readline
-ripgrep
-ruby
 sqlite
 swig
 tmux

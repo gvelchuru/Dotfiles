@@ -20,6 +20,7 @@ dependencies:
   - cryptography=2.8=py37h1ba5d50_0
   - docutils=0.15.2=py37_0
   - greenlet=0.4.15=py37h7b6447c_0
+  - idna=2.8=py37_0
   - isort=4.3.21=py37_0
   - jmespath=0.9.4=py_0
   - lazy-object-proxy=1.4.3=py37h7b6447c_0
@@ -58,7 +59,6 @@ dependencies:
     - asyncio-nats-client==0.10.0
     - chardet==3.0.4
     - distro==1.4.0
-    - idna==2.8
     - numpy==1.17.4
     - pandas==0.25.3
     - pipx==0.14.0.0
