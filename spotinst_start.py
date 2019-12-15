@@ -13,7 +13,7 @@ SPOTINST_ACCOUNT = "act-63ceca67"
 
 
 def manage_instance(type, action, SPOTINST_INST):
-    if action in ["resume", "recycle"] and type:
+    if type:
         preferredTypes = [type]
         r = requests.put(
             SPOTINST_URL + "/{}?accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
@@ -32,13 +32,14 @@ def manage_instance(type, action, SPOTINST_INST):
             },
         )
         print(r.text)
-    r = requests.put(
-        SPOTINST_URL
-        + "/{}/{}?accountId={}".format(SPOTINST_INST, action, SPOTINST_ACCOUNT),
-        headers=SPOTINST_HEADERS,
-    )
-    # if int(r.code) != 200:
-    print(r.json())
+    if action:
+        r = requests.put(
+            SPOTINST_URL
+            + "/{}/{}?accountId={}".format(SPOTINST_INST, action, SPOTINST_ACCOUNT),
+            headers=SPOTINST_HEADERS,
+        )
+        # if int(r.code) != 200:
+        print(r.json())
 
 
 def burst_instance():
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     action_or_list.add_argument("--action", choices=["pause", "resume", "recycle"])
     action_or_list.add_argument("--list", action="store_true")
     args = parser.parse_args()
-    if args.action:
+    if args.action or args.type:
         get_all()
         SPOTINST_INST = input("inst: ")
         manage_instance(args.type, args.action, SPOTINST_INST)
@@ -120,4 +121,3 @@ if __name__ == "__main__":
         ]
         flat_interfaces = [item for sublist in interfaces for item in sublist]
         print(flat_interfaces)
-        # print([interface.keys() for interface in interfaces])
