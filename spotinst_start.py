@@ -109,6 +109,7 @@ if __name__ == "__main__":
         instances = [
             reservation["Instances"] for reservation in instances["Reservations"]
         ]
+	print(instances)
         interfaces = [
             [
                 (
