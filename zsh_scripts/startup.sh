@@ -49,6 +49,7 @@ alias fzf="fzf --bind '~:execute(nvim {})'"
 alias apollo_auth_init="mwinit -o && kinit -f"
 alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
+alias aptstartup="sudo apt -y update && sudo apt -y upgrade"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
@@ -81,9 +82,9 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && yumstartup && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup"
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && vimstartup && antibody_source && antibody update"
+  alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH

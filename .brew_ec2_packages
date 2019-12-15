@@ -8,9 +8,11 @@ berkeley-db
 binutils
 bison
 bzip2
+cask
 ccache
 cmake
 curl
+emacs
 exa
 expat
 fzf
@@ -26,8 +28,6 @@ icu4c
 isl@0.18
 jpeg
 libbsd
-libedit
-libelf
 libevent
 libffi
 libgit2
