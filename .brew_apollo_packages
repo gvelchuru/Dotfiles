@@ -129,6 +129,7 @@ ripgrep
 ruby
 rust
 shared-mime-info
+sphinx-doc
 sqlite
 swig
 tmux
