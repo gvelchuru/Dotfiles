@@ -11,6 +11,11 @@ SPOTINST_URL = "https://api.spotinst.io/aws/ec2/managedInstance"
 SPOTINST_HEADERS = {"Authorization": "Bearer " + API_TOKEN}
 SPOTINST_ACCOUNT = "act-63ceca67"
 
+INSTANCE_DICT = {
+    "cpu": {2: "c5.large", 4: "c5.xlarge", 8: "c5.2xlarge"},
+    "gpu": {1: "p3.2xlarge"},
+}
+
 
 def manage_instance(type, action, SPOTINST_INST):
     if type:
@@ -94,15 +99,29 @@ def get_all():
 if __name__ == "__main__":
     # burst_instance()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type")
+    type = parser.add_mutually_exclusive_group()
+    type.add_argument("--cpu", action="store_true")
+    type.add_argument("--gpu", action="store_true")
+    type.add_argument("--memory", action="store_true")
+    type.add_argument("--gen", action="store_true")
     action_or_list = parser.add_mutually_exclusive_group()
     action_or_list.add_argument("--action", choices=["pause", "resume", "recycle"])
     action_or_list.add_argument("--list", action="store_true")
+    parser.add_argument("--num")
     args = parser.parse_args()
-    if args.action or args.type:
+    inst_type = None
+    num_mapping = {args.cpu: "cpu", args.gpu: "gpu", args.memory: "mem", args.gen: "gen"}
+    if any(num_mapping.keys()):
+        if not args.num:
+            raise Exception("need num")
+        for arg, instance_dict_key in num_mapping.items():
+            if arg:
+                type = INSTANCE_DICT[instance_dict_key][int(args.num)]
+                break
+    if args.action or inst_type:
         get_all()
         SPOTINST_INST = input("inst: ")
-        manage_instance(args.type, args.action, SPOTINST_INST)
+        manage_instance(inst_type, args.action, SPOTINST_INST)
     if args.list:
         client = boto3.client("ec2")
         instances = client.describe_instances()
@@ -113,9 +132,12 @@ if __name__ == "__main__":
             [
                 (
                     instance_obj["InstanceType"],
-                    instance_obj["NetworkInterfaces"][0]["Association"]["PublicDnsName"],
+                    instance_obj["NetworkInterfaces"][0]["Association"][
+                        "PublicDnsName"
+                    ],
                 )
-                for instance_obj in instance if instance_obj["NetworkInterfaces"]
+                for instance_obj in instance
+                if instance_obj["NetworkInterfaces"]
             ]
             for instance in instances
         ]
