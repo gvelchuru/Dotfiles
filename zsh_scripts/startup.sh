@@ -40,6 +40,12 @@ brew_startup() {
   fi
 }
 
+rust_startup() {
+   command -v rust >/dev/null 2>&1 || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   rustup toolchain install beta
+   rustup default beta
+}
+
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
@@ -50,6 +56,7 @@ alias apollo_auth_init="mwinit -o && kinit -f"
 alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
 alias aptstartup="sudo apt -y update && sudo apt -y upgrade"
+alias ruststartup="rustup update"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
@@ -90,7 +97,8 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update"
+  rust_startup
+  alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update && ruststartup"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
