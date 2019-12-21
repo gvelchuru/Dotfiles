@@ -89,13 +89,14 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup && sudo snap refresh"
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
+  export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   rust_startup
   alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update && ruststartup"
