@@ -102,6 +102,7 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   rust_startup
+  brew_startup
   alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update && ruststartup"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
