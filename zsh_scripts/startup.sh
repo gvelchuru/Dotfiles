@@ -5,6 +5,7 @@ export UNAME=$(uname)
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
 [[ -d /home/linuxbrew ]];export HAS_BREW=$?
+[[ -d $HOME/.cargo ]];export HAS_RUST=$?
 [[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ $(hostname) != "batcave" ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
@@ -41,9 +42,11 @@ brew_startup() {
 }
 
 rust_startup() {
-   command -v rust >/dev/null 2>&1 || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   rustup toolchain install beta
-   rustup default beta
+   if [[ $HAST_RUST -gt 0 ]]; then
+	   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	   rustup toolchain install beta
+	   rustup default beta
+   fi
 }
 
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
