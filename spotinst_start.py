@@ -12,7 +12,7 @@ SPOTINST_HEADERS = {"Authorization": "Bearer " + API_TOKEN}
 SPOTINST_ACCOUNT = "act-63ceca67"
 
 INSTANCE_DICT = {
-    "cpu": {2: "c5.large", 4: "c5.xlarge", 8: "c5.2xlarge"},
+    "cpu": {2: "c5.large", 4: "c5.xlarge", 8: "c5.2xlarge", 16: "c5.4xlarge"},
     "gpu": {1: "p3.2xlarge"},
 }
 
@@ -110,7 +110,12 @@ if __name__ == "__main__":
     parser.add_argument("--num")
     args = parser.parse_args()
     inst_type = None
-    num_mapping = {args.cpu: "cpu", args.gpu: "gpu", args.memory: "mem", args.gen: "gen"}
+    num_mapping = {
+        args.cpu: "cpu",
+        args.gpu: "gpu",
+        args.memory: "mem",
+        args.gen: "gen",
+    }
     if any(num_mapping.keys()):
         if not args.num:
             raise Exception("need num")
