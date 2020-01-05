@@ -12,7 +12,13 @@ SPOTINST_HEADERS = {"Authorization": "Bearer " + API_TOKEN}
 SPOTINST_ACCOUNT = "act-63ceca67"
 
 INSTANCE_DICT = {
-        "cpu": {2: "c5.large", 4: "c5.xlarge", 8: "c5.2xlarge", 16: "c5.4xlarge", 36: "c5.9xlarge"},
+    "cpu": {
+        2: "c5.large",
+        4: "c5.xlarge",
+        8: "c5.2xlarge",
+        16: "c5.4xlarge",
+        36: "c5.9xlarge",
+    },
     "gpu": {1: "p3.2xlarge"},
 }
 
@@ -121,7 +127,7 @@ if __name__ == "__main__":
             raise Exception("need num")
         for arg, instance_dict_key in num_mapping.items():
             if arg:
-                type = INSTANCE_DICT[instance_dict_key][int(args.num)]
+                inst_type = INSTANCE_DICT[instance_dict_key][int(args.num)]
                 break
     if args.action or inst_type:
         get_all()
