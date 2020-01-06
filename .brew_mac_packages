@@ -1,5 +1,6 @@
 antibody
 autojump
+awscli
 ctags
 exa
 feh
@@ -39,7 +40,6 @@ luajit
 mosh
 msgpack
 ncurses
-neofetch
 neovim
 nnn
 node
@@ -51,6 +51,7 @@ pcre
 pcre2
 protobuf
 python
+python@3.8
 readline
 reattach-to-user-namespace
 ripgrep
@@ -63,5 +64,4 @@ webp
 wget
 x265
 xz
-yarn
 zsh
