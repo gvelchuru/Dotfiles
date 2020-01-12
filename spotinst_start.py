@@ -27,7 +27,7 @@ INSTANCE_DICT = {
 
 
 def manage_instance(types, action, SPOTINST_INST):
-    if type:
+    if types:
         r = requests.put(
             SPOTINST_URL + "/{}?accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
             headers=SPOTINST_HEADERS,
