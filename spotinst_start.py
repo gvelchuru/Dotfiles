@@ -13,19 +13,21 @@ SPOTINST_ACCOUNT = "act-63ceca67"
 
 INSTANCE_DICT = {
     "cpu": {
-        2: "c5.large",
-        4: "c5.xlarge",
-        8: "c5.2xlarge",
-        16: "c5.4xlarge",
-        36: "c5.9xlarge",
+        2: ["c5.large", "c5d.large", "c5n.large"],
+        4: ["c5.xlarge", "c5d.xlarge", "c5n.xlarge"],
+        8: ["c5.2xlarge", "c5d.2xlarge", "c5n.2xlarge"],
+        16: ["c5.4xlarge", "c5d.4xlarge", "c5n.4xlarge"],
+        36: ["c5.9xlarge", "c5.9xlarge", "c5n.9xlarge"],
+        48: ["c5.12xlarge", "c5d.12xlarge"],
+        72: ["c5.18xlarge", "c5d.18xlarge", "c5n.18xlarge", "c5n.metal"],
+        96: ["c5.24xlarge", "c5d.24xlarge", "c5.metal", "c5d.metal"],
     },
-    "gpu": {1: "p3.2xlarge"},
+    "gpu": {1: ["p3.2xlarge"]},
 }
 
 
-def manage_instance(type, action, SPOTINST_INST):
+def manage_instance(types, action, SPOTINST_INST):
     if type:
-        preferredTypes = [type]
         r = requests.put(
             SPOTINST_URL + "/{}?accountId={}".format(SPOTINST_INST, SPOTINST_ACCOUNT),
             headers=SPOTINST_HEADERS,
@@ -33,10 +35,7 @@ def manage_instance(type, action, SPOTINST_INST):
                 "managedInstance": {
                     "compute": {
                         "launchSpecification": {
-                            "instanceTypes": {
-                                "preferredType": type,
-                                "types": preferredTypes,
-                            }
+                            "instanceTypes": {"preferredType": types[0], "types": types}
                         }
                     }
                 }
