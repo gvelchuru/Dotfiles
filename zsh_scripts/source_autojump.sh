@@ -1,4 +1,6 @@
-if [[ $IS_LINUX -eq 0 ]] ; then
+if [[ $IS_BATMOBILE -eq 0 ]] ; then
+    source /usr/share/autojump/autojump.zsh
+elif [[ $IS_LINUX -eq 0 ]] ; then
     if [[ $HAS_BREW -eq 0 ]] ; then
         source /home/linuxbrew/.linuxbrew/Cellar/autojump/22.5.3/share/autojump/autojump.zsh
     else  
