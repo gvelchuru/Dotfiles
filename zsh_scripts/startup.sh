@@ -41,14 +41,6 @@ brew_startup() {
   fi
 }
 
-rust_startup() {
-   if [[ $HAST_RUST -gt 0 ]]; then
-	   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	   rustup toolchain install beta
-	   rustup default beta
-   fi
-}
-
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
@@ -99,9 +91,8 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
-  rust_startup
   brew_startup
-  alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update && ruststartup"
+  alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
