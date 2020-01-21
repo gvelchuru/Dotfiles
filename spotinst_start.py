@@ -22,6 +22,11 @@ INSTANCE_DICT = {
         72: ["c5.18xlarge", "c5d.18xlarge", "c5n.18xlarge", "c5n.metal"],
         96: ["c5.24xlarge", "c5d.24xlarge", "c5.metal", "c5d.metal"],
     },
+    "mem": {
+        64: ["r5.2xlarge", "r5a.2xlarge", "r5n.2xlarge", "r5d.2xlarge"],
+        128: ["r5.4xlarge", "r5a.4xlarge", "r5n.4xlarge", "r5d.4xlarge"],
+        256: ["r5.8xlarge", "r5a.8xlarge", "r5n.8xlarge", "r5d.8xlarge"],
+    },
     "gpu": {1: ["p3.2xlarge"]},
 }
 
