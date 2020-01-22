@@ -92,7 +92,7 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && vimstartup && antibody_source && antibody update"
+  alias startup="cd ~ && aptstartup && git_init && vimstartup && antibody_source && antibody update"
 else
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
   export PATH=$HOME/.mozbuild/moz-phab:$PATH

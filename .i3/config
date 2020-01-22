@@ -157,12 +157,12 @@ set $mygreen  #b8bb26
 set $myaqua #689d6a
 
 # i3-gaps
-gaps inner 0
-gaps outer 0
+#gaps inner 0
+#gaps outer 0
 #default_border normal 3
 #default_floating_border normal 3
-default_border none
-default_floating_border none
+#default_border none
+#default_floating_border none
 
 exec --no-startup-id xbindkeys
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
