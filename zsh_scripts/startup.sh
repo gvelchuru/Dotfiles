@@ -44,7 +44,7 @@ brew_startup() {
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
-alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup; pythonstartup"
+alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup"
 alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BREW_PACKAGES; brew cask ls > $BREW_CASKS"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 alias apollo_auth_init="mwinit -o && kinit -f"
@@ -72,10 +72,10 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup && toolbox update"
+  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup && pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup && pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
@@ -103,7 +103,7 @@ else
   alias dislock='killall xautolock'
   alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
   alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup"
+  alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup && pythonstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
