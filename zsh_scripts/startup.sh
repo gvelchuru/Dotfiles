@@ -50,7 +50,7 @@ alias fzf="fzf --bind '~:execute(nvim {})'"
 alias apollo_auth_init="mwinit -o && kinit -f"
 alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
-alias aptstartup="sudo apt -y update && sudo apt -y upgrade"
+alias aptstartup="sudo apt -y update && sudo apt -y upgrade && sudo snap refresh"
 alias ruststartup="rustup update"
 
 export PATH=$HOME/.local/bin:$PATH
@@ -82,7 +82,7 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup && sudo snap refresh"
+  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup"
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -94,16 +94,9 @@ elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
   alias startup="cd ~ && aptstartup && git_init && vimstartup && antibody_source && antibody update"
 else
-  export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
-  export PATH=$HOME/.mozbuild/moz-phab:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
-  export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
-  export PATH=$PATH:$HOME/open_source/depot_tools
-  source /usr/share/nvm/init-nvm.sh
-  alias dislock='killall xautolock'
-  alias relock='xautolock -detectsleep -time 5 -locker "/home/gauthv/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &'
-  alias lock="xset dpms force off && /home/gauthv/lock.sh"
-  alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup && pythonstartup"
+  #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup && pythonstartup"
+  alias startup="cd ~ && git_init && aptstartup && commonstartup && pythonstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
