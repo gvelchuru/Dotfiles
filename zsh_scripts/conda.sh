@@ -13,10 +13,7 @@ function get_conda() {
   chmod u+x $HOME/$CONDA_SCRIPT_NAME
   . $HOME/$CONDA_SCRIPT_NAME
   conda env create --file ~/environment_$HOSTNAME.yaml
-  conda install conda -c conda-canary
 }
 
-if [[ $IS_BATMOBILE -gt 0 ]]; then
-    eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
-    [[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev
-fi
+eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
+[[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev

@@ -19,6 +19,7 @@ else
 fi
 
 [[ $HOSTNAME =~ "batmobile" ]]; export IS_BATMOBILE=$?
+[[ $HOSTNAME =~ "batcave" ]]; export IS_BATCAVE=$?
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 export SPOTINST_KEY="92fb104ae0051d0d85b8f72bbb7acc7cd78efac9ff5018c30838d59f05936685"
@@ -36,7 +37,9 @@ brew_startup() {
   if [[ $HAS_BREW -gt 0 ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_PACKAGES | xargs brew install
-    grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_CASKS | xargs brew install cask
+    if [[ $IS_LINUX -gt 0 ]]; then
+      grep -Ev 'lib|xdpyinfo|antibody|xorg|xtrans' $BREW_CASKS | xargs brew install cask
+    fi
     brew install getantibody/tap/antibody
   fi
 }
@@ -92,11 +95,12 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && aptstartup && git_init && vimstartup && antibody_source && antibody update"
+  alias startup="cd ~ && aptstartup && git_init && vimstartup && antibody_source && antibody update && brewstartup"
 else
+  brew_startup
   export PATH=/usr/lib/ccache/bin:$PATH
   #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup && pythonstartup"
-  alias startup="cd ~ && git_init && aptstartup && commonstartup && pythonstartup"
+  alias startup="cd ~ && git_init && aptstartup && commonstartup && pythonstartup && brewstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
