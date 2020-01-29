@@ -1,6 +1,6 @@
 {
   "journals": {
-    "default": "/Users/velchug/journal.md"
+    "default": "/home/gauthv/journal.md"
   },
   "editor": "nvim",
   "encrypt": false,
