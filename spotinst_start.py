@@ -23,11 +23,15 @@ INSTANCE_DICT = {
         96: ["c5.24xlarge", "c5d.24xlarge", "c5.metal", "c5d.metal"],
     },
     "mem": {
-        32: ["r5.xlarge", "r5a.xlarge", "r5n.xlarge", "r5d.xlarge"],
-        64: ["r5.2xlarge", "r5a.2xlarge", "r5n.2xlarge", "r5d.2xlarge"],
-        128: ["r5.4xlarge", "r5a.4xlarge", "r5n.4xlarge", "r5d.4xlarge"],
-        256: ["r5.8xlarge", "r5a.8xlarge", "r5n.8xlarge", "r5d.8xlarge"],
+        16: ["r5.large", "r5a.large", "r5ad.large", "r5n.large", "r5d.large"],
+        32: ["r5.xlarge", "r5a.xlarge", "r5ad.xlarge", "r5n.xlarge", "r5d.xlarge"],
+        64: ["r5.2xlarge", "r5a.2xlarge", "r5ad.2xlarge", "r5n.2xlarge", "r5d.2xlarge"],
+        128: ["r5.4xlarge", "r5a.4xlarge", "r5ad.4xlarge", "r5n.4xlarge", "r5d.4xlarge"],
+        256: ["r5.8xlarge", "r5a.8xlarge", "r5ad.8xlarge", "r5n.8xlarge", "r5d.8xlarge"],
+        384: ["r5.12xlarge", "r5a.12xlarge", "r5ad.12xlarge", "r5n.12xlarge", "r5d.12xlarge"],
+        512: ["r5.16xlarge", "r5a.16xlarge", "r5ad.16xlarge", "r5n.16xlarge", "r5d.16xlarge"],
     },
+    "gen": {4: ["t3.xlarge"]},
     "gpu": {1: ["p3.2xlarge"]},
 }
 

@@ -15,5 +15,7 @@ function get_conda() {
   conda env create --file ~/environment_$HOSTNAME.yaml
 }
 
-eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
-[[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev
+if [[ $IS_BATMOBILE -gt 0 && $IS_BATCAVE -gt 0 ]]; then
+	eval $CONDA_EXEC || (get_conda && eval $CONDA_EXEC)
+	[[ -z $TMUX ]] && conda activate dev || conda deactivate; conda activate dev
+fi
