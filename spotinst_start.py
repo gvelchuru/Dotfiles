@@ -13,26 +13,56 @@ SPOTINST_ACCOUNT = "act-63ceca67"
 
 INSTANCE_DICT = {
     "cpu": {
-        2: ["c5.large", "c5d.large", "c5n.large"],
-        4: ["c5.xlarge", "c5d.xlarge", "c5n.xlarge"],
-        8: ["c5.2xlarge", "c5d.2xlarge", "c5n.2xlarge"],
-        16: ["c5.4xlarge", "c5d.4xlarge", "c5n.4xlarge"],
-        36: ["c5.9xlarge", "c5.9xlarge", "c5n.9xlarge"],
+        2: ["c5.large", "c5d.large", "c5n.large", "c4.large"],
+        4: ["c5.xlarge", "c5d.xlarge", "c5n.xlarge", "c4.xlarge"],
+        8: ["c5.2xlarge", "c5d.2xlarge", "c5n.2xlarge", "c4.2xlarge"],
+        16: ["c5.4xlarge", "c5d.4xlarge", "c5n.4xlarge", "c4.4xlarge"],
+        36: ["c5.9xlarge", "c5.9xlarge", "c5n.9xlarge", "c4.8xlarge"],
         48: ["c5.12xlarge", "c5d.12xlarge"],
         72: ["c5.18xlarge", "c5d.18xlarge", "c5n.18xlarge", "c5n.metal"],
         96: ["c5.24xlarge", "c5d.24xlarge", "c5.metal", "c5d.metal"],
     },
     "mem": {
-        16: ["r5.large", "r5a.large", "r5ad.large", "r5n.large", "r5d.large"],
-        32: ["r5.xlarge", "r5a.xlarge", "r5ad.xlarge", "r5n.xlarge", "r5d.xlarge"],
-        64: ["r5.2xlarge", "r5a.2xlarge", "r5ad.2xlarge", "r5n.2xlarge", "r5d.2xlarge"],
-        128: ["r5.4xlarge", "r5a.4xlarge", "r5ad.4xlarge", "r5n.4xlarge", "r5d.4xlarge"],
-        256: ["r5.8xlarge", "r5a.8xlarge", "r5ad.8xlarge", "r5n.8xlarge", "r5d.8xlarge"],
-        384: ["r5.12xlarge", "r5a.12xlarge", "r5ad.12xlarge", "r5n.12xlarge", "r5d.12xlarge"],
-        512: ["r5.16xlarge", "r5a.16xlarge", "r5ad.16xlarge", "r5n.16xlarge", "r5d.16xlarge"],
+        16: ["r5.large", "r5a.large", "r5ad.large", "r5n.large", "r5d.large", "r4.large"],
+        32: ["r5.xlarge", "r5a.xlarge", "r5ad.xlarge", "r5n.xlarge", "r5d.xlarge", "r4.xlarge"],
+        64: ["r5.2xlarge", "r5a.2xlarge", "r5ad.2xlarge", "r5n.2xlarge", "r5d.2xlarge", "r4.2xlarge"],
+        128: [
+            "r5.4xlarge",
+            "r5a.4xlarge",
+            "r5ad.4xlarge",
+            "r5n.4xlarge",
+            "r5d.4xlarge",
+            "r4.4xlarge"
+        ],
+        256: [
+            "r5.8xlarge",
+            "r5a.8xlarge",
+            "r5ad.8xlarge",
+            "r5n.8xlarge",
+            "r5d.8xlarge",
+            "r4.8xlarge",
+        ],
+        384: [
+            "r5.12xlarge",
+            "r5a.12xlarge",
+            "r5ad.12xlarge",
+            "r5n.12xlarge",
+            "r5d.12xlarge",
+        ],
+        512: [
+            "r5.16xlarge",
+            "r5a.16xlarge",
+            "r5ad.16xlarge",
+            "r5n.16xlarge",
+            "r5d.16xlarge",
+            "r4.16xlarge",
+        ],
     },
-    "gen": {4: ["t3.xlarge"]},
-    "gpu": {1: ["p3.2xlarge"]},
+    "gen": {
+        4: ["t3.xlarge", "t3a.xlarge"],
+        16: ["m6g.4xlarge", "m5.4xlarge", "m5a.4xlarge", "m5n.4xlarge", "m4.4xlarge"],
+    },
+    "gpu": {1: ["p3.2xlarge", "p2.xlarge", "g4dn.xlarge", "g3s.xlarge"]},
 }
 
 
