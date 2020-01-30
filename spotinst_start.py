@@ -23,16 +23,37 @@ INSTANCE_DICT = {
         96: ["c5.24xlarge", "c5d.24xlarge", "c5.metal", "c5d.metal"],
     },
     "mem": {
-        16: ["r5.large", "r5a.large", "r5ad.large", "r5n.large", "r5d.large", "r4.large"],
-        32: ["r5.xlarge", "r5a.xlarge", "r5ad.xlarge", "r5n.xlarge", "r5d.xlarge", "r4.xlarge"],
-        64: ["r5.2xlarge", "r5a.2xlarge", "r5ad.2xlarge", "r5n.2xlarge", "r5d.2xlarge", "r4.2xlarge"],
+        16: [
+            "r5.large",
+            "r5a.large",
+            "r5ad.large",
+            "r5n.large",
+            "r5d.large",
+            "r4.large",
+        ],
+        32: [
+            "r5.xlarge",
+            "r5a.xlarge",
+            "r5ad.xlarge",
+            "r5n.xlarge",
+            "r5d.xlarge",
+            "r4.xlarge",
+        ],
+        64: [
+            "r5.2xlarge",
+            "r5a.2xlarge",
+            "r5ad.2xlarge",
+            "r5n.2xlarge",
+            "r5d.2xlarge",
+            "r4.2xlarge",
+        ],
         128: [
             "r5.4xlarge",
             "r5a.4xlarge",
             "r5ad.4xlarge",
             "r5n.4xlarge",
             "r5d.4xlarge",
-            "r4.4xlarge"
+            "r4.4xlarge",
         ],
         256: [
             "r5.8xlarge",
@@ -59,8 +80,25 @@ INSTANCE_DICT = {
         ],
     },
     "gen": {
-        4: ["t3.xlarge", "t3a.xlarge"],
+        4: [
+            "t3.xlarge",
+            "t3a.xlarge",
+            "t2.xlarge",
+            "m6g.xlarge",
+            "m5.xlarge",
+            "m5a.xlarge",
+            "m5n.xlarge",
+            "m4.xlarge",
+        ],
         16: ["m6g.4xlarge", "m5.4xlarge", "m5a.4xlarge", "m5n.4xlarge", "m4.4xlarge"],
+        32: ["m6g.8xlarge", "m5.8xlarge", "m5a.8xlarge", "m5n.8xlarge", "m4.8xlarge"],
+        64: [
+            "m6g.16xlarge",
+            "m5.16xlarge",
+            "m5a.16xlarge",
+            "m5n.16xlarge",
+            "m4.16xlarge",
+        ],
     },
     "gpu": {1: ["p3.2xlarge", "p2.xlarge", "g4dn.xlarge", "g3s.xlarge"]},
 }
