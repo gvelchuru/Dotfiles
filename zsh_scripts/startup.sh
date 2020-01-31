@@ -75,17 +75,17 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup && pythonstartup && toolbox update"
+  alias startup="cd ~ && git_init && apollo_auth_init && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup && pythonstartup"
+  alias startup="cd ~ && git_init && apollo_auth_init && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup && sudo swapon /dev/nvme1n1"
+  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup"
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -99,8 +99,8 @@ elif [[ $IS_BATMOBILE -eq 0 ]] ; then
 else
   brew_startup
   export PATH=/usr/lib/ccache/bin:$PATH
-  #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup && pythonstartup"
-  alias startup="cd ~ && git_init && aptstartup && commonstartup && pythonstartup && brewstartup"
+  #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup; pythonstartup"
+  alias startup="cd ~ && git_init && aptstartup && commonstartup; pythonstartup && brewstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
   alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"

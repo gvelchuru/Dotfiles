@@ -22,7 +22,6 @@ fzf
 gcc
 gcc@6
 gcc@9
-gdb
 gdbm
 gettext
 git
@@ -33,7 +32,6 @@ go
 gperf
 icu4c
 ilmbase
-imagemagick
 isl
 isl@0.18
 jpeg
@@ -107,7 +105,6 @@ mosh
 mpfr
 msgpack
 ncurses
-neofetch
 neovim
 ninja
 nnn
@@ -124,6 +121,7 @@ prettier
 protobuf
 python
 python@2
+python@3.8
 readline
 ripgrep
 ruby
@@ -132,6 +130,7 @@ shared-mime-info
 sphinx-doc
 sqlite
 swig
+texinfo
 tmux
 uncrustify
 unibilium
