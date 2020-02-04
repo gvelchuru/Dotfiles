@@ -44,6 +44,14 @@ brew_startup() {
   fi
 }
 
+tmux_startup() {
+  if [[ $APOLLO_EXISTS -eq 0 ]]; then
+    exec tmux new-session -A -s main -c /workplace/$(whoami)
+  else
+    exec tmux new-session -A -s main
+  fi
+}
+
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"

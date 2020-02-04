@@ -1,5 +1,4 @@
 source $HOME/zsh_scripts/startup.sh
-source $HOME/zsh_scripts/tmux_setup.sh
 
 typeset -ga precmd_functions
 typeset -ga preexec_functions
