@@ -46,9 +46,9 @@ brew_startup() {
 
 tmux_startup() {
   if [[ $APOLLO_EXISTS -eq 0 ]]; then
-    exec tmux new-session -A -s main -c /workplace/$(whoami)
+    tmux new-session -A -s ${1:-main} -c /workplace/$(whoami)
   else
-    exec tmux new-session -A -s main
+    tmux new-session -A -s ${1:-main}
   fi
 }
 
