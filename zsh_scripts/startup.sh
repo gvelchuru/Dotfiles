@@ -109,7 +109,11 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && aptstartup && git_init && vimstartup && antibody_source && antibody update && brewstartup"
+  alias startup="cd ~ && aptstartup && git_init && commonstartup; brewstartup"
+  alias startup_backup="startup && backup"
+  export BORG_REPO='/home/gauthv/Insync/gauthv@cs.washington.edu/google_drive/batmobile_backup'
+  alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
+  alias insync_restart="pkexec 'chown -R gauthv:users $BORG_REPO' && killall insync; insync start"
 else
   brew_startup
   export PATH=/usr/lib/ccache/bin:$PATH
@@ -117,7 +121,7 @@ else
   alias startup="cd ~ && git_init && aptstartup && commonstartup; pythonstartup && brewstartup"
   alias startup_backup="startup && backup"
   alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
-  alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
+  alias insync_restart="pkexec 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-denisidoro-SLASH-navi:$PATH

@@ -31,3 +31,6 @@ I am getting better at taking ownership
 
 2019-11-18 10:36 @work Need to work on focusing on a single thing at a time, and "hitting it out of the ballpark".
 This synergizes well with my long work hours, where I can do one thing at a time yet achieve multiple things pseudo-simultaneously. Also, I need to work on better communication about my process.
+
+2020-02-12 20:26 @work need to earn trust on CRs, etc.
+Work on getting average number lower
