@@ -29,6 +29,7 @@ INSTANCE_DICT = {
             "r5ad.large",
             "r5n.large",
             "r5d.large",
+            "r5dn.large",
             "r4.large",
         ],
         32: [
@@ -37,6 +38,7 @@ INSTANCE_DICT = {
             "r5ad.xlarge",
             "r5n.xlarge",
             "r5d.xlarge",
+            "r5dn.xlarge",
             "r4.xlarge",
         ],
         64: [
@@ -45,6 +47,7 @@ INSTANCE_DICT = {
             "r5ad.2xlarge",
             "r5n.2xlarge",
             "r5d.2xlarge",
+            "r5dn.2xlarge",
             "r4.2xlarge",
         ],
         128: [
@@ -53,7 +56,9 @@ INSTANCE_DICT = {
             "r5ad.4xlarge",
             "r5n.4xlarge",
             "r5d.4xlarge",
+            "r5dn.4xlarge",
             "r4.4xlarge",
+            "x1e.xlarge",
         ],
         256: [
             "r5.8xlarge",
@@ -61,7 +66,9 @@ INSTANCE_DICT = {
             "r5ad.8xlarge",
             "r5n.8xlarge",
             "r5d.8xlarge",
+            "r5dn.8xlarge",
             "r4.8xlarge",
+            "x1e.2xlarge",
         ],
         384: [
             "r5.12xlarge",
@@ -69,6 +76,7 @@ INSTANCE_DICT = {
             "r5ad.12xlarge",
             "r5n.12xlarge",
             "r5d.12xlarge",
+            "r5dn.12xlarge",
         ],
         512: [
             "r5.16xlarge",
@@ -76,8 +84,21 @@ INSTANCE_DICT = {
             "r5ad.16xlarge",
             "r5n.16xlarge",
             "r5d.16xlarge",
+            "r5dn.16xlarge",
             "r4.16xlarge",
+            "x1e.4xlarge",
         ],
+        768: [
+            "r5.24xlarge",
+            "r5a.24xlarge",
+            "r5ad.24xlarge",
+            "r5n.24xlarge",
+            "r5d.24xlarge",
+            "r5dn.24xlarge",
+            "r5.metal",
+            "r5d.metal",
+        ],
+        976: ["x1e.8xlarge", "x1.16xlarge"],
     },
     "gen": {
         4: [
@@ -100,11 +121,7 @@ INSTANCE_DICT = {
         ],
         16: ["m5.4xlarge", "m5a.4xlarge", "m5n.4xlarge", "m4.4xlarge"],
         32: ["m5.8xlarge", "m5a.8xlarge", "m5n.8xlarge", "m4.8xlarge"],
-        64: ["m5.16xlarge",
-            "m5a.16xlarge",
-            "m5n.16xlarge",
-            "m4.16xlarge",
-        ],
+        64: ["m5.16xlarge", "m5a.16xlarge", "m5n.16xlarge", "m4.16xlarge"],
     },
     "gpu": {1: ["p3.2xlarge", "p2.xlarge", "g4dn.xlarge", "g3s.xlarge"]},
 }
