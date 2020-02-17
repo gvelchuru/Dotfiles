@@ -89,10 +89,10 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && git_init && kinit_loop && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
+  alias startup="cd ~ && git_init && kinit_loop && mwinit -o && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && brewstartup && commonstartup; pythonstartup"
+  alias startup="cd ~ && git_init && mwinit -o && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"

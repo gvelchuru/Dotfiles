@@ -9,9 +9,6 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 #   {{{ FILE MANAGEMENT
 
 alias cp='cp -iv'               # interactive and verbose cp
