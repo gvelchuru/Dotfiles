@@ -59,6 +59,13 @@ kinit_loop() {
   done
 }
 
+mwinit_loop() {
+  until mwinit -o
+  do 
+    echo "Try mwinit again"
+  done
+}
+
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
@@ -89,10 +96,10 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
   alias bb='bear -a brazil-build'
   alias bre='brazil-runtime-exec'
-  alias startup="cd ~ && git_init && kinit_loop && mwinit -o && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
+  alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && mwinit -o && brewstartup && commonstartup; pythonstartup"
+  alias startup="cd ~ && git_init && mwinit_loop && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
@@ -109,15 +116,14 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && aptstartup && git_init && vimstartup && antibody_source && antibody update && brewstartup"
+  alias startup="cd ~ && aptstartup && git_init && commonstartup; brewstartup"
+  alias insync_restart="sudo 'chown -R gauthv:users $BORG_REPO' && killall insync; insync start"
 else
   brew_startup
   export PATH=/usr/lib/ccache/bin:$PATH
   #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup; pythonstartup"
   alias startup="cd ~ && git_init && aptstartup && commonstartup; pythonstartup && brewstartup"
-  alias startup_backup="startup && backup"
-  alias backup="sudo sh /home/gauthv/backup.sh && insync_restart"
-  alias insync_restart="gksudo 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
+  alias insync_restart="pkexec 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-denisidoro-SLASH-navi:$PATH
