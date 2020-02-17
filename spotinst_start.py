@@ -99,21 +99,16 @@ INSTANCE_DICT = {
             "r5d.metal",
         ],
         976: ["x1e.8xlarge", "x1.16xlarge"],
+        1952: ["x1e.16xlarge", "x1.32xlarge"],
     },
     "gen": {
         4: [
-            "t3.xlarge",
-            "t3a.xlarge",
-            "t2.xlarge",
             "m5.xlarge",
             "m5a.xlarge",
             "m5n.xlarge",
             "m4.xlarge",
         ],
         8: [
-            "t3.2xlarge",
-            "t3a.2xlarge",
-            "t2.2xlarge",
             "m5.2xlarge",
             "m5a.2xlarge",
             "m5n.2xlarge",
@@ -123,6 +118,18 @@ INSTANCE_DICT = {
         32: ["m5.8xlarge", "m5a.8xlarge", "m5n.8xlarge", "m4.8xlarge"],
         64: ["m5.16xlarge", "m5a.16xlarge", "m5n.16xlarge", "m4.16xlarge"],
     },
+    "burst": {
+        4: [
+            "t3.xlarge",
+            "t3a.xlarge",
+            "t2.xlarge",
+        ],
+        8: [
+            "t3.2xlarge",
+            "t3a.2xlarge",
+            "t2.2xlarge",
+        ]
+            },
     "gpu": {1: ["p3.2xlarge", "p2.xlarge", "g4dn.xlarge", "g3s.xlarge"]},
 }
 
