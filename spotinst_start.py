@@ -61,9 +61,7 @@ INSTANCE_DICT = {
             "r4.4xlarge",
             "x1e.xlarge",
         ],
-        192: [
-            "z1d.4xlarge",
-            ]
+        192: ["z1d.4xlarge",],
         256: [
             "r5.8xlarge",
             "r5a.8xlarge",
