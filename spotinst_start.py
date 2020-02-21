@@ -24,6 +24,7 @@ INSTANCE_DICT = {
     },
     "mem": {
         16: [
+            "z1d.large",
             "r5.large",
             "r5a.large",
             "r5ad.large",
@@ -33,6 +34,7 @@ INSTANCE_DICT = {
             "r4.large",
         ],
         32: [
+            "z1d.xlarge",
             "r5.xlarge",
             "r5a.xlarge",
             "r5ad.xlarge",
@@ -42,6 +44,7 @@ INSTANCE_DICT = {
             "r4.xlarge",
         ],
         64: [
+            "z1d.2xlarge",
             "r5.2xlarge",
             "r5a.2xlarge",
             "r5ad.2xlarge",
@@ -50,6 +53,7 @@ INSTANCE_DICT = {
             "r5dn.2xlarge",
             "r4.2xlarge",
         ],
+        96: ["z1d.3xlarge",],
         128: [
             "r5.4xlarge",
             "r5a.4xlarge",
@@ -60,6 +64,9 @@ INSTANCE_DICT = {
             "r4.4xlarge",
             "x1e.xlarge",
         ],
+        192: [
+            "z1d.4xlarge",
+            ]
         256: [
             "r5.8xlarge",
             "r5a.8xlarge",
@@ -71,6 +78,8 @@ INSTANCE_DICT = {
             "x1e.2xlarge",
         ],
         384: [
+            "z1d.12xlarge",
+            "z1d.metal",
             "r5.12xlarge",
             "r5a.12xlarge",
             "r5ad.12xlarge",
@@ -100,36 +109,19 @@ INSTANCE_DICT = {
         ],
         976: ["x1e.8xlarge", "x1.16xlarge"],
         1952: ["x1e.16xlarge", "x1.32xlarge"],
+        3904: ["x1e.32xlarge"],
     },
     "gen": {
-        4: [
-            "m5.xlarge",
-            "m5a.xlarge",
-            "m5n.xlarge",
-            "m4.xlarge",
-        ],
-        8: [
-            "m5.2xlarge",
-            "m5a.2xlarge",
-            "m5n.2xlarge",
-            "m4.2xlarge",
-        ],
+        4: ["m5.xlarge", "m5a.xlarge", "m5n.xlarge", "m4.xlarge",],
+        8: ["m5.2xlarge", "m5a.2xlarge", "m5n.2xlarge", "m4.2xlarge",],
         16: ["m5.4xlarge", "m5a.4xlarge", "m5n.4xlarge", "m4.4xlarge"],
         32: ["m5.8xlarge", "m5a.8xlarge", "m5n.8xlarge", "m4.8xlarge"],
         64: ["m5.16xlarge", "m5a.16xlarge", "m5n.16xlarge", "m4.16xlarge"],
     },
     "burst": {
-        4: [
-            "t3.xlarge",
-            "t3a.xlarge",
-            "t2.xlarge",
-        ],
-        8: [
-            "t3.2xlarge",
-            "t3a.2xlarge",
-            "t2.2xlarge",
-        ]
-            },
+        4: ["t3.xlarge", "t3a.xlarge", "t2.xlarge",],
+        8: ["t3.2xlarge", "t3a.2xlarge", "t2.2xlarge",],
+    },
     "gpu": {1: ["p3.2xlarge", "p2.xlarge", "g4dn.xlarge", "g3s.xlarge"]},
 }
 
