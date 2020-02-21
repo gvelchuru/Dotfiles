@@ -18,9 +18,6 @@ INSTANCE_DICT = {
         8: ["c5.2xlarge", "c5d.2xlarge", "c5n.2xlarge", "c4.2xlarge"],
         16: ["c5.4xlarge", "c5d.4xlarge", "c5n.4xlarge", "c4.4xlarge"],
         36: ["c5.9xlarge", "c5.9xlarge", "c5n.9xlarge", "c4.8xlarge"],
-        48: ["c5.12xlarge", "c5d.12xlarge"],
-        72: ["c5.18xlarge", "c5d.18xlarge", "c5n.18xlarge", "c5n.metal"],
-        96: ["c5.24xlarge", "c5d.24xlarge", "c5.metal", "c5d.metal"],
     },
     "mem": {
         16: [
@@ -78,28 +75,6 @@ INSTANCE_DICT = {
             "r5d.12xlarge",
             "r5dn.12xlarge",
         ],
-        512: [
-            "r5.16xlarge",
-            "r5a.16xlarge",
-            "r5ad.16xlarge",
-            "r5n.16xlarge",
-            "r5d.16xlarge",
-            "r5dn.16xlarge",
-            "r4.16xlarge",
-            "x1e.4xlarge",
-        ],
-        768: [
-            "r5.24xlarge",
-            "r5a.24xlarge",
-            "r5ad.24xlarge",
-            "r5n.24xlarge",
-            "r5d.24xlarge",
-            "r5dn.24xlarge",
-            "r5.metal",
-            "r5d.metal",
-        ],
-        976: ["x1e.8xlarge", "x1.16xlarge"],
-        1952: ["x1e.16xlarge", "x1.32xlarge"],
     },
     "gen": {
         4: [
@@ -116,7 +91,6 @@ INSTANCE_DICT = {
         ],
         16: ["m5.4xlarge", "m5a.4xlarge", "m5n.4xlarge", "m4.4xlarge"],
         32: ["m5.8xlarge", "m5a.8xlarge", "m5n.8xlarge", "m4.8xlarge"],
-        64: ["m5.16xlarge", "m5a.16xlarge", "m5n.16xlarge", "m4.16xlarge"],
     },
     "burst": {
         4: [
