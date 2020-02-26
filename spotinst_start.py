@@ -90,6 +90,7 @@ INSTANCE_DICT = {
         32: ["m5.8xlarge", "m5a.8xlarge", "m5n.8xlarge", "m4.8xlarge"],
     },
     "burst": {
+        2: ["t3.large", "t3a.large", "t2.large",],
         4: ["t3.xlarge", "t3a.xlarge", "t2.xlarge",],
         8: ["t3.2xlarge", "t3a.2xlarge", "t2.2xlarge",],
     },
@@ -180,6 +181,7 @@ if __name__ == "__main__":
     type.add_argument("--gpu", action="store_true")
     type.add_argument("--memory", action="store_true")
     type.add_argument("--gen", action="store_true")
+    type.add_argument("--burst", action="store_true")
     action_or_list = parser.add_mutually_exclusive_group()
     action_or_list.add_argument("--action", choices=["pause", "resume", "recycle"])
     action_or_list.add_argument("--list", action="store_true")
@@ -191,6 +193,7 @@ if __name__ == "__main__":
         args.gpu: "gpu",
         args.memory: "mem",
         args.gen: "gen",
+        args.burst: "burst",
     }
     if any(num_mapping.keys()):
         if not args.num:
