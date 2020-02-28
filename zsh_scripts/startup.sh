@@ -121,7 +121,7 @@ elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
   alias startup="cd ~ && aptstartup && git_init && commonstartup; brewstartup"
   alias insync_restart="sudo 'chown -R gauthv:users $BORG_REPO' && killall insync; insync start"
-else
+elif [[ $IS_BATCAVE -eq 0 ]] ; then
   brew_startup
   export PATH=/usr/lib/ccache/bin:$PATH
   #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup; pythonstartup"
