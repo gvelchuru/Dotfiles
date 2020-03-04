@@ -67,7 +67,7 @@ mwinit_loop() {
 }
 
 
-alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +qa"
+alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
 alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
 alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup"
