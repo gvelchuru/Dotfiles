@@ -66,6 +66,7 @@ libxv
 libxvmc
 libxxf86dga
 libxxf86vm
+linux-headers
 ncurses
 nettle
 openssl@1.1
