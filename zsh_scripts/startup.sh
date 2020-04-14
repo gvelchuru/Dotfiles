@@ -66,6 +66,11 @@ mwinit_loop() {
   done
 }
 
+odin_get() {
+  export EC2_ACCESS_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Principal com.amazon.ebs-server.gameday)
+  export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
+}
+
 
 alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +qa"
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
@@ -97,10 +102,6 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias bre='brazil-runtime-exec'
   alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
-  odin_get() {
-    export EC2_ACCESS_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Principal com.amazon.ebs-server.gameday)
-    export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
-  }
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && mwinit_loop && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'

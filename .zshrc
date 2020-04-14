@@ -28,7 +28,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
 fi
 
 PROMPT='
-%~ %{$fg[red]%}$(nice_exit_code)
+%~ %{$fg[red]%}$(nice_exit_code) %{$fg[green]%} %t
 %{$reset_color%}❯ '
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
