@@ -99,7 +99,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
-  alias bre='brazil-runtime-exec'
+  alias bre='brazil-build-tool-exec'
   alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then

@@ -72,7 +72,7 @@ dependencies:
   - urllib3=1.25.8=py37_0
   - wheel=0.34.2=py37_0
   - wrapt=1.12.1=py37h7b6447c_1
-  - xz=5.2.4=h14c3975_4
+  - xz=5.2.5=h7b6447c_0
   - yaml=0.1.7=had09818_2
   - zlib=1.2.11=h7b6447c_3
   - pip:
