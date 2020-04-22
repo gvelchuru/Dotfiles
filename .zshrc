@@ -39,3 +39,4 @@ export SPACESHIP_TIME_SHOW=false
 export SPACESHIP_HOST_SHOW=always
 export SPACESHIP_EXIT_CODE_SHOW=true
 export SPACESHIP_VI_MODE_COLOR=green
+export SHELL=$(which zsh)
