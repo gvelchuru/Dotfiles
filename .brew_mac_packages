@@ -52,7 +52,6 @@ openssl@1.1
 pcre
 pcre2
 protobuf
-python
 python@3.8
 readline
 reattach-to-user-namespace
