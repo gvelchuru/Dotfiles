@@ -10,6 +10,11 @@ bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
 setopt PROMPT_SUBST
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt hist_ignore_dups
 autoload -U colors && colors

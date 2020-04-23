@@ -17,7 +17,6 @@ flawfinder
 flex
 fontconfig
 freetype
-fzf
 gcc
 gcc@6
 gcc@9
