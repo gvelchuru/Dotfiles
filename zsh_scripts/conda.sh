@@ -12,7 +12,7 @@ function get_conda() {
   fi
   chmod u+x $HOME/$CONDA_SCRIPT_NAME
   . $HOME/$CONDA_SCRIPT_NAME
-  conda env create --file ~/environment_$HOSTNAME.yaml
+  conda env create -n dev --file ~/environment_$HOSTNAME.yaml
 }
 
 if [[ $IS_BATMOBILE -gt 0 && $IS_BATCAVE -gt 0 ]]; then

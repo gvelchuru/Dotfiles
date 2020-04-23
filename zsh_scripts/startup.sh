@@ -104,7 +104,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && mwinit_loop && brewstartup && commonstartup; pythonstartup"
-  alias sshcrate='ssh dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com -R 2000:localhost:2000'
+  alias sshcrate='ssh dev-dsk-velchug-2a-f5267e62.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
   alias mac_copy="nc -l 2000 | pbcopy"
