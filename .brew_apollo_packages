@@ -1,6 +1,5 @@
 antibody
 autoconf
-autojump
 automake
 berkeley-db
 binutils
@@ -120,8 +119,6 @@ pkg-config
 prettier
 protobuf
 python
-python@2
-python@3.8
 readline
 ripgrep
 ruby

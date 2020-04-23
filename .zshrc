@@ -27,16 +27,10 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   source $HOME/zsh_scripts/apollo.sh
 fi
 
-#PROMPT='
-#%~ %{$fg[red]%}$(nice_exit_code) %{$fg[green]%} %t
-#%{$reset_color%}❯ '
+PROMPT='
+%~ %{$fg[red]%}$(nice_exit_code) %{$fg[green]%}
+%{$reset_color%}❯ '
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 export PATH=$HOME/.toolbox/bin:$PATH
-export SPACESHIP_CHAR_SYMBOL=❯
-export SPACESHIP_TIME_SHOW=false
-export SPACESHIP_HOST_SHOW=always
-export SPACESHIP_EXIT_CODE_SHOW=true
-export SPACESHIP_VI_MODE_COLOR=green
-export SHELL=$(which zsh)

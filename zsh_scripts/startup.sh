@@ -102,6 +102,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias bre='brazil-build-tool-exec'
   alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
+  export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh
 elif [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && mwinit_loop && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-f5267e62.us-west-2.amazon.com -R 2000:localhost:2000'
