@@ -9,7 +9,6 @@ source $HOME/zsh_scripts/aliases.sh
 bindkey -v  # VIM mode
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^T" push-line-or-edit
-setopt PROMPT_SUBST
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
@@ -32,10 +31,15 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   source $HOME/zsh_scripts/apollo.sh
 fi
 
-PROMPT='
-%~ %{$fg[red]%}$(nice_exit_code) %{$fg[green]%}
-%{$reset_color%}❯ '
+#PROMPT='
+#%~ %{$fg[red]%}$(nice_exit_code) %{$fg[green]%}
+#%{$reset_color%}❯ '
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 export PATH=$HOME/.toolbox/bin:$PATH
+export SPACESHIP_CHAR_SYMBOL=❯
+export SPACESHIP_TIME_SHOW=false
+export SPACESHIP_HOST_SHOW=always
+export SPACESHIP_EXIT_CODE_SHOW=true
+export SPACESHIP_VI_MODE_COLOR=green
