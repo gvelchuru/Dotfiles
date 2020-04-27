@@ -43,3 +43,6 @@ export SPACESHIP_TIME_SHOW=false
 export SPACESHIP_HOST_SHOW=always
 export SPACESHIP_EXIT_CODE_SHOW=true
 export SPACESHIP_VI_MODE_COLOR=green
+
+
+export LD_LIBRARY_PATH=/opt/glibc-2.17/lib:$LD_LIBRARY_PATH
