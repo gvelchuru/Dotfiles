@@ -46,3 +46,5 @@ export SPACESHIP_VI_MODE_COLOR=green
 
 
 export LD_LIBRARY_PATH=/opt/glibc-2.17/lib:$LD_LIBRARY_PATH
+
+export PATH=$HOME/.toolbox/bin:$PATH

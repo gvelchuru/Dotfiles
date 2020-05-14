@@ -82,6 +82,7 @@ alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
 alias aptstartup="sudo apt -y update && sudo apt -y upgrade && sudo snap refresh"
 alias ruststartup="rustup update"
+alias tpmstartup="~/.tmux/plugins/tpm/bin/install_plugins"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
@@ -89,6 +90,11 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   for d in /apollo/env/*; do
     export PATH=$d/bin:$PATH
   done
+  sshrefresh () {
+    ssh-add -D
+    ssh-add
+    ssh-add ~/.ssh/ec2access/id_rsa-ec2-bastion
+  }
   export PATH=$HOME/.toolbox/bin:$PATH
   export BRAZIL_COLORS=1
   export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man:$MANPATH
@@ -100,7 +106,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   export BRAZIL_PLATFORM_OVERRIDE=AL2012
   alias bb='bear -a brazil-build'
   alias bre='brazil-build-tool-exec'
-  alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && yumstartup && brewstartup && commonstartup; pythonstartup && toolbox update"
+  alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && sshrefresh && yumstartup && brewstartup && tpmstartup && commonstartup; pythonstartup && toolbox update"
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
   export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh
 elif [[ $IS_MAC -eq 0 ]] ; then
@@ -111,7 +117,7 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && aptstartup && brewstartup && commonstartup"
+  alias startup="cd ~ && git_init && aptstartup && brewstartup && tpmstartup && commonstartup"
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -121,13 +127,13 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && aptstartup && git_init && commonstartup; brewstartup"
+  alias startup="cd ~ && aptstartup && git_init && tpmstartup && commonstartup; brewstartup"
   alias insync_restart="sudo 'chown -R gauthv:users $BORG_REPO' && killall insync; insync start"
 elif [[ $IS_BATCAVE -eq 0 ]] ; then
   brew_startup
   export PATH=/usr/lib/ccache/bin:$PATH
   #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup; pythonstartup"
-  alias startup="cd ~ && git_init && aptstartup && commonstartup; pythonstartup && brewstartup"
+  alias startup="cd ~ && git_init && aptstartup && tpmstartup && commonstartup; pythonstartup && brewstartup"
   alias insync_restart="pkexec 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
