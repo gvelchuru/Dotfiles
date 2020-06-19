@@ -1,1 +1,15 @@
+antibody
+bzip2
+curl
 exa
+expat
+gettext
+git
+libbsd
+libgit2
+libssh2
+ncurses
+openssl@1.1
+patchelf
+pcre2
+zlib
