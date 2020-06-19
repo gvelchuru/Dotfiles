@@ -1,3 +1,4 @@
+act
 antibody
 autoconf
 autogen
@@ -88,6 +89,7 @@ libxvmc
 libxxf86dga
 libxxf86vm
 libyaml
+linux-headers
 luajit
 m4
 mercurial
