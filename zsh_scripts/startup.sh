@@ -80,7 +80,7 @@ alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BR
 alias fzf="fzf --bind '~:execute(nvim {})'"
 alias git_init="gl && git submodule update --recursive --remote"
 alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
-alias aptstartup="sudo apt -y update && sudo apt -y upgrade --fix-missing && sudo snap refresh"
+alias aptstartup="sudo apt -y update && sudo apt -y upgrade --fix-missing"
 alias ruststartup="rustup update"
 alias tpmstartup="~/.tmux/plugins/tpm/bin/install_plugins"
 
