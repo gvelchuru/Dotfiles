@@ -59,13 +59,6 @@ kinit_loop() {
   done
 }
 
-mwinit_loop() {
-  until mwinit -o
-  do 
-    echo "Try mwinit again"
-  done
-}
-
 odin_get() {
   export EC2_ACCESS_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Principal com.amazon.ebs-server.gameday)
   export EC2_SECRET_KEY=$(/apollo/env/envImprovement/bin/odin-get -n -t Credential com.amazon.ebs-server.gameday)
@@ -110,7 +103,7 @@ if [[ $APOLLO_EXISTS -eq 0 ]]; then
   alias mac_paste="tmux save-buffer - | nc localhost 2000"
   export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh
 elif [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && mwinit_loop && brewstartup && commonstartup; pythonstartup"
+  alias startup="cd ~ && git_init && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-f5267e62.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
