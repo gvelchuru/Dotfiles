@@ -117,6 +117,7 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=$HOME/.mozbuild/moz-phab:$PATH
   export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
+  export PATH=/usr/local/opt/ccache/libexec:$PATH
   export PATH=$HOME/go/bin:$PATH
 elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
