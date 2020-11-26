@@ -6,7 +6,7 @@ export UNAME=$(uname)
 [[ -d /apollo/env ]];export APOLLO_EXISTS=$?
 [[ -d /home/linuxbrew ]];export HAS_BREW=$?
 [[ -d $HOME/.cargo ]];export HAS_RUST=$?
-[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ $(hostname) != "batcave" ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
+[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
 
 if [[ $APOLLO_EXISTS -eq 0 ]] ; then
     export HOSTNAME="apollo"
@@ -19,7 +19,6 @@ else
 fi
 
 [[ $HOSTNAME =~ "batmobile" ]]; export IS_BATMOBILE=$?
-[[ $HOSTNAME =~ "batcave" ]]; export IS_BATCAVE=$?
 export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
 export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 export SPOTINST_KEY="92fb104ae0051d0d85b8f72bbb7acc7cd78efac9ff5018c30838d59f05936685"
@@ -123,12 +122,6 @@ elif [[ $IS_BATMOBILE -eq 0 ]] ; then
   brew_startup
   alias startup="cd ~ && aptstartup && git_init && tpmstartup && commonstartup; brewstartup"
   alias insync_restart="sudo 'chown -R gauthv:users $BORG_REPO' && killall insync; insync start"
-elif [[ $IS_BATCAVE -eq 0 ]] ; then
-  brew_startup
-  export PATH=/usr/lib/ccache/bin:$PATH
-  #alias startup="cd ~ && git_init && killall insync && insync start && yay -Syu --devel --sudoloop && commonstartup; pythonstartup"
-  alias startup="cd ~ && git_init && aptstartup && tpmstartup && commonstartup; pythonstartup && brewstartup"
-  alias insync_restart="pkexec 'chown -R gauthv:users /mnt/data1/gdrive/batcave_backup' && killall insync; insync start"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-denisidoro-SLASH-navi:$PATH
