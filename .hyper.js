@@ -105,6 +105,7 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: ['hyper-solarized-light', "hyperterm-safepaste", "hyperlinks"],
+  //plugins: ['hyper-solarized-dark', "hyperterm-safepaste", "hyperlinks"],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
