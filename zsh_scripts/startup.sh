@@ -49,26 +49,21 @@ tmux_startup() {
   fi
 }
 
-alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
-alias commonstartup="antibody_source && topgrade"
+alias commonstartup="topgrade"
 alias fzf="fzf --bind '~:execute(nvim {})'"
-alias git_init="gl && git submodule update --recursive --remote"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && commonstartup && pythonstartup"
+  alias startup="cd ~ && commonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-f5267e62.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && brewstartup && commonstartup"
+  alias startup="cd ~ && commonstartup"
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
-  export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
-  export PATH=$HOME/.mozbuild/moz-phab:$PATH
-  export PATH=$HOME/.mozbuild/git-cinnabar:$PATH
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=/usr/local/opt/ccache/libexec:$PATH
   export PATH=$HOME/go/bin:$PATH
