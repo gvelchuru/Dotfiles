@@ -50,7 +50,7 @@ tmux_startup() {
 }
 
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
-alias commonstartup="antibody_source && antibody update && topgrade"
+alias commonstartup="antibody_source && topgrade"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 alias git_init="gl && git submodule update --recursive --remote"
 
