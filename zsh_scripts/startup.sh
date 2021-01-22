@@ -19,8 +19,6 @@ else
 fi
 
 [[ $HOSTNAME =~ "batmobile" ]]; export IS_BATMOBILE=$?
-export BREW_PACKAGES=$HOME/.brew_$HOSTNAME\_packages
-export BREW_CASKS=$HOME/.brew_$HOSTNAME\_casks
 export SPOTINST_KEY="92fb104ae0051d0d85b8f72bbb7acc7cd78efac9ff5018c30838d59f05936685"
 
 if [[ $IS_LINUX -eq 0 ]]; then
@@ -51,51 +49,14 @@ tmux_startup() {
   fi
 }
 
-kinit_loop() {
-  until kinit -f
-  do 
-    echo "Try kinit again"
-  done
-}
-
-alias vimstartup="nvim --headless +PlugInstall +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +qa"
-alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml && pipx upgrade-all"
-alias nodestartup="npm-check -gy  && npm list --global --parseable --depth=1 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.node_$HOSTNAME\_packages"
-alias commonstartup="vimstartup && antibody_source && antibody update && nodestartup"
-alias brewstartup="brew update; brew upgrade; brew cask upgrade; brew list > $BREW_PACKAGES; brew cask ls > $BREW_CASKS"
+alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
+alias commonstartup="antibody_source && antibody update && topgrade"
+alias brewstartup="brew cask upgrade"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 alias git_init="gl && git submodule update --recursive --remote"
-alias yumstartup="yes | sudo yum update && yes | sudo yum upgrade"
-alias aptstartup="sudo apt -y update && sudo apt -y upgrade --fix-missing"
-alias ruststartup="rustup update"
-alias tpmstartup="~/.tmux/plugins/tpm/bin/install_plugins"
 
 export PATH=$HOME/.local/bin:$PATH
-if [[ $APOLLO_EXISTS -eq 0 ]]; then
-  brew_startup
-  for d in /apollo/env/*; do
-    export PATH=$d/bin:$PATH
-  done
-  sshrefresh () {
-    ssh-add -D
-    ssh-add
-    ssh-add ~/.ssh/ec2access/id_rsa-ec2-bastion
-  }
-  export PATH=$HOME/.toolbox/bin:$PATH
-  export BRAZIL_COLORS=1
-  export MANPATH=$ENV_IMPROVEMENT_ROOT/man:$ENV_IMPROVEMENT_ROOT/share/man:${MANPATH:-}:/usr/kerberos/man:$MANPATH
-  export P4CONFIG=.p4config  # see wiki/?P4CONFIG
-  export P4EDITOR=$EDITOR        # editor used for perforce forms (submit, etc)
-  export SYSSCREENRC=$ENV_IMPROVEMENT_ROOT/var/screenrc
-  export USE_CACHE_WRAPPER=true  #turn on caching for various amazon completions
-  export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short # Use short workspace layout in Brazil
-  export BRAZIL_PLATFORM_OVERRIDE=AL2012
-  alias bb='bear -a brazil-build'
-  alias bre='brazil-build-tool-exec'
-  alias startup="cd ~ && git_init && kinit_loop && mwinit_loop && sshrefresh && yumstartup && brewstartup && tpmstartup && commonstartup; pythonstartup && toolbox update"
-  alias mac_paste="tmux save-buffer - | nc localhost 2000"
-  export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh
-elif [[ $IS_MAC -eq 0 ]] ; then
+if [[ $IS_MAC -eq 0 ]] ; then
   alias startup="cd ~ && git_init && brewstartup && commonstartup; pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-f5267e62.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
@@ -103,7 +64,7 @@ elif [[ $IS_MAC -eq 0 ]] ; then
   alias mac_copy="nc -l 2000 | pbcopy"
 elif [[ $IS_EC2 -eq 0 ]] ; then
   brew_startup
-  alias startup="cd ~ && git_init && aptstartup && brewstartup && tpmstartup && commonstartup"
+  alias startup="cd ~ && git_init && brewstartup && commonstartup"
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/share/pkgconfig
   export PATH=$HOME/.mozbuild/arcanist/bin:$PATH
@@ -112,10 +73,6 @@ elif [[ $IS_EC2 -eq 0 ]] ; then
   export PATH=/usr/lib/ccache/bin:$PATH
   export PATH=/usr/local/opt/ccache/libexec:$PATH
   export PATH=$HOME/go/bin:$PATH
-elif [[ $IS_BATMOBILE -eq 0 ]] ; then
-  brew_startup
-  alias startup="cd ~ && aptstartup && git_init && tpmstartup && commonstartup; brewstartup"
-  alias insync_restart="sudo 'chown -R gauthv:users $BORG_REPO' && killall insync; insync start"
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-denisidoro-SLASH-navi:$PATH
