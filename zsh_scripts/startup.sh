@@ -51,13 +51,12 @@ tmux_startup() {
 
 alias pythonstartup="yes | conda update --all && yes | conda update -n base -c defaults conda && conda env export > environment_$HOSTNAME.yaml"
 alias commonstartup="antibody_source && antibody update && topgrade"
-alias brewstartup="brew cask upgrade"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 alias git_init="gl && git submodule update --recursive --remote"
 
 export PATH=$HOME/.local/bin:$PATH
 if [[ $IS_MAC -eq 0 ]] ; then
-  alias startup="cd ~ && git_init && brewstartup && commonstartup; pythonstartup"
+  alias startup="cd ~ && git_init && commonstartup && pythonstartup"
   alias sshcrate='ssh dev-dsk-velchug-2a-f5267e62.us-west-2.amazon.com -R 2000:localhost:2000'
   alias moshcrate='mosh --server=/home/linuxbrew/.linuxbrew/bin/mosh-server  dev-dsk-velchug-2a-d0d24224.us-west-2.amazon.com'
   export PATH="$PATH:/Users/velchug/.dotnet/tools"
