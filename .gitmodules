@@ -6,7 +6,7 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".config/nvim"]
 	path = .config/nvim
-	url = git@gitlab.com:gvelchuru/nvim.git
+	url = git@github.com:gvelchuru/nvim.git
 [submodule ".icons/la-capitaine-icon-theme"]
 	path = .icons/la-capitaine-icon-theme
 	url = https://github.com/keeferrourke/la-capitaine-icon-theme.git
