@@ -1,12 +1,6 @@
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = https://github.com/gvelchuru/oh-my-zsh
 [submodule ".tmux/plugins/tpm/tpm"]
 	path = .tmux/plugins/tpm/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = git@github.com:gvelchuru/nvim.git
-[submodule ".icons/la-capitaine-icon-theme"]
-	path = .icons/la-capitaine-icon-theme
-	url = https://github.com/keeferrourke/la-capitaine-icon-theme.git
