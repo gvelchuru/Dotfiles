@@ -25,7 +25,7 @@ source $HOME/zsh_scripts/source_autojump.sh
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
 source $HOME/zsh_scripts/zsh_completion.sh
-source $HOME/zsh_scripts/antibody.sh
+source $HOME/zsh_scripts/antigen.sh
 
 if [[ $APOLLO_EXISTS -eq 0 ]]; then
   source $HOME/zsh_scripts/apollo.sh

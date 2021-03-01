@@ -1,7 +1,0 @@
-zsh-users/zsh-autosuggestions
-MichaelAquilina/zsh-you-should-use
-robbyrussell/oh-my-zsh path:plugins/git
-robbyrussell/oh-my-zsh path:lib/history.zsh
-bric3/nice-exit-code
-denisidoro/navi
-denysdovhan/spaceship-prompt
