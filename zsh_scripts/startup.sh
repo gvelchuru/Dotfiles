@@ -49,7 +49,7 @@ tmux_startup() {
   fi
 }
 
-alias commonstartup="topgrade && nvim +CocUpgrade +qa"
+alias commonstartup="topgrade && nvim +CocUpdateSync +qa"
 alias fzf="fzf --bind '~:execute(nvim {})'"
 
 export PATH=$HOME/.local/bin:$PATH
