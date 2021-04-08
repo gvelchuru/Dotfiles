@@ -3,14 +3,11 @@ setopt NO_BEEP
 export UNAME=$(uname)
 [[ $UNAME =~ "Linux" ]];export IS_LINUX=$?
 [[ $UNAME =~ "Darwin" ]];export IS_MAC=$?
-[[ -d /apollo/env ]];export APOLLO_EXISTS=$?
 [[ -d /home/linuxbrew ]];export HAS_BREW=$?
 [[ -d $HOME/.cargo ]];export HAS_RUST=$?
-[[ $IS_LINUX -eq 0 ]] && [[ $APOLLO_EXISTS -gt 0 ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
+[[ $IS_LINUX -eq 0 ]] && [[ $(hostname) != "batmobile" ]];export IS_EC2=$?
 
-if [[ $APOLLO_EXISTS -eq 0 ]] ; then
-    export HOSTNAME="apollo"
-elif [[ $IS_MAC -eq 0 ]]; then
+if [[ $IS_MAC -eq 0 ]]; then
     export HOSTNAME="mac"
 elif [[ $IS_EC2 -eq 0 ]]; then
     export HOSTNAME="ec2"
@@ -42,11 +39,7 @@ brew_startup() {
 }
 
 tmux_startup() {
-  if [[ $APOLLO_EXISTS -eq 0 ]]; then
-    tmux new-session -A -s ${1:-main} -c /workplace/$(whoami)
-  else
     tmux new-session -A -s ${1:-main}
-  fi
 }
 
 alias commonstartup="topgrade && nvim +CocUpdateSync +qa"
