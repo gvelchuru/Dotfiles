@@ -27,10 +27,6 @@ source $HOME/zsh_scripts/source_autojump.sh
 source $HOME/zsh_scripts/zsh_completion.sh
 source $HOME/zsh_scripts/antigen.sh
 
-if [[ $APOLLO_EXISTS -eq 0 ]]; then
-  source $HOME/zsh_scripts/apollo.sh
-fi
-
 #PROMPT='
 #%~ %{$fg[red]%}$(nice_exit_code) %{$fg[green]%}
 #%{$reset_color%}❯ '
@@ -48,4 +44,3 @@ export SPACESHIP_VI_MODE_COLOR=green
 export LD_LIBRARY_PATH=/opt/glibc-2.17/lib:$LD_LIBRARY_PATH
 
 export PATH=$HOME/.toolbox/bin:$PATH
-export RUST_BACKTRACE=1
