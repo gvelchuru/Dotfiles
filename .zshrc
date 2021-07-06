@@ -34,13 +34,8 @@ source $HOME/zsh_scripts/antigen.sh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 export PATH=$HOME/.toolbox/bin:$PATH
-export SPACESHIP_CHAR_SYMBOL=❯
-export SPACESHIP_TIME_SHOW=false
-export SPACESHIP_HOST_SHOW=always
-export SPACESHIP_EXIT_CODE_SHOW=true
-export SPACESHIP_VI_MODE_COLOR=green
 
-
+eval "$(starship init zsh)"
 export LD_LIBRARY_PATH=/opt/glibc-2.17/lib:$LD_LIBRARY_PATH
 
 export PATH=$HOME/.toolbox/bin:$PATH

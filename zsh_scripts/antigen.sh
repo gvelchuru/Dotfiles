@@ -8,8 +8,5 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle MichaelAquilina/zsh-you-should-use
 antigen bundle bric3/nice-exit-code
 antigen bundle denisidoro/navi
-antigen bundle denysdovhan/spaceship-prompt
-
-antigen theme spaceship
 
 antigen apply

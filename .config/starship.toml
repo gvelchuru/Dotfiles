@@ -1,0 +1,8 @@
+[status]
+disabled = false
+
+[hostname]
+ssh_only = false
+
+[battery]
+disabled = true
