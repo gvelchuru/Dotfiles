@@ -21,9 +21,7 @@ alias mkdir='mkdir -p'          # do not clobber files when making paths
 alias mv='mv -iv'               # interactive and verbose mv
 alias rm='rm -iv'               # interactive and verbose rm
 
-# Kitty aliases
-alias icat="kitty +kitten icat"
-
+# {{{ Kitty aliases
 function extract() {
     if [[ -f $1 ]] ; then
         case $1 in
@@ -58,6 +56,10 @@ cheatsheet() { curl cheat.sh/$1; }                      # get command cheatsheet
 qrcode() { echo $@ | curl -F-=\<- qrenco.de; }          # print qrcode
 #   }}}
 
+# {{{ docker
+alias dockerattach='docker container exec -it kali /bin/sh'
+# }}}
+
 # {{{ OTHER ALIASES
 alias ap='sudo create_ap --config ~/.config/create_ap.conf' # spawn wifi spot
 alias bm='bmon -p wlp0s29u1u2,wlp0s29u1u1,wlp2s0,ap0 -o "curses:fgchar=S;bgchar=.;nchar=N;uchar=?;details"'
@@ -76,3 +78,4 @@ alias vimdiff='nvim -d'                 # use nvim when diffing
 # }}}
 alias myscrots='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias myscrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
+
